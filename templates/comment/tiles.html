@@ -1,0 +1,411 @@
+<%namespace name="components" file="/components.html"/>
+
+
+<%def name="row(tile, comment)">
+    <div class="tile">
+        <div>
+            <h3><a href="${h.entity_url(comment)}">${_("Comment")}</a> 
+                ${_("on %s") % h.delegateable.link(comment.topic)|n}</h3>
+            <div class="meta">
+                ${h.user.link(comment.creator, scope=comment.topic)|n}
+                %if len(comment.revisions) == 1:  
+                    · ${_("created %s") % h.relative_time(comment.create_time)|n}
+                %else:
+                    · ${_("edited %s") % h.relative_time(comment.latest.create_time)|n}
+                %endif      
+            </div>
+        </div>
+    </div>
+</%def>
+
+
+<%def name="list(tile, comments, topic, variant=None, root=None, recurse=True, ret_url='')">
+    <%
+    _comments = h.comments_sorted(comments, root=root, variant=variant)
+    %>
+
+    %if root is None:
+        %if not len(_comments):
+            <div class="comment_wrapper">
+                <div class="comment empty">
+                    ${_("No comments were made yet.")}
+                </div>
+            </div>
+        %endif
+    %endif
+
+    %if _comments:
+    <ul id="${root is not None and 'c%s_comments' % root.id or ''}"
+        class="${root is None and 'comments_list' or 'sub'}">
+        %for comment, tile in _comments:
+        %if tile.show:
+        <li>
+            ${tiles.comment.show(comment, recurse=recurse, ret_url=ret_url)}
+  
+            %if recurse:
+            ${tiles.comment.list(comment.topic, comment, comment.topic.comments,  variant=variant, recurse=recurse, ret_url=ret_url)}
+            %endif
+
+        </li>
+        %endif
+        %endfor
+    </ul>
+    %endif
+    <% auth = check.comment.create_on(topic) %>
+    %if root is None:
+        %if auth:
+
+        <%
+        hide_form = True
+        target = 'new_toplevel_comment'
+        if len(comments) == 0:
+             hide_form = False
+        %>
+        <div class="comment_wrapper"
+             style="${'display: none' if hide_form else ''}"
+             id="${target}"
+             data-cancel=".cancel">
+            <div class="comment">
+                ${create_form(None, topic, variant=variant, ret_url=ret_url)}
+            </div>
+        </div>
+        %if hide_form:
+        <div class="list_button">
+            <a class="button highlight showhide_button" 
+               href="${h.base_url(topic.instance)}comment/new?topic=${topic.id}&amp;wiki=1"
+               data-target="#${target}"
+               id="start-discussion-button">
+                ${_('Start new Discussion')}
+            </a>
+        </div>
+        %endif
+
+        %elif auth.propose_join():
+        <a class="button add ttip" title="${_('Join instance to comment.')}" rel="#overlay-join-button">${_("Add comment")}</a>
+        %elif auth.propose_login():
+        <a class="button add ttip" title="${_('Login to comment.')}" rel="#overlay-login-button">${_("Add comment")}</a>
+        %endif
+
+    %endif
+</%def>
+
+
+<%def name="show(tile, comment, ret_url='')">
+    <%  
+    if not tile.show:
+        return
+
+    sentiment = {'css': '', 'msg': ''}
+    if comment.latest.sentiment == model.Comment.SENT_PRO:
+        sentiment = {'css': 'pro', 'msg': _(u'is pro')}
+    elif comment.latest.sentiment == model.Comment.SENT_CON:
+        sentiment = {'css': 'con', 'msg': _(u'is con')}
+    %>
+
+    <div id="c${comment.id}" class="comment">
+
+        ## comment title (username / pro/con / deleted)
+        %if not comment.is_deleted():
+        <h5>
+            ${h.user.link(comment.creator, scope=comment.topic)|n} 
+            <span class="${sentiment['css']}">${sentiment['msg']}</span>
+        </h5>
+        %else:
+        <h5>${_("(deleted)")}</h5>
+        %endif
+
+        ## comment text
+        %if not comment.is_deleted():
+        ${tile.text|n}
+        %else:
+        <span class="hint">${_("This comment has been deleted.")}</span>
+        %endif
+
+        %if can.comment.edit(comment):
+        <a class="edit_comment"
+           data-comment="${comment.id}"
+           data-instance-baseurl="${h.base_url(comment.topic.instance)}"
+           href="${h.entity_url(comment, member='edit', 
+                                query=dict(ret_url=ret_url))}">
+            ${_("edit")}
+        </a> 
+        %endif
+
+        %if can.comment.delete(comment):
+        &nbsp;&nbsp;&nbsp;
+        <a class="" href="${h.entity_url(comment, member='ask_delete')}">${_("delete")}</a> 
+        %endif
+
+        <div class="comment_actions floatbox">
+            <div>
+                <div class="vote_comment">
+                    ${tiles.poll.widget(comment.poll)}
+                </div>
+
+                ## Number of replies
+                %if tile.num_children > 0:
+                    %if tile.num_children == 1:
+                    <a class="show_comments" href="#">
+                        ${_('1 Comment')}
+                    </a>
+                    %else:
+                    <a class="show_comments" href="#">
+                        ${_('%s Comments') % tile.num_children}
+                    </a>
+                    %endif
+                %else:
+                    <span class="show_comments" href="#">
+                        ${_('%s Comments') % tile.num_children}
+                    </span>
+                %endif
+
+                ## Reply button
+                <% auth = check.comment.reply(comment) %>
+                %if auth and recurse:
+                <a class="new_comment" data-reply="${comment.id}" href="#">${_('reply')}</a>
+                %elif auth.propose_join():
+                <a class="new_comment" title="${_('Join instance to reply')}" rel="#overlay-join-button">${_('reply')}</a>
+                %elif auth.propose_login():
+                <a class="new_comment" title="${_('Login to reply')}" rel="#overlay-login-button">${_('reply')}</a>
+                %endif
+
+            </div>
+            <div class="utility">
+                <span style="display: none;" class="hover_active">
+                    <a href="${h.abuse.for_entity(comment)}">${_("report")}</a>
+                    · 
+                    %if len(comment.revisions) > 1:
+                    <span class="only-js"> 
+                        ## FIXME: remove when we can support no-js clients.
+                        <a href="${h.entity_url(comment, member='history')}"
+                           rel="#overlay-ajax">
+                            ${_("history")}
+                        </a> 
+                        ·
+                    </span>
+                    %endif
+                    <%doc>
+                    FIXME: Add when we have implemented permalinks or details overlay dialogs
+                    <a href="#">Link</a> · 
+                    FIXME: Add when we implemented details dialog
+                    </%doc>
+                </span>
+
+                %if comment.is_deleted():
+                ${_("deleted %s") % h.relative_time(comment.delete_time)|n}
+                %else:
+                  %if not comment.is_edited(): 
+                  ${h.relative_time(comment.create_time)|n}
+                  %else:
+                    %if comment.latest.user == comment.creator:
+                    ${_("edited %s") % h.relative_time(comment.latest.create_time)|n}
+                    %else:
+                    ${_("edited %s by %s") % (h.relative_time(comment.latest.create_time),
+                    h.user.link(comment.latest.user, scope=comment.topic))|n}
+                    %endif
+                  %endif
+                %endif
+
+            </div>
+        </div>
+
+    </div>
+
+</%def>
+
+<%def name="edit_form(comment, ret_url='')">
+
+<%
+
+sentiment = comment.latest.sentiment
+
+def klass(sentiment_button):
+    value = 'button_small'
+    if sentiment_button == sentiment:
+        value += ' active'
+    return value
+
+klass_pro = klass(1)
+klass_neutral = klass(0)
+klass_con = klass(-1)
+%>
+  <div class="comment_form">
+    <form name="new_comment" class="comment_form"
+          method="POST" action="${h.base_url(comment.topic.instance)}comment/${comment.id}">
+        ${h.field_token()|n}
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" name="ret_url" value="${ret_url}" />
+      <div class="subcolumns">
+        <div class="c60l">
+          <div class="subcl">
+            <textarea name="text">${comment.latest.text}</textarea>
+            ${components.formatting()}
+          </div>
+        </div>
+        <div class="c40r">
+          <div class="subcr comment_settings">
+            <div class="input_wrapper comment_status only-js">
+              ${_(u'Comment is...')}<br />
+              <a class="${klass_pro}" 
+                 data-status="1" href="#">${_('Pro')}</a>
+              <a class="${klass_neutral}" 
+                 data-status="0" 
+                 href="#">${_('Neutral')}</a>
+              <a class="${klass_con}" 
+                 data-status="-1" 
+                 href="#">${_('Con')}</a>
+              <input type="hidden" name="sentiment" 
+                     value="${str(comment.latest.sentiment)}" />
+            </div>
+            <div class="hr"><hr /></div>
+            <div class="input_wrapper submit">
+              <input type="submit" value="${_('Save')}" />
+              <a class="cancel"
+                 href="${h.entity_url(comment.topic)}">${_("cancel")}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</%def>
+
+
+<%def name="create_form(parent, topic, wiki=True, arm=False, can_wiki=True, variant=None, ret_url='', format=None)">
+
+<%
+if format is None:
+    format = ''
+else:
+    format = ".%s" % format
+%>
+  <h4>${_(u'Add comment')}</h4>
+  <div class="comment_form">
+    <form name="new_comment" class="comment_form"
+          method="POST" action="${h.base_url(topic.instance)}comment${format}">
+      ${h.field_token()|n}
+      <input type="hidden" name="topic" value="${topic.id}" />
+      <input type="hidden" name="ret_url" value="${ret_url}" />
+      %if variant:
+          <input type="hidden" name="variant" value="${variant}" />
+      %endif
+      %if parent:
+          <input type="hidden" name="reply" value="${parent.id}" />
+      %endif
+      <div class="subcolumns">
+        <div class="c60l">
+          <div class="subcl">
+            <textarea name="text"></textarea>
+            ${components.formatting()}
+          </div>
+        </div>
+        <div class="c40r">
+          <div class="subcr comment_settings">
+            <div class="input_wrapper comment_status only-js">
+              ${_(u'Comment is...')}<br />
+              <a class="button_small" data-status="1" href="#">${_('Pro')}</a>
+              <a class="button_small" data-status="0" href="#">${_('Neutral')}</a>
+              <a class="button_small" data-status="-1" href="#">${_('Con')}</a>
+              <input type="hidden" name="sentiment" value="0" />
+            </div>
+            <div class="hr"><hr /></div>
+            <div class="input_wrapper">
+              <label for="wiki">
+                  <input id="editable" name="wiki" type="checkbox" 
+                         ${'checked="checked"' if wiki else ''}/> 
+                  ${_("Allow others to edit this comment.")}
+              </label>
+            </div>
+            <div class="hr"><hr /></div>
+            <div class="input_wrapper submit">
+              <input type="submit" value="${_('Save')}" />
+              <a class="cancel" 
+                 href="${'/d/%s' % parent.topic.id if parent else request.params.get('topic')}">${_("cancel")}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</%def>
+
+
+<%def name="header(tile, comment, active)">
+    <div class="top_actions title">
+        %if can.comment.edit(comment):
+            <a class="button edit" onClick="return adhocracy.comment_edit(${comment.id})" 
+                href="${h.entity_url(comment, member='edit')}">${_("edit")}</a> 
+        %endif
+                        
+        %if can.comment.delete(comment):
+            <a class="button delete" 
+                href="${h.entity_url(comment, member='ask_delete')}">${_("delete")}</a> 
+        %endif
+        
+        ${components.watch(comment)}
+    </div>
+
+    <h1 class="page_title">
+        ${_("Discussion on %s") % h.delegateable.link(comment.topic)|n}</h1>
+    
+    <div class="panel ${active}">
+        <ul class="menu">
+            <li><a href="${h.entity_url(comment)}">${_("Context")}</a></li>
+            <li><a href="${h.entity_url(comment, comment_page=True)}" 
+                class="discussion">${_("Comment")}</a></li> 
+            <li><a href="${h.entity_url(comment, member='history')}" 
+                class="history">${_("History")} (${len(comment.revisions)})</a></li>
+            <li><a href="${h.entity_url(comment.poll, member='votes')}" 
+                class="votes">${_("Votes")} (${len(comment.poll.tally)})</a></li>
+        </ul>
+    </div>
+</%def>
+
+<%def name="form(display=False)">
+  <!-- new comment form -->
+  <div id="comment_form_template" ${'style="display: none;"' if display == False else ''}>
+    <h4>${_(u'Add comment')}</h4>
+    <form name="new_comment" class="comment_form" 
+          method="POST" action="${h.base_url(c.instance)}comment">
+
+        <input type="hidden" name="topic" value="${topic.id}" />
+        <input type="hidden" name="ret_url" value="${ret_url}" />
+        %if variant:
+            <input type="hidden" name="variant" value="${variant}" />
+        %endif
+        %if parent:
+            <input type="hidden" name="reply" value="${parent.id}" />
+        %endif
+
+      <div class="subcolumns">
+        <div class="c60l">
+          <div class="subcl">
+            <textarea></textarea>
+          </div>
+        </div>
+        <div class="c40r">
+          <div class="subcr comment_settings">
+            <div class="input_wrapper comment_status">
+              ${_(u'Comment is...')}<br />
+              <a class="button_small" status="pro" href="#">${_('Pro')}</a>
+              <a class="button_small" status="neutral" href="#">${_('Neutral')}</a>
+              <a class="button_small" status="contra" href="#">${_('Con')}</a>
+              <input type="hidden" name="comment_status" value="pro" />
+            </div>
+            <div class="hr"><hr /></div>
+            <div class="input_wrapper">
+              <label for="editable"><input id="editable" name="editable" type="checkbox" />Andere dürfen diese Antwort bearbeiten.</label>
+            </div>
+            <div class="hr"><hr /></div>
+            <div class="input_wrapper submit">
+              <input type="submit" value="Kommentieren" /><a class="cancel" href="#">Abrechen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</%def>

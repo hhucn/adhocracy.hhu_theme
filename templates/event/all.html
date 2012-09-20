@@ -1,0 +1,18 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("Whazza")}</%def>
+
+<%def name="breadcrumbs()">
+    ${_("All current events.")}
+</%def>
+
+
+<%block name="headline">
+<h1>${_("Whazza")}</h1>
+</%block>
+
+<%block name="main_content">
+    <div id="events_table" class="table">
+        ${c.event_pager.here()}
+    </div>
+</%block>

@@ -1,0 +1,5 @@
+<%namespace name="common" file="/notifications/common.txt"/>
+
+Diese Nachricht bestätigt Deine Stimmabgabe bei ${e.poll.scope.title}. 
+
+Wenn Du Deine Abstimmung überdenken willst, besuche die Abstimmungsseite.

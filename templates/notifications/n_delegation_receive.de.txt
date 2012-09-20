@@ -1,0 +1,3 @@
+Du hast eine Delegation von ${e.user.name|n} zu ${e.scope.title|n} erhalten.
+
+Profil-Seite: ${h.base_url(None, path="/user/%s" % e.user.user_name)}

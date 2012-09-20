@@ -1,0 +1,38 @@
+<%inherit file="${context.get('root_template', '/root.html')}" />
+<%namespace name="components" file="/components.html"/>
+
+<%block name="flashmessages">
+${components.flashmessages()}
+</%block>
+    <!--#main triggers diazo theming, do not remove-->
+
+<%block name="main">
+      <div class="page_margins">
+          <div class="page_wrapper">
+              <!-- begin: page content -->
+              <%block name="content_wrapper">
+              <div class="full_teaser">
+                  <%block name="admin_controls" />
+                  <%block name="headline" />
+              </div>
+              <div id="col1">
+                  <div id="col1_content" class="clearfix">
+                      
+                      <%block name="main_content" />
+                      
+                  </div>
+              </div>
+              
+              <aside>
+                  <div id="col3">
+                      <div id="col3_content" class="clearfix">
+                          <%block name="sidebar" />
+                      </div>
+                      <!-- IE Column Clearing -->
+                      <div id="ie_clearing"> &#160; </div>
+                  </div>
+              </aside>
+              </%block>
+          </div>
+      </div>
+</%block>

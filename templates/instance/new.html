@@ -1,0 +1,51 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("New Instance")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.site.name()} &raquo; ${_("New Instance")}
+</%def>
+
+<%block name="headline">
+    <h3>${_("Create new instance")}</h3>
+</%block>
+
+<%block name="main_content">
+
+<form name="create_instance" class="inplace" method="POST" action="/instance">
+    ${h.field_token()|n}
+
+    <fieldset>
+      <legend>${_("Instance name")}</legend>
+      <div class="input_wrapper">
+        <label for="label" class="armhint">${_("New Instance")}</label>
+        <input type="text" tabindex="1" class="title armlabel" name="label" />
+      </div>
+    </fieldset>
+    
+    <fieldset>
+      <legend>${_("Instance URL")}</legend>
+      <p class="info">
+        ${_("The address may only contain alpha-numeric characters. "
+        "Please note that this key cannot be changed after the instance "
+        "has been created.")|n}
+      </p>
+      http://<input tabindex="2" class="" style="text-align: right;" name="key" />.${request.environ.get('adhocracy.domain')}
+    </fieldset>
+    
+    <fieldset>
+      <legend>${_("Description")}</legend>
+      <p class="info">
+      ${_("Describe what the goals of this instance are and who constitutes "
+          "its community. (Both Markdown and HTML are allowed here.)")} 
+      </p>
+      <textarea tabindex="3" class="description" name="description"></textarea>
+      ${components.formatting()}
+
+    </fieldset>
+
+    <div class="inline_input_wrapper submit">
+        ${components.savebox("/instance")}
+    </div>
+</form>
+</%block>

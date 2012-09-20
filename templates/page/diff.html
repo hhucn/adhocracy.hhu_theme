@@ -1,0 +1,84 @@
+<%inherit file="/template.html" />
+
+<%def name="title()">${_("Variant: %s") % c.right.title}</%def>
+
+<%def name="breadcrumbs()">${h.text.breadcrumbs(c.right)|n}</%def>
+
+<%block name="headline">
+${tiles.page.header(c.right.page, c.tile, active='diff', text=c.right, variant=c.variant)}
+
+
+<div class="lefthalf double">
+    ${tiles.text.descbox(c.left, c.right, options=c.left_options)}
+</div>
+
+<div class="righthalf double">
+    ${tiles.text.descbox(c.right, c.left)}
+</div>
+
+<div class="clearboth"></div>
+
+<%
+left_table, right_table = diff.norm_texts_table_compare(c.left, c.right)
+%>
+
+<span class="list_diff">
+    <div class="lefthalf double">
+        %if c.left.has_text:
+            %if c.right.has_text:
+                ${left_table|n}
+            %else:
+                ${c.left.render()|n}
+            %endif
+        %else:
+            <div class="infobox">
+                ${_("This variant has no text.")}
+            </div>
+        %endif
+    </div>
+    <div class="righthalf double">
+        %if c.right.has_text:
+            %if c.left.has_text:
+                ${right_table|n}
+            %else:
+                ${c.right.render()|n}
+            %endif
+        %else:
+            <div class="infobox">
+                ${_("This variant has no text.")}
+            </div>
+        %endif
+    </div>
+</span>
+
+<div class="clearboth"></div>
+<br/>
+
+<div class="sidebar">
+    %if c.right.page.function == c.right.page.NORM:
+        <br/>
+        <h3 class="section"><img class="cd" src="/img/icons/proposal_16.png"/> ${_("Related Proposals")}</h3>
+        <%
+        supporting = c.right.page.supporting_selections(c.variant)
+        %>
+        <ul>
+        %for selection in c.right.page.selections:
+            <li>
+                ${h.proposal.link(selection.proposal, anchor='selection_%s' % selection.id)|n}
+                %if selection in supporting:
+                    ${_("(supports this variant)")}
+                %endif
+            </li>
+        %endfor
+        <li><a href="/proposal/new">${_("Create a new proposal...")}</a></li>
+        </ul>
+        <br/>
+        ${tiles.delegation.sidebar(c.right.page, c.tile)}
+    %endif
+</div>
+
+<div class="mainbar">
+    ${tiles.comment.list(c.right.page, variant=c.right.variant)}
+</div>
+
+</%block>

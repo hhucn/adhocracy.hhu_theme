@@ -1,2 +1,0 @@
-adhocracy.hhu_theme
-===================

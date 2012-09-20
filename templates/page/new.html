@@ -1,0 +1,68 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("New page")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.page.breadcrumbs(None)|n} &raquo; ${_("New page")}
+</%def>
+
+<%block name="headline">
+    <h3>${_("Create norm")}</h3>
+</%block>
+
+
+<%block name="main_content">
+<form name="create_page" class="inplace" method="POST" action="/page">
+    ${h.field_token()|n}
+    %if c.proposal:
+        <input type="hidden" value="${c.proposal}" name="proposal" />
+    %endif
+    
+    
+    <div class="mainbar">
+        <fieldset>
+            <legend>${_("Norm title")}</legend>
+            <div class="input_wrapper page_title">
+                <label for="title" class="armhint">${_("New norm")}</label>
+                <input type="text" tabindex="1" class="title armlabel" name="title" value="${c.title}"/>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>${_("Norm content")}</legend>
+            <textarea tabindex="2" class="description armlabel normedit" cols="${model.Text.LINE_LENGTH}" name="text"></textarea>
+            ${components.formatting()}
+        </fieldset>
+
+        <fieldset>
+
+            ${h.need.autocomplete}
+
+            <legend>${_("Tag and classify")}</legend>
+            <div class="input_wrapper">      
+                <label for="tags" class="armhint">${_("Tags to describe the subject")}</label>
+                <input type="text" name="tags" id="tags" class="armlabel long" data-instance-baseurl="${h.base_url(c.instance)}" />
+            </div>
+        </fieldset>
+        
+        <label for="parent">${_("Parent page:")}</label>
+        ${tiles.page.select_page(field_name="parent", functions=model.Page.PARENT_FUNCTIONS)}
+        <span class="hint">${_("The new norm will be categorized under the specified parent theme.")}
+        </span>
+
+        %if c.instance.milestones:
+          <label for="milestone">${_("Relates to a milestone")}</label>
+          ${tiles.milestone.select(None)}
+        %endif
+
+    </div>
+    
+    <div style="clear:both;"></div>
+    <div class="mainbar">
+        <div class="submit">
+            ${components.savebox("/")}
+        </div>
+        ${components.form_watch(None, checked=True)}
+    </div>
+</form>
+</%block>

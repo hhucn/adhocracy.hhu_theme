@@ -1,0 +1,5 @@
+${e.user.name} hat sein/ihr Profil aktualisiert. 
+%if e.user.bio: 
+Benutzerprofil: 
+${e.user.bio}  
+%endif

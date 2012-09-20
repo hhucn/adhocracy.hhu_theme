@@ -1,0 +1,15 @@
+<%inherit file="/template.html" />
+<%def name="title()">${_("Add an OpenID")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.instance.breadcrumbs(c.instance)|n} ${_("Add OpenID")}
+</%def>
+
+<%block name="headline">
+<h1>${_("Add an OpenID")}</h1>
+    <div class="infobox">
+        ${_("Enter the URL of your OpenID to connect the ID to your "
+            + "account. This will allow you to login using this OpenID in the future.")}
+    </div>
+    <%include file="/openid/form.html"/>
+</%block>
