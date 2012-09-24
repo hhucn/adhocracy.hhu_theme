@@ -11,5 +11,5 @@ To run it, type
 
     ./paster_interactive.sh
 
-and navigate to http://localhost:5001/ . The initial credentials are admin : password .
+and navigate to [http://localhost:5001/](http://localhost:5001/). The initial credentials are admin : password .
 
