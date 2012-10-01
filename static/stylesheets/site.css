@@ -1,1 +1,175 @@
 /* Use this file to overwrite css in a custom installation in <adhocracy.site.dir> */
+
+/* 
+ * *****************************************
+ * Define custom styles
+ * *****************************************
+ */
+
+body.logged_in #nav li {
+
+    height: 30px;
+    padding-top: 15px;
+}
+
+body.logged_in #header .page_wrapper,
+               #header .page_wrapper {
+
+    height: 90px;
+}
+
+body.logged_in #nav,
+               #nav {
+
+    font-weight: bold;
+    height: 67px;
+}
+
+body.logged_in #logo {
+    height: auto;
+}
+
+header #header {
+
+    background: white;
+}
+
+#logo, #nav {
+
+    padding: 15px !important;
+}
+
+#about_menu_link, #nav li a {
+
+    color: #00578A;
+}
+
+#nav {
+
+    text-align: left;
+}
+
+#hhu_logo {
+
+    float: right;
+}
+
+#nav div ul.children li {
+
+    background: none;    
+    top: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#nav div.menu ul {
+
+    padding: 2px 3px 2px 2px !important;
+}
+
+#nav div ul.children li:hover {
+
+    background-color: #2679D0;
+}
+
+#nav div ul.children li a {
+
+    color: #00578A !important;
+}
+
+div#nav div ul.children li {
+
+    margin: -2px -3px -2px -2px !important;
+}
+
+div#nav div ul.children {
+
+    padding: 0px;
+    border: 1px solid #00578A;    
+    min-width: 0px;
+    top: 45px;
+    right: -1px;
+}
+
+#nav div ul.children {
+
+    height: auto;
+    background: none;
+    background-image: none;
+    
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    
+    background-color: #CCE0F4;
+}
+
+#nav li.current a {
+
+    color:#00578A;
+}
+
+#nav li, #nav li:hover, #nav li.current, #nav li.current {
+
+    line-height: 1;
+
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E9F2FB));
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#E9F2FB');
+    background-image: linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);  
+
+    /* 
+     * Override the margin property for smaller
+     * borders between the list (nav) elements.
+     */    
+    margin: -1px -2px -1px -1px !important;
+
+    position: relative;
+    top: -3px;
+    height: 30px;
+}
+
+div #user_menu a.show_me {
+
+    line-height: 1;
+}
+
+div.menu h1 {
+    
+    display: inline;
+    position: relative;
+    top: -10px;
+    left: -250px;
+    font-size: medium;
+}
+
+div #user_menu {
+
+    float: left;
+    background: none;
+    margin-left: 20px;
+}
+
+#nav ul {
+    display: block;
+    float: left;
+    margin : 0px;
+    margin-top: 20px;
+    height: 40px;
+    padding: 3px;
+
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #00578A));
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#00578A');
+    background-image: linear-gradient(top, #FFFFFF 0%, #00578A 100%);    
+}
+
+#nav li a {
+
+    padding-left: 25px;
+    padding-right: 25px;
+}
