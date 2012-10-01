@@ -17,51 +17,38 @@
        return active_nav.get(identifier, '')
 %>
 
-<!-- begin: main navi -->
 <nav>
-    <div id="nav">
-        <!-- skiplink anchor: navigation -->
-        <a id="navigation" name="navigation"></a>
-        <!-- main navigation: horizontal list -->
-        <div class="menu hlist">
+    <div id="nav" class="menu hlist">
+        <ul>
             %if c.user is None:
-            <ul>
                 ${nav_link(href=h.login_redirect_url(),
                            a_rel='#overlay-default',
                            text=_("Login"),
                            li_class=_class('login'),
                            id_="nav_login")}
-            </ul>
             %else:            
-            <h1>
-                <a href="${h.entity_url(c.user, instance=c.instance, member='edit')}">
-                    ${c.user.name}
-                </a>
-            </h1>
-            <ul>
+                <li class="user_name">
+                    <a href="${h.entity_url(c.user, instance=c.instance, member='edit')}">
+                        ${c.user.name}
+                    </a>
+                </li>
                 <li>
                     <a href="${h.entity_url(c.user, member='dashboard')}">
                         ${_('Watchlist')}
                     </a>
                 </li>
                 %if h.has_permission("global.admin"):
-                <li>
-                    <a href="${h.base_url(None, path='/admin')}">
-                        ${_('Administrate Site')}
-                    </a>
-                </li>
+                    <li>
+                        <a href="${h.base_url(None, path='/admin')}">
+                            ${_('Administrate Site')}
+                        </a>
+                    </li>
                 %endif
                 <li>
                     <a href="/logout">${_("Logout")}</a>
                 </li>
-            </ul>        
             %endif
-            <div id="hhu_logo">
-                <a href="http://www.uni-duesseldorf.de">
-                    <img id="hhu_logo_img" src="/images/hhu_logo.png"></img>
-                </a>
-            </div>
-        </div>
+        </ul>        
     </div>
 </nav>
 </%def>
@@ -70,48 +57,41 @@
 <%def name="subheader_navigation(logo, label, search_action=None, search_label='', 
                                  search_button_text=None, url=None)">
 
-  <div id="subheader" class="${'logo' if logo else ''}">
-    <div class="page_margins">
-      <div class="page_wrapper">
-        <!-- begin: sub navi -->
-        
-        <div id="organisation_logo">
-            %if url:
-            <a href="${url}">
-            %endif
-            %if logo:
-            <img src="${logo}" alt=""/>
-            %endif
-            <h2>${label}</h2>
-            %if url:
-            </a>
-            %endif
-        </div>
-        <!-- begin: sub navi -->
-        <nav>
-          <div class="hlist">
-            <ul id="subnav">
-
-                ${caller.body()}
-
-            </ul>
-          </div>
-        </nav>
-        %if search_action:
-        <div id="searchbox">
-          <form action="${search_action}" 
-                id="searchform" method="get">
-            <div class="label_over">
-              <label class="over-apply" for="s">${search_label|n}</label>
-              <input type="text" id="s" name="serp_q" value="" />
-            </div>
-            <input type="submit" value="${search_button_text or _('Search')}" 
-                   id="searchsubmit" />
-          </form>
-        </div>
+  <div id="subheader">
+    <div id="organisation_logo">
+        %if url:
+        <a href="${url}">
         %endif
-      </div>
+        %if logo:
+        <img src="${logo}" alt=""/>
+        %endif
+        <h2>${label}</h2>
+        %if url:
+        </a>
+        %endif
     </div>
+    <nav>
+      <div class="hlist">
+        <ul id="subnav">
+
+            ${caller.body()}
+
+        </ul>
+      </div>
+    </nav>
+    %if search_action:
+    <div id="searchbox">
+      <form action="${search_action}" 
+            id="searchform" method="get">
+        <div class="label_over">
+          <label class="over-apply" for="s">${search_label|n}</label>
+          <input type="text" id="s" name="serp_q" value="" />
+        </div>
+        <input type="submit" value="${search_button_text or _('Search')}" 
+               id="searchsubmit" />
+      </form>
+    </div>
+    %endif
   </div>
 
 </%def>

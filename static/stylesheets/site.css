@@ -12,46 +12,49 @@ body.logged_in #nav li {
     padding-top: 15px;
 }
 
-body.logged_in #header .page_wrapper,
-               #header .page_wrapper {
-
-    height: 90px;
-}
-
-body.logged_in #nav,
-               #nav {
+body.logged_in #nav {
 
     font-weight: bold;
     height: 67px;
 }
 
 body.logged_in #logo {
+
     height: auto;
+}
+
+body {
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 header #header {
 
     background: white;
+    margin-top: 10px;
+    min-width: 800px;
+    height: 90px;
 }
 
-#logo, #nav {
+#header #logo {
+    
+    float: left;
+    padding: 0 !important;
+}
 
-    padding: 15px !important;
+#header #hhu_logo {
+
+    float: right;
+}
+
+#nav {
+
+    float: left;
 }
 
 #about_menu_link, #nav li a {
 
     color: #00578A;
-}
-
-#nav {
-
-    text-align: left;
-}
-
-#hhu_logo {
-
-    float: right;
 }
 
 #nav div ul.children li {
@@ -60,11 +63,6 @@ header #header {
     top: 0px;
     padding-left: 15px;
     padding-right: 15px;
-}
-
-#nav div.menu ul {
-
-    padding: 2px 3px 2px 2px !important;
 }
 
 #nav div ul.children li:hover {
@@ -77,11 +75,6 @@ header #header {
     color: #00578A !important;
 }
 
-div#nav div ul.children li {
-
-    margin: -2px -3px -2px -2px !important;
-}
-
 div#nav div ul.children {
 
     padding: 0px;
@@ -89,6 +82,10 @@ div#nav div ul.children {
     min-width: 0px;
     top: 45px;
     right: -1px;
+}
+
+div#nav {
+    padding: 0px !important;
 }
 
 #nav div ul.children {
@@ -123,11 +120,17 @@ div#nav div ul.children {
      * Override the margin property for smaller
      * borders between the list (nav) elements.
      */    
-    margin: -1px -2px -1px -1px !important;
-
+    margin-left: -2px !important;
+    margin-right: -1px !important;
+    
     position: relative;
     top: -3px;
     height: 30px;
+}
+
+#nav li:last-child, #nav li:hover:last-child, #nav li.current:last-child{
+
+    margin-right: -2px !important;
 }
 
 div #user_menu a.show_me {
