@@ -23,11 +23,14 @@
         <legend>${_("Language")}</legend>
         <ul>
             %for locale in c.locales:
-            <li style="list-style-type: none;"><input type="radio" name="locale" value="${str(locale)}" 
-            %if locale == c.page_user.locale:
-            checked="checked"
-            %endif
-            /> ${locale.display_name}</li>
+            <li style="list-style-type: none; ">
+		    <input type="radio" name="locale" id="_mynamespace_edlang_${str(locale)}" value="${str(locale)}" 
+		    %if locale == c.page_user.locale:
+		    checked="checked"
+		    %endif
+		    />
+		    <label style="display: inline;" for="_mynamespace_edlang_${str(locale)}">${" "+locale.display_name}</label>
+            </li>
             %endfor
         </ul>
     </fieldset>
