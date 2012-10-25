@@ -13,7 +13,7 @@ ${self.form()}
 </%block>
 
 <%def name="form()">
-  <% h.need.spectrum %>
+  <script type="text/javascript" src="/javascripts/spectrum/spectrum.js"></script>
   <form name="update_badge" class="inplace" method="POST">
 
       ${components.flashmessages()}
@@ -21,7 +21,7 @@ ${self.form()}
       <h2>
           %if c.form_type == 'create':
               %if c.badge_type == 'instance':
-              ${_('Add instance badge')} 
+              ${_('Add instance badge')}
               %elif c.badge_type == 'user':
               ${_('Add user badge')}
               %elif c.badge_type == 'delegateable':
@@ -47,11 +47,11 @@ ${self.form()}
            value="" />
 
     <label for="description" class="">${_("Badge description")}</label>
-    <textarea name="description" id="description" 
+    <textarea name="description" id="description"
               style="width:90%; height: 10em" value="" >
     </textarea>
 
-    <label for="color" 
+    <label for="color"
            class="">${_("The color that is used to show the badge")}</label>
     <input name="color" style="width: 8em" id="color" class=""
            value=""/>
@@ -68,7 +68,7 @@ ${self.form()}
         ${_("Group")}
     </label>
 
-    <select name="group"> 
+    <select name="group">
         <option value="">${_("No Group")}</option>
         %for group in c.groups:
         <option value="${group.code}">${group.group_name}</option>
@@ -76,7 +76,7 @@ ${self.form()}
     </select>
     <span class="hint">${_("Assign the user to this group for all instances in the adhocracy site.")}</span>
 
-    <label for="display_group" 
+    <label for="display_group"
            class="">${_("Display group in instances")}</label>
     <input type="checkbox"  name="display_group" id="display_group" />
     <span class="hint">${_("Display this group in instances instead of the normal group the user is in there.")}</span>
