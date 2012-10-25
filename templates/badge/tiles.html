@@ -17,7 +17,7 @@ else:
 
 <%def name="badges(badges)">
     %for badge_ in badges:
-      % if badge_.color.lowercase != '#fff':
+      % if badge_.color != 'invisible':
         ${badge(badge_)}
       % endif
     %endfor
