@@ -13,7 +13,7 @@ ${self.form()}
 </%block>
 
 <%def name="form()">
-  <script type="text/javascript" src="/javascripts/spectrum/spectrum.js"></script>
+  <% h.need.spectrum %>
   <form name="update_badge" class="inplace" method="POST">
 
       ${components.flashmessages()}
