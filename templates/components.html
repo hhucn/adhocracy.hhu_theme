@@ -43,7 +43,7 @@
     save_text = save_text if save_text is not None else _("Save")
     %>
     <div class="savebox">
-        <button type="submit" class="btn btn-primary" 
+        <button type="submit" class="btn btn-primary"
                 tabindex="${tabindex}" value="${save_value}">
             ${save_text}
         </button>
@@ -64,7 +64,7 @@
         %>
         <label for="watch">
         <input class="watch" type="checkbox" ${'checked=\"checked\"' if checked else ''} name="watch" id="watch" />
-        ${_("Notify me of updates.")}        
+        ${_("Notify me of updates.")}
         </label>
     %endif
 </%def>
@@ -174,14 +174,14 @@ $(document).ready(function () {
 
 <%def name="head()">
   <meta charset="utf-8" />
-    <title>${'self.title() - ' if self.title() else ''} - 
+    <title>${'self.title() - ' if self.title() else ''} -
             %if c.instance:
-                 ${c.instance.label} 
+                 ${c.instance.label}
             %endif
                 ${h.site.name()}
     </title>
 
-    <meta http-equiv="X-XRDS-Location" 
+    <meta http-equiv="X-XRDS-Location"
           content="${h.base_url(c.instance, path='/openid/xrds')}" />
 
     %for key, value in c.html_meta.items():
@@ -233,26 +233,26 @@ $(document).ready(function () {
     <!-- /template -->
 
     %if c.instance and c.instance.css:
-        <link  rel="stylesheet" type="text/css" 
+        <link  rel="stylesheet" type="text/css"
             href="${h.base_url(c.instance, path='/instance/%s/style' % c.instance.key)}"/>
     %endif
-    
+
     %for link in c.html_head_links:
-    <link rel="${link['rel']}" type="${link['type']}" 
+    <link rel="${link['rel']}" type="${link['type']}"
           title="${link['title']}" href="${link['href']}" />
     %endfor
 
     %if c.user and c.user.no_help:
-    <style type="text/css"> 
+    <style type="text/css">
         .help {display: none;}
     </style>
     %endif
-    
+
     ${tiles.badge.badge_styles()}
 
-    <link rel="stylesheet" type="text/css" media="all" 
+    <link rel="stylesheet" type="text/css" media="all"
           href="${h.base_url(None, path='/stylesheets/site.css')}" />
-    
+
 </%def>
 
 
