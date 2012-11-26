@@ -13,8 +13,13 @@ con = tile.widget_action_attrs(model.Vote.NO)
 %>
 <div class='vote_wrapper' style="align: top">
 <div id="${tile.html_id}" class="${tile.widget_class}">
-    <a href="${tile.votes_listing_url}"
-       rel="#overlay-ajax"
+    <a
+        %if not poll.secret:
+        href="${tile.votes_listing_url}"
+        rel="#overlay-ajax"
+        %else:
+        href="#"
+        %endif
     class="vote_count ${tile.count_class}"
           >${tile.display_score}</a
     ><a href="${pro['url']}"
@@ -29,22 +34,29 @@ con = tile.widget_action_attrs(model.Vote.NO)
 
 %if delegate_url:
 <span class="or">${_('or:')}</span>
-<a href="${delegate_url}" 
+<a href="${delegate_url}"
    class="button delegate">${_('delegate')}</a>
 %endif
 
+<span class="seperator">|</span>
+%if not poll.secret:
+<a href="/poll/make_voting_secret/${poll.id}"
+    class="button delegate vote-secret">${_('Make the votes secret!')}</a>
+%else:
+<span class="secret">${_('Voting is secret')}</span>
+%endif
 </div>
 </%def>
 
 <%def name="booth(tile, poll)">
     <div class="tile voting_booth">
     <h4>${_("Poll")}</h4>
-        
+
             %if can.poll.vote(poll):
                 <form action="${h.entity_url(poll, member='vote')}" method="POST">
                     ${h.field_token()|n}
-            %endif  
-            
+            %endif
+
             <table border="0" width="100%">
                 <tr>
                     <th></th><th></th>
@@ -55,7 +67,7 @@ con = tile.widget_action_attrs(model.Vote.NO)
                 <tr class="affirm ${'decision' if c.user and tile.decision.result == 1 else ''}">
                     <td>
                         %if can.poll.vote(poll):
-                            <input type="radio" name="position" value="1" 
+                            <input type="radio" name="position" value="1"
                                 ${'checked' if tile.decision.result == 1 else ''|n} />
                         %endif
                     </td>
@@ -72,19 +84,19 @@ con = tile.widget_action_attrs(model.Vote.NO)
                 %if len(agents):
                 <tr>
                     <td colspan="2"></td>
-                    <td colspan="3"> 
+                    <td colspan="3">
                         <ul>
                             %for agent in agents:
                                 <li>${h.user.link(agent)|n}</li>
                             %endfor
-                        </ul>                   
+                        </ul>
                     </td>
                 </tr>
                 %endif
                 <tr class="dissent ${'decision' if c.user and tile.decision.result == -1 else ''}">
                     <td class="selector">
                         %if can.poll.vote(poll):
-                            <input type="radio" name="position" value="-1" 
+                            <input type="radio" name="position" value="-1"
                                 ${'checked' if tile.decision.result == -1 else ''|n} />
                         %endif
                     </td>
@@ -101,21 +113,21 @@ con = tile.widget_action_attrs(model.Vote.NO)
                 %if len(agents):
                 <tr>
                     <td colspan="2"></td>
-                    <td colspan="3"> 
+                    <td colspan="3">
                         <ul>
                             %for agent in agents:
                                 <li>${h.user.link(agent)|n}</li>
                             %endfor
-                        </ul>                   
+                        </ul>
                     </td>
                 </tr>
                 %endif
                 <tr class="abstain ${'decision' if c.user and tile.decision.result == 0 else ''}">
                     <td class="selector">
                         %if can.poll.vote(poll):
-                            <input type="radio" name="position" value="0" 
+                            <input type="radio" name="position" value="0"
                                 ${'checked' if tile.decision.result == 0 else ''|n} />
-                        %endif      
+                        %endif
                     </td>
                     <td class="iconcol">
                         <span class="icon">&nbsp;</span>
@@ -130,20 +142,20 @@ con = tile.widget_action_attrs(model.Vote.NO)
                 %if len(agents):
                 <tr>
                     <td colspan="2"></td>
-                    <td colspan="3"> 
+                    <td colspan="3">
                         <ul>
                             %for agent in agents:
                                 <li>${h.user.link(agent)|n}</li>
                             %endfor
-                        </ul>                   
+                        </ul>
                     </td>
                 </tr>
-                %endif              
+                %endif
                 <tr class="summary">
                     <td colspan="3" rowspan="2">
                         %if can.poll.vote(poll):
                             <input type="submit" value="${_("vote")}" />
-                        %endif                      
+                        %endif
                     </td>
                     <td colspan="2">
                         <a href="${h.entity_url(poll, member='votes')}">
@@ -153,20 +165,20 @@ con = tile.widget_action_attrs(model.Vote.NO)
                 </tr>
                 <tr class="summary"><td colspan="2"></td></tr>
             </table>
-            
+
             %if can.poll.vote(poll):
                 </form>
             %endif
-        
-        <div class="meta">  
+
+        <div class="meta">
             %if poll.has_ended():
                 ${_("ended %s") % h.relative_time(tile.poll.end_time)|n}
             %else:
                 ${_("began %s") % h.relative_time(tile.poll.begin_time)|n}
             %endif
             %if poll.can_end() and h.has_permission('poll.abort'):
-                · 
-                <a class="delete" 
+                ·
+                <a class="delete"
                    href="${h.entity_url(poll, member='ask_delete')}">${_("cancel")}</a>
             %endif
         </div>
@@ -180,10 +192,10 @@ con = tile.widget_action_attrs(model.Vote.NO)
         ${_("no enddate")}
       %else:
         ${h.countdown_time(tile.poll.end_time, 0)}
-      %endif      
+      %endif
     </span>
-     
+
     <br />
-  <a class="link" href="${h.entity_url(poll.scope)}">${poll.scope.title}</a> 
+  <a class="link" href="${h.entity_url(poll.scope)}">${poll.scope.title}</a>
 </li>
-</%def>   
+</%def>
