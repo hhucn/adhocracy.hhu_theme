@@ -9,13 +9,15 @@
 <div class="full_teaser">
   <div class="clearfix"></div>
 
-  Willkommen auf der HHU-Normsetzung!
+  <h1>Willkommen auf der HHU-Normsetzung!</h1>
 
   <div class="instance_list">
     <ul>
         % for instance in c.instances:
             <li>
-                ${ instance.label }
+	      <a title="${ instance.label }"
+		 href="${ h.entity_url(instance) }"> ${ instance.label }
+	      </a>
             </li>
         % endfor
     </ul>
