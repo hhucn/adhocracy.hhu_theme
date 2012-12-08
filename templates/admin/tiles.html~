@@ -16,7 +16,7 @@ def klass(what):
     </li>
 
     <li class="${klass('instances')}">
-        <a href="${h.base_url('/instance', None)}">${_("Instances")}</a>
+        <a href="${h.base_url(None, path='/instance')}">${_("Instances")}</a>
     </li>
 
     <li class="${klass('events')}">
