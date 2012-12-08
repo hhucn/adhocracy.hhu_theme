@@ -57,19 +57,6 @@
     </fieldset>
     
     <fieldset>
-        <legend>${_("Gender")}</legend>
-        <p class="info">${_("Select your gender")}</p>
-        <div class="input_wrapper">
-            <label for="gender">${_("Gender:")}</label>
-            <select name="gender">
-                <option value="male">${_("Male")}</option>
-                <option value="female">${_("Female")}</option>
-                <option value="unspecifed" selected="selected">${_("Unsepcifed")}</option>
-            </select>
-        </div>
-    </fieldset>
-
-    <fieldset>
       <legend>${_("Notifications")}</legend>
       <p class="info">
         ${_("Select how you would like to be notified of events.")}
