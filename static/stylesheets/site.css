@@ -176,3 +176,31 @@ div #user_menu {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.full_teaser{
+	padding:0;
+}
+
+
+#instance_list{
+	padding-top:25px;
+}
+
+
+#instance_list ul{
+	margin: 0px;
+}
+
+
+#instance_list ul li{
+	text-decoration: none;
+	list-style-type:none;
+	
+}
+
+#instance_list ul li a{
+	font-size: 2em;
+	
+
+}
+
