@@ -106,9 +106,7 @@
 %endif
 <ul>
     %for item in facet.current_items:
-      %if hasattr( item['raw'], 'color' ) and item['raw'].color == 'invisible':
-
-      %else:
+      %if getattr( item, 'visible', True ):
         <li>
             %if item['disabled']:
             <span class="disabled">
@@ -128,7 +126,6 @@
                 <a class="${item['selected']}"
                    href="${item['url']|n}"
                    rel="nofollow">
-                    ## <span style="background-color: ${item['raw']['color']}; height: 1em; width: 1em;"></span>
                     ${item['link_text']} (${item['current_count']})
                 </a>
                 %endif
