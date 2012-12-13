@@ -61,24 +61,25 @@
         <p class="info">${_("Select your gender")}</p>
         <div class="input_wrapper">
             <label for="gender">${_("Gender")}</label>
-            <select name="gender">
-                <option value="male"
-                    %if c.page_user.gender == "male":
-                     selected
-                    %endif
-                    >Male</option>
-                <option value="female"
-                    %if c.page_user.gender == "female":
-                     selected
-                    %endif
+            <select id="gender" name="gender">
+                <option value="m" 
+                %if c.page_user.gender == "m":
+                selected="selected" 
+                %endif
+                >Male</option>
+                <option value="f"
+                %if c.page_user.gender == "f":
+                selected="selected"
+                %endif
                 >Female</option>
-                <option value="unspecified"
-                    %if c.page_user.gender == "unspecified":
-                        selected
-                    %endif
+                <option value="u"
+                %if c.page_user.gender == "u": 
+                    selected="selected" 
+                %endif
                 >Unspecified</option>
             </select>
-
+        </div>
+    </fieldset>
     <fieldset>
       <legend>${_("Notifications")}</legend>
       <p class="info">
