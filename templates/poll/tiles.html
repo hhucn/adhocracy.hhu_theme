@@ -31,6 +31,7 @@ con = tile.widget_action_attrs(model.Vote.NO)
         title="${con['title']}"
         ><span>&nbsp;</span></a>
 </div>
+${tile}
 
 %if delegate_url:
 <span class="or">${_('or:')}</span>
@@ -39,8 +40,8 @@ con = tile.widget_action_attrs(model.Vote.NO)
 %endif
 
 <span class="seperator">|</span>
-%if not poll.secret:
-<a href="/poll/make_voting_secret/${poll.id}"
+%if not poll.secret and poll.tally.score == 0:
+<a href="${tile.secret_url(poll)}"
     class="button delegate vote-secret">${_('Make the votes secret!')}</a>
 %else:
 <span class="secret">${_('Voting is secret')}</span>
