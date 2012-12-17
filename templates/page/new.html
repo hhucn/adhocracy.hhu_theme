@@ -12,7 +12,7 @@
 
 
 <%block name="main_content">
-<form name="create_page" class="inplace" method="POST" action=${h.base_url(c.instance)+"page"}>
+<form name="create_page" class="inplace" method="POST" action="${h.base_url('page')}">
     ${h.field_token()|n}
     %if c.proposal:
         <input type="hidden" value="${c.proposal}" name="proposal" />
@@ -36,12 +36,12 @@
 
         <fieldset>
 
-            ${h.need.autocomplete}
+            <% h.need.autocomplete %>
 
             <legend>${_("Tag and classify")}</legend>
             <div class="input_wrapper">      
                 <label for="tags" class="armhint">${_("Tags to describe the subject")}</label>
-                <input type="text" name="tags" id="tags" class="armlabel long" data-instance-baseurl="${h.base_url(c.instance)}" />
+                <input type="text" name="tags" id="tags" class="armlabel long" data-instance-baseurl="${h.base_url()}" />
             </div>
         </fieldset>
         

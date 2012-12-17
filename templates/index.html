@@ -6,26 +6,16 @@
 
 <%block name="content_wrapper">
 
-<%doc>
-FIXME: AFAIK id=content is used as a marker for diazo theming
-and not part of our common markup anymor. Drop it at the end of
-the transition
-</%doc>
-
-<div id="content-startpage" class="full_teaser">
-  <!--This is dummy tag and only usefull to merge in wordpress content-->
-</div>
-
 <div class="full_teaser">
   <div class="clearfix"></div>
 
-  Willkommen auf der HHU-Normsetzung!
-
-  <div class="instance_list">
+  <div id="instance_list">
     <ul>
         % for instance in c.instances:
             <li>
-                ${ instance.label }
+	      <a title="${ instance.label }"
+		 href="${ h.entity_url(instance) }"> ${ instance.label }
+	      </a>
             </li>
         % endfor
     </ul>
@@ -37,8 +27,6 @@ the transition
       ${_("<b>%s</b> comments") % c.stats_global.get('comments')|n} ·
       ${_("<b>%s</b> votes") % c.stats_global.get('votes')|n}
   </div>  
-
-  ## FIXME: Add line that scrolls through last events
 </div>
 
 </%block>

@@ -8,11 +8,15 @@ def klass(what):
 %>
 <ul>
     <li class="${klass('badges')}">
-        <a href="${h.base_url(None, path='/badge')}">${_("Badges")}</a>
+        <a href="${h.base_url('/badge', None)}">${_("Badges")}</a>
     </li>
 
     <li class="${klass('permissions')}">
         <a href="/admin/permissions?${h.url_token()}">${_("Permissions")}</a>
+    </li>
+
+    <li class="${klass('instances')}">
+        <a href="${h.base_url('/instance', None)}">${_("Instances")}</a>
     </li>
 
     <li class="${klass('events')}">
@@ -26,7 +30,6 @@ def klass(what):
     <li class="${klass('import_users')}">
         <a href="/admin/users/import">${_("Import Users")}</a>
     </li>
-
     <li class="${klass('update')}">
         <a href="/admin/update_index">${_("Update Search Index")}</a>
     </li>
