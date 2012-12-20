@@ -168,6 +168,19 @@ This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
         <label for="page_size">${_("Hide help messages:")}</label>
         <input type="checkbox" name="no_help" value="true" ${'checked="checked"' if c.page_user.no_help else ''} />
       </div>
+
+      <div class="input_wrapper">
+        <label for="default_sorting_order">${_("Set a default sorting order for the proposals page:")}</label>
+        <select name="default_sorting_order">
+        % for group in c.default_sorting_order.groups:
+          <optgroup label="${group}">
+          % for sorting_order in c.default_sorting_order.by_group[group]:
+            <option value="${sorting_order.value}">${sorting_order.label}</option>
+          % endfor
+          </optgroup>
+        % endfor
+        </select>
+      </div>
     </fieldset>
     <div class="input_wrapper submit">
       ${components.savebox("/user/%s" % c.page_user.user_name)}
