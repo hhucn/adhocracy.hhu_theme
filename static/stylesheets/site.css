@@ -6,16 +6,18 @@
  * *****************************************
  */
 
+#main{
+	margin-top:0;
+}
+
 body.logged_in #nav li {
 
-    height: 30px;
-    padding-top: 15px;
+    height: 20px;
 }
 
 body.logged_in #nav {
 
     font-weight: bold;
-    height: 67px;
 }
 
 body.logged_in #logo {
@@ -29,11 +31,22 @@ body {
 }
 
 header #header {
+	height:100px;
+	padding:10px;
+	background:white;
+    left: 0;
+    margin-bottom: 0;
+    position: auto;
+    right: 0;
+    z-index: 1030;
 
-    background: white;
+/*
+    background: #2E2E2E;
     margin-top: 10px;
     min-width: 800px;
     height: 90px;
+
+*/
 }
 
 #header #logo {
@@ -49,8 +62,24 @@ header #header {
 
 #nav {
 
+    height: 20px;
+    padding-top: 0px;
     float: left;
 }
+.menu ul{
+    border:1px solid #ccc;
+    text-shadow:0px 1px 1px #fff;
+    background: #eee; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(252,252,252,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(224,224,224,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* IE10+ */
+    background: linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
+    z-index:600;
+}
+
+
 
 #about_menu_link, #nav li a {
 
@@ -85,18 +114,15 @@ div#nav div ul.children {
 }
 
 div#nav {
-    padding: 0px !important;
+    margin-left: 30px;
 }
-
 #nav div ul.children {
 
     height: auto;
     background: none;
     background-image: none;
     
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
-    
-    background-color: #CCE0F4;
+   
 }
 
 #nav li.current a {
@@ -108,14 +134,7 @@ div#nav {
 
     line-height: 1;
 
-    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
-    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
-    background-image: -o-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E9F2FB));
-    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#E9F2FB');
-    background-image: linear-gradient(top, #FFFFFF 0%, #E9F2FB 100%);  
-
+  
     /* 
      * Override the margin property for smaller
      * borders between the list (nav) elements.
@@ -124,7 +143,7 @@ div#nav {
     margin-right: -1px !important;
     
     position: relative;
-    top: -3px;
+    top: -2px;
     height: 30px;
 }
 
@@ -154,27 +173,34 @@ div #user_menu {
     margin-left: 20px;
 }
 
+
+
+
 #nav ul {
     display: block;
     float: left;
-    margin : 0px;
-    margin-top: 20px;
-    height: 40px;
-    padding: 3px;
+    height: 20px;
+    padding: 2px;
 
-    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
-    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
-    background-image: -o-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #00578A));
-    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00578A 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#00578A');
-    background-image: linear-gradient(top, #FFFFFF 0%, #00578A 100%);    
 }
 
 #nav li a {
-
+    color: #90969C;
+    margin-top: -10px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+
+#nav li.current a,#nav li:hover a{
+    color: #005580;
+}
+
+#nav li.current ,#nav li:hover {
+    background: none;
+    cursor: default;
+    height: 10px;
+    color: #FFFFFF;
 }
 
 .full_teaser{
@@ -195,12 +221,12 @@ div #user_menu {
 #instance_list ul li{
 	text-decoration: none;
 	list-style-type:none;
-	
 }
 
 #instance_list ul li a{
 	font-size: 2em;
-	
-
 }
 
+.full_teaser{
+	padding-top: 0px;
+}
