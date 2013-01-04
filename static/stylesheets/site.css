@@ -7,7 +7,7 @@
  */
 
 #main{
-	margin-top:0;
+    margin-top:0;
 }
 
 body.logged_in #nav li {
@@ -31,9 +31,9 @@ body {
 }
 
 header #header {
-	height:100px;
-	padding:10px;
-	background:white;
+    height:100px;
+    padding:10px;
+    background:white;
     left: 0;
     margin-bottom: 0;
     position: auto;
@@ -204,29 +204,32 @@ div #user_menu {
 }
 
 .full_teaser{
-	padding:0;
+    padding:0;
 }
 
 
 #instance_list{
-	padding-top:25px;
+    text-decoration: none;
+    list-style-type:none;
+    margin: 0px;
 }
 
+#instance_list h2{
+    margin-top: 20px;
+    margin-bottom: 0;
+}
 
 #instance_list ul{
-	margin: 0px;
+    margin-left: 10px;
 }
-
 
 #instance_list ul li{
-	text-decoration: none;
-	list-style-type:none;
+    padding: 0;
 }
 
-#instance_list ul li a{
-	font-size: 2em;
-}
+
+
 
 .full_teaser{
-	padding-top: 0px;
+    padding-top: 0px;
 }

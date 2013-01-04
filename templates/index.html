@@ -1,26 +1,52 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
 <%def name="title()">${c.page.title}</%def>
-
 <%def name="breadcrumbs()"></%def>
-
 <%block name="content_wrapper">
 
 <div class="full_teaser">
   <div class="clearfix"></div>
 
-  <div id="instance_list">
-    <ul>
-        % for instance in c.instances:
-            <li>
-	      <a title="${ instance.label }"
-		 href="${ h.entity_url(instance) }"> ${ instance.label }
-	      </a>
-            </li>
-        % endfor
-    </ul>
-  </div>
-    
+<div id="main" class="default_content">
+    <div id="col1">
+      <div id="col1_content" class="clearfix">   
+        <div id="instance_list"> 
+          % for x in c.dic_proposal:
+             <h2>${x["instance"].label }</h2>
+             ${x["pager"].here()}
+             <a class="icon_link more view_all"
+               id="proposals_show_all" href="${h.entity_url(x["instance"])}/proposal">
+               List all
+            </a>
+          % endfor
+        </div>
+      </div>
+    </div>
+
+
+    <aside>
+      <div id="col3">
+        <div id="col3_content" class="clearfix">
+            <h3 id="instance_list">Last posts</h3>
+              <ul>  
+                  <li>Test1</li>
+                  <li>Test2</li>
+                  <li>Test3</li>
+              </ul>
+
+               <h3 id="instance_list">Most viewed</h3>
+              <ul>  
+                  <li>Test1</li>
+                  <li>Test2</li>
+                  <li>Test3</li>
+              </ul>
+        </div>
+      </div>
+    </aside>
+</div>
+
+
+
   <div id="stats">
       ${_("<b>%s</b> members") % c.stats_global.get('members')|n} ·
       ${_("<b>%s</b> proposals") % c.stats_global.get('proposals')|n}  ·
