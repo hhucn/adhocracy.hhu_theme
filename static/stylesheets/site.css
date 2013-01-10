@@ -230,3 +230,12 @@ div #user_menu {
 .full_teaser{
 	padding-top: 0px;
 }
+
+/* Style for the secret voting part */
+.secret {
+  display: inline-block;
+  padding-top: 3px;
+  margin-top: 3px;
+  vertical-align: top;
+}
+

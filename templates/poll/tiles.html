@@ -38,13 +38,11 @@ ${tile}
 <a href="${delegate_url}"
    class="button delegate">${_('delegate')}</a>
 %endif
-
-<span class="seperator">|</span>
-%if not poll.secret and poll.tally.score == 0:
+%if not poll.secret:
 <a href="${tile.secret_url(poll)}"
     class="button delegate vote-secret">${_('Make the votes secret!')}</a>
 %else:
-<span class="secret">${_('Voting is secret')}</span>
+<span class="badge secret">${_('Voting is secret')}</span>
 %endif
 </div>
 </%def>
