@@ -23,66 +23,62 @@
         <legend>${_("Language")}</legend>
         <ul>
             %for locale in c.locales:
-            <li style="list-style-type: none; ">
-		    <input type="radio" name="locale" id="_mynamespace_edlang_${str(locale)}" value="${str(locale)}" 
-		    %if locale == c.page_user.locale:
-		    checked="checked"
-		    %endif
-		    />
-		    <label style="display: inline;" for="_mynamespace_edlang_${str(locale)}">${" "+locale.display_name}</label>
-            </li>
+            <li style="list-style-type: none;"><input type="radio" name="locale" value="${str(locale)}" 
+            %if locale == c.page_user.locale:
+            checked="checked"
+            %endif
+            /> ${locale.display_name}</li>
             %endfor
         </ul>
     </fieldset>
     <fieldset>
       <legend>${_("Display name for")} ${c.page_user.user_name}</legend>
-      <p class="info">${_("You can chose which name other users see.")}</p>   
+      <p class="info">${_("You can chose which name other users see.")}</p>
       <div class="input_wrapper">
-        <label for="display_name" class="armhint">${c.page_user.name}</label>
-        <input type="text" tabindex="1" class="title armlabel" name="display_name" value="${c.page_user.display_name}"/>
+        <input type="text" tabindex="1" class="title" name="display_name" value="${c.page_user.display_name}" placeholder="${c.page_user.name}" />
       </div>
     </fieldset>
-    
+
     <fieldset>
       <legend>${_("Password")}</legend>
-      <p class="info">${_("Select a new password or leave the fields blank to keep your old one.")}</p>   
-      <div class="input_wrapper">   
+      <p class="info">${_("Select a new password or leave the fields blank to keep your old one.")}</p>
+      <div class="input_wrapper">
         <label for="password_change">${_("Password:")}</label>
         <input type="password" name="password_change">
       </div>
-      <div class="input_wrapper">         
+      <div class="input_wrapper">
         <label for="password_confirm">${_("Password (confirm):")}</label>
         <input type="password" name="password_confirm">
       </div>
     </fieldset>
 
-<%doc>
-This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
+    %if c.enable_gender:
     <fieldset>
         <legend>${_("Gender")}</legend>
         <p class="info">${_("Select your gender")}</p>
         <div class="input_wrapper">
             <label for="gender">${_("Gender")}</label>
             <select id="gender" name="gender">
-                <option value="m" 
-                %if c.page_user.gender == "m":
-                selected="selected" 
-                %endif
-                >Male</option>
-                <option value="f"
-                %if c.page_user.gender == "f":
-                selected="selected"
-                %endif
-                >Female</option>
-                <option value="u"
+		<option value="u"
                 %if c.page_user.gender == "u": 
                     selected="selected" 
                 %endif
-                >Unspecified</option>
+                >${_("Unspecified")}</option>
+                <option value="m" 
+                %if c.page_user.gender == "m":
+                    selected="selected" 
+                %endif
+                >${_("Male")}</option>
+                <option value="f"
+                %if c.page_user.gender == "f":
+                    selected="selected"
+                %endif
+                >${_("Female")}</option>
             </select>
         </div>
     </fieldset>
-</%doc>
+    %endif    
+
     <fieldset>
       <legend>${_("Notifications")}</legend>
       <p class="info">
@@ -138,8 +134,8 @@ This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
               </tr>
               %endfor
           </table>
-        </div>        
-      %endif 
+        </div>
+      %endif
       <a class="add" href="/openid/connect">${_("Add OpenID")}</a>
     </fieldset>
     
@@ -158,7 +154,7 @@ This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
       <div class="input_wrapper">
         <label for="page_size">${_("List size:")}</label>
         <select name="page_size">
-            %for n in [10, 20, 30, 40, 50]:
+            %for n in [10, 20, 50, 100, 200]:
                 <option value="${n}" ${"selected='selected'" if n == c.page_user.page_size else ''}>${n}</option>
             %endfor
         </select>
@@ -168,8 +164,7 @@ This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
         <label for="page_size">${_("Hide help messages:")}</label>
         <input type="checkbox" name="no_help" value="true" ${'checked="checked"' if c.page_user.no_help else ''} />
       </div>
-      <div class="input_wrapper">
-        <label for="proposal_sort_order">${_("Change default sorting order for proposals:")}</label>
+      <label for="proposal_sort_order">${_("Change default sorting order for proposals:")}</label>
         <select name="proposal_sort_order">
         % if c.page_user.proposal_sort_order == None:
           <option selected></option>
@@ -182,7 +177,6 @@ This needs to be merged in, see https://github.com/liqd/adhocracy/pull/165
           </optgroup>
         % endfor
         </select>
-      </div>
     </fieldset>
     <div class="input_wrapper submit">
       ${components.savebox("/user/%s" % c.page_user.user_name)}
