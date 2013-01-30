@@ -3,8 +3,8 @@ HHU design for [normsetzung@hhu](http://normsetzung.cs.uni-duesseldorf.de/)
 
 To install adhocracy with the HHU layout on a debian/Ubuntu system, type
 
-    wget -nv https://raw.github.com/liqd/adhocracy.buildout/develop/build_debian.sh -O build_debian.sh
-    sh build_debian.sh -b hhu
+    wget -nv https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh -O build.sh
+    sh build.sh -b hhu
 
 
 To run it, type
