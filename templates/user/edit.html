@@ -23,7 +23,7 @@
         <legend>${_("Language")}</legend>
         <ul>
             %for locale in c.locales:
-            <li style="list-style-type: none;"><input type="radio" name="locale" value="${str(locale)}" 
+            <li style="list-style-type: none;"><input type="radio" name="locale" value="${str(locale)}"
             %if locale == c.page_user.locale:
             checked="checked"
             %endif
@@ -35,7 +35,7 @@
       <legend>${_("Display name for")} ${c.page_user.user_name}</legend>
       <p class="info">${_("You can chose which name other users see.")}</p>
       <div class="input_wrapper">
-        <input type="text" tabindex="1" class="title" name="display_name" value="${c.page_user.display_name}" placeholder="${c.page_user.name}" />
+        <input type="text" tabindex="1" class="title" name="display_name" ${('value="%s"'%c.page_user.display_name) if c.page_user.display_name is not None else '' | n} placeholder="${c.page_user.user_name}" />
       </div>
     </fieldset>
 
@@ -44,11 +44,11 @@
       <p class="info">${_("Select a new password or leave the fields blank to keep your old one.")}</p>
       <div class="input_wrapper">
         <label for="password_change">${_("Password:")}</label>
-        <input type="password" name="password_change">
+        <input type="password" name="password_change" />
       </div>
-      <div class="input_wrapper">
+      <div class="input_wrapper" style="display: none;">
         <label for="password_confirm">${_("Password (confirm):")}</label>
-        <input type="password" name="password_confirm">
+        <input type="password" name="password_confirm" />
       </div>
     </fieldset>
 
@@ -60,13 +60,13 @@
             <label for="gender">${_("Gender")}</label>
             <select id="gender" name="gender">
 		<option value="u"
-                %if c.page_user.gender == "u": 
-                    selected="selected" 
+                %if c.page_user.gender == "u":
+                    selected="selected"
                 %endif
                 >${_("Unspecified")}</option>
-                <option value="m" 
+                <option value="m"
                 %if c.page_user.gender == "m":
-                    selected="selected" 
+                    selected="selected"
                 %endif
                 >${_("Male")}</option>
                 <option value="f"
@@ -77,7 +77,7 @@
             </select>
         </div>
     </fieldset>
-    %endif    
+    %endif
 
     <fieldset>
       <legend>${_("Notifications")}</legend>
@@ -85,7 +85,7 @@
         ${_("Select how you would like to be notified of events.")}
         <a target="_new" href="/static/notification_faq.html#howmany">${_("Help.")}</a>
       </p>
-        
+
       <div class="input_wrapper">
         <label for="email">${_("E-Mail:")}</label>
         <input type="text" name="email" value="${c.page_user.email}"/>
@@ -98,15 +98,15 @@
               </tr>
               <tr>
                   %if c.page_user.is_email_activated():
-                      <td><input type="radio" name="email_priority" value="6" 
+                      <td><input type="radio" name="email_priority" value="6"
                           ${"checked='checked'" if c.page_user.email_priority==6 else ""} /></td>
-                      <td><input type="radio" name="email_priority" value="4" 
+                      <td><input type="radio" name="email_priority" value="4"
                           ${"checked='checked'" if c.page_user.email_priority==4 else ""} /></td>
-                      <td><input type="radio" name="email_priority" value="3" 
+                      <td><input type="radio" name="email_priority" value="3"
                           ${"checked='checked'" if c.page_user.email_priority==3 else ""} /></td>
-                      <td><input type="radio" name="email_priority" value="2" 
+                      <td><input type="radio" name="email_priority" value="2"
                           ${"checked='checked'" if c.page_user.email_priority==2 else ""} /></td>
-                      <td><input type="radio" name="email_priority" value="1" 
+                      <td><input type="radio" name="email_priority" value="1"
                           ${"checked='checked'" if c.page_user.email_priority==1 else ""} /></td>
                   %else:
                       <td colspan="5">${_("Not confirmed.")}
@@ -118,7 +118,7 @@
     </fieldset>
 
     <fieldset>
-      <legend><img src="/img/icons/openid_20.png" class="cd" /> ${_("OpenID")}</legend>  
+      <legend><img src="/img/icons/openid_20.png" class="cd" /> ${_("OpenID")}</legend>
       <p class="info">${_("OpenID allows you to use a single login on many web sites.")}</p>
       %if not len(c.page_user.openids):
         <div class="infobox">
@@ -138,7 +138,7 @@
       %endif
       <a class="add" href="/openid/connect">${_("Add OpenID")}</a>
     </fieldset>
-    
+
     <fieldset>
       <legend>${_("Short biography")}</legend>
       <p class="info">${_("A bio will allow others to learn about you and perhaps even get you a few delegations.")}</p>
@@ -147,7 +147,7 @@
         ${components.formatting()}
       </div>
     </fieldset>
-    
+
     <fieldset>
       <legend>${_("Advanced Settings")}</legend>
       <p class="info">${_("The pre-set number of entries in listing pages.")}</p>
