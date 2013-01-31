@@ -3,11 +3,14 @@ HHU design for [normsetzung@hhu](http://normsetzung.cs.uni-duesseldorf.de/)
 
 To install adhocracy with the HHU layout on a debian/Ubuntu system, type
 
-    wget -nv https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh -O build.sh
+    curl https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh -o build.sh
     sh build.sh -b hhu
 
+(If you don't have curl, you also [download the file with your browser](https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh) or use wget 1.14 or newer:
 
-To run it, type
+    wget -nv https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh -O build.sh
+
+). After downloading build.sh, type
 
     ./paster_interactive.sh
 
