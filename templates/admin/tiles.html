@@ -15,10 +15,6 @@ def klass(what):
         <a href="/admin/permissions?${h.url_token()}">${_("Permissions")}</a>
     </li>
 
-    <li class="${klass('instances')}">
-        <a href="${h.base_url('/instance', None)}">${_("Instances")}</a>
-    </li>
-
     <li class="${klass('events')}">
         <a href="/event/all">${_("All Events")}</a>
     </li>
@@ -30,8 +26,17 @@ def klass(what):
     <li class="${klass('import_users')}">
         <a href="/admin/users/import">${_("Import Users")}</a>
     </li>
+
     <li class="${klass('update')}">
         <a href="/admin/update_index">${_("Update Search Index")}</a>
+    </li>
+
+    <li class="${klass('import')}">
+        <a href="/admin/import">${_("Import")}</a>
+    </li>
+
+    <li class="${klass('export')}">
+        <a href="/admin/export">${_("Export")}</a>
     </li>
 </ul>
 </%def>
