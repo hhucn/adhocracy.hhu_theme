@@ -1,7 +1,6 @@
 /*jslint vars:true, browser:true, nomen:true */
 /*global document:true, jQuery:true, $:true, ko:true */
 
-
 /**
  * Javascript application code for adhocracy mainly using
  * knockout.js and jquery
