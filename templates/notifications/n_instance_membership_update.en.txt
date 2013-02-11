@@ -1,1 +1,0 @@
-In ${e.instance.label}, you're now a ${e.group.group_name}.

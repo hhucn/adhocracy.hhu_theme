@@ -1,1 +1,0 @@
-${e.user.name} ist ${e.instance.label} beigetreten.

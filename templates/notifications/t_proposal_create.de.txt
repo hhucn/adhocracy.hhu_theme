@@ -1,4 +1,0 @@
-${e.user.name} hat einen neuen Vorschlag eingebracht, ${e.proposal.title}.  
-
-Dies ist die anfängliche Beschreibung: 
-${e.proposal.description.head.text}
