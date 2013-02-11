@@ -1,0 +1,54 @@
+<div class="form_wrapper">
+  <form name="create_user" method="POST" action="/user">
+    ${h.field_token()|n}
+
+    <fieldset>
+      <legend>${_("User name")}</legend>
+      <p class="info">${_("Can only contain letters and numbers.")}</p>
+      <div class="input_wrapper">
+        <input type="text" tabindex="1" name="user_name" />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>${_("E-mail")}</legend>
+      <div class="input_wrapper">
+        <input type="text" tabindex="2" name="email" />
+      </div>
+    </fieldset>
+        
+    <fieldset>
+      <legend>${_("Password")}</legend>
+      <div class="input_wrapper">
+        <label for="password">${_("Enter password:")}</label>
+        <input type="password" name="password" tabindex="3" />
+        <label for="password_confirm">${_("Password (confirm):")}</label>
+        <input type="password" name="password_confirm" tabindex="4" />
+      </div>
+    </fieldset>
+    
+    <p>
+      ${_("By registering, you agree with the %s.") % ("<a class='staticlink_terms' href='/static/terms.html'>%s</a>" % _("Terms and Conditions")) |n}
+      Wir werden Sie gelegentlich über wichtige Ereignisse wie den 
+      Beteiligungsstart einzelner Projektgruppen per E-Mail informieren.
+    </p>
+
+    ## <!--SPAM protection-->
+    <div class="hidejs" id="register_input_js">
+      <label for="input_js">JS ${_('leave empty')}</label>
+      <input name="input_js" />
+    </div>
+    <div id="register_input_css">
+      <label for="input_css">CSS ${_('leave empty')}</label>
+      <input name="input_css" />
+    </div>
+    ${c.recaptcha}
+    
+    <div class="input_wrapper submit">
+      <input type="submit" value="${_('Register')}" tabindex="5" />
+    </div>
+  </form>
+  <script>
+      $('input[name=user_name]').focus();
+  </script>
+</div>

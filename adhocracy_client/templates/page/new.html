@@ -1,0 +1,79 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("New page")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.page.breadcrumbs(None)|n} &raquo; ${_("New page")}
+</%def>
+
+<%block name="headline">
+    <h3>${_("Create norm")}</h3>
+</%block>
+
+
+<%block name="main_content">
+<form name="create_page" class="inplace" method="POST" action="${h.base_url('/page')}">
+    ${h.field_token()|n}
+    %if c.proposal:
+        <input type="hidden" value="${c.proposal}" name="proposal" />
+    %endif
+    
+    
+    <div class="mainbar">
+        <fieldset>
+            <legend>${_("Norm title")}</legend>
+            <div class="input_wrapper page_title">
+                <input type="text" tabindex="1" class="title" name="title" ${'' if c.title is None else 'value="%s"' % c.title} placeholder="${_('New norm')}" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>${_("Category")}</legend>
+          <div class="input_wrapper">
+            <select name="category"> 
+              <option value="">${_("No Category")}</option>
+              %for category in c.categories:
+              <option value="${category.id}">${category.title}</option>
+              %endfor
+            </select>      
+            
+          </div>
+        </fieldset> 
+
+        <fieldset>
+            <legend>${_("Norm content")}</legend>
+            <textarea tabindex="2" class="description normedit" cols="${model.Text.LINE_LENGTH}" name="text"></textarea>
+            ${components.formatting()}
+        </fieldset>
+
+        <fieldset>
+
+            <% h.need.autocomplete %>
+
+            <legend>${_("Tag and classify")}</legend>
+            <div class="input_wrapper">      
+                <input type="text" name="tags" id="tags" class="long" placeholder="${_('Tags to describe the subject')}" data-instance-baseurl="${h.base_url(append_slash=True)}" />
+            </div>
+        </fieldset>
+        
+        <label for="parent">${_("Parent page:")}</label>
+        ${tiles.page.select_page(field_name="parent", functions=model.Page.PARENT_FUNCTIONS)}
+        <span class="hint">${_("The new norm will be categorized under the specified parent theme.")}
+        </span>
+
+        %if c.instance.milestones:
+          <label for="milestone">${_("Relates to a milestone")}</label>
+          ${tiles.milestone.select(None)}
+        %endif
+
+    </div>
+    
+    <div style="clear:both;"></div>
+    <div class="mainbar">
+        <div class="submit">
+            ${components.savebox(h.base_url('/page'))}
+        </div>
+        ${components.form_watch(None, checked=True)}
+    </div>
+</form>
+</%block>

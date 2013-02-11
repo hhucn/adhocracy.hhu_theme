@@ -1,0 +1,31 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%namespace name="comment_tiles" file="/comment/tiles.html"/>
+
+<%def name="title()">${_("Votes: %s") % c.poll.scope.label}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.delegateable.breadcrumbs(c.poll.scope)|n} &raquo; ${_("Votes")}
+</%def>
+
+<%block name="headline">
+${tiles.poll.header(c.poll, active='votes')}
+</%block>
+
+<%block name="sidebar">
+    %if c.poll.action != c.poll.RATE:
+        ${tiles.poll.booth(c.poll)}
+        <br/>
+    %endif
+    
+    <div class="infobox">
+        ${_("Vote results are updated with a short delay. After casting " +
+            "your vote, expect a short delay before the tally updates.")}
+    </div>
+</%block>
+
+<%block name="main_content">
+    <div class="table">
+        ${c.decisions_pager.here()}
+    </div>
+</%block>

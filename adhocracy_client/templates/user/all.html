@@ -1,0 +1,29 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+
+<%def name="title()">${_("Users")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.user.breadcrumbs(None)|n}
+</%def>
+
+<%block name="headline">
+<div class="full_teaser">
+    <h1>${_("All Members on this Adhocracy Server")}</h1>
+    <p>
+        ${_("A listing of all users in all instance an this adhocracy server.")}
+    </p>
+</div>
+</%block>
+
+<%block name="sidebar">
+<div class="infobox">
+    ${c.users_pager.render_facets()}
+</div>
+</%block>
+
+<%block name="main_content">
+<div id="users_table" class="table">
+    ${c.users_pager.render_pager()}
+</div>
+</%block>

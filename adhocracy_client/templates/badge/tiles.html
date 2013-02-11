@@ -1,0 +1,33 @@
+<%def name="badge(badge)">
+<%
+if badge == 'dummy':
+    description = ''
+    badge_id = 'dummy'
+    badge_title = 'badge'
+else:
+    description = badge.description.strip()
+    badge_id = badge.id
+    badge_title = badge.title
+    if not badge.visible:
+        return 
+%>
+    <span class="abadge badge_${badge_id}">
+        <a class="${description and 'ttip' or ''}" 
+           title="${description}">${badge_title}</a>
+    </span>
+</%def>
+
+<%def name="badges(badges)">
+    %for badge_ in badges:
+        ${badge(badge_)} 
+    %endfor
+</%def>
+
+<%def name="badge_styles(badges)">
+<style type="text/css" media="screen">
+    %for badge_ in badges:
+    .badge_${badge_.id}.abadge:before { color: ${badge_.color}; }
+    %endfor
+</style>
+
+</%def>

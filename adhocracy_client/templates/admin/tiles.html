@@ -1,0 +1,51 @@
+<%def name="navigation(active=None)">
+
+<%
+def klass(what):
+    if what == active:
+        return 'active'
+    return ''
+%>
+<ul>
+    <li class="${klass('badges')}">
+        <a href="${h.base_url('/badge', None)}">${_("Badges")}</a>
+    </li>
+
+    <li class="${klass('permissions')}">
+        <a href="/admin/permissions?${h.url_token()}">${_("Permissions")}</a>
+    </li>
+
+    <li class="${klass('events')}">
+        <a href="/event/all">${_("All Events")}</a>
+    </li>
+
+    <li class="${klass('users')}">
+        <a href="/user/all">${_("Users")}</a>
+    </li>
+
+    <li class="${klass('import_users')}">
+        <a href="/admin/users/import">${_("Import Users")}</a>
+    </li>
+
+    <li class="${klass('update')}">
+        <a href="/admin/update_index">${_("Update Search Index")}</a>
+    </li>
+
+    <li class="${klass('import')}">
+        <a href="/admin/import">${_("Import")}</a>
+    </li>
+
+    <li class="${klass('export')}">
+        <a href="/admin/export">${_("Export")}</a>
+    </li>
+</ul>
+</%def>
+
+<%def name="headline(active=None)">
+<%
+appendix = ': %s' % active if active else ''
+%>
+<h2>
+    ${_('Site administration')}${appendix}
+</h2>
+</%def>

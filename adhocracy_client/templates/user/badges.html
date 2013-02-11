@@ -1,0 +1,69 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%namespace name="badge_tiles" file="/badge/tiles.html"/>
+<%def name="title()">${_("Edit Badges for %s") % c.page_user.name}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.user.breadcrumbs(c.page_user)|n} &raquo; ${_("Edit Badges")}
+</%def>
+
+
+<%block name="headline">
+<h1>${c.page_user.user_name}</h1>
+</%block>
+
+<%block name="main_content">
+<h2>${_('Badges for %s') % c.page_user.user_name}</h2>
+<form name="settings" class="inplace" method="POST" 
+      action="/user/${c.page_user.user_name}/badges">
+
+    ${h.field_token()|n}
+
+    %if c.badges:
+    <table>
+        <thead>
+            <th></th>
+            <th>${_("badge")} - ${_("all instances")}</th>
+        </thead>
+        <tbody>
+            %for badge in c.badges:
+            <tr>
+                <td>
+                    <input type="checkbox" value="${badge.id}" 
+                           name="badge" />
+                </td>
+                <td><b>${badge.title}</b> ${_('Example:')} ${badge_tiles.badge(badge)}</td>
+            </tr>
+            %endfor
+        </tbody>
+    </table>
+    %endif
+
+    %for instance in c.instance_badges:
+      %if instance["badges"]:
+        <table>
+            <thead>
+                <th></th>
+                <th>${_("badge")} - ${instance["label"]}</th>
+            </thead>
+            <tbody>
+                %for badge in instance["badges"]:
+                <tr>
+                    <td>
+                        <input type="checkbox" value="${badge.id}" 
+                               name="badge" />
+                    </td>
+                    <td><b>${badge.title}</b> ${_('Example:')} ${badge_tiles.badge(badge)}</td>
+                </tr>
+                %endfor
+            </tbody>
+        </table>      
+      %endif
+    %endfor
+
+    <div style="clear:both;"></div>
+ 
+    ${components.savebox(h.base_url("/user/%s" % c.page_user.user_name))}
+    
+</form>
+</%block>

@@ -1,0 +1,34 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${c.page.title}</%def>
+
+<%def name="breadcrumbs()"></%def>
+
+<%block name="content_wrapper">
+
+<%doc>
+FIXME: AFAIK id=content is used as a marker for diazo theming
+and not part of our common markup anymor. Drop it at the end of
+the transition
+</%doc>
+
+<div id="content-startpage" class="full_teaser">
+  <!--This is dummy tag and only usefull to merge in wordpress content-->
+</div>
+
+<div class="full_teaser">
+  <div class="clearfix"></div>
+
+  %if c.stats_global:
+  <div id="stats">
+      ${_("<b>%s</b> members") % c.stats_global.get('members')|n} ·
+      ${_("<b>%s</b> proposals") % c.stats_global.get('proposals')|n}  ·
+      ${_("<b>%s</b> comments") % c.stats_global.get('comments')|n} ·
+      ${_("<b>%s</b> votes") % c.stats_global.get('votes')|n}
+  </div>  
+  %endif
+
+  ## FIXME: Add line that scrolls through last events
+</div>
+
+</%block>

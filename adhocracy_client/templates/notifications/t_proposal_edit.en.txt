@@ -1,0 +1,4 @@
+${e.user.name} edited the proposal ${e.proposal.title}.  
+
+Here's the current description: 
+${e.proposal.description.head.text}

@@ -1,0 +1,19 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("Tags")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.tag.breadcrumbs(None)|n}
+</%def>
+
+<%block name="headline">
+<h1>${_("Popular tags")}</h1>
+</%block>
+
+<%block name="sidebar">
+    <p>${_("Tags are keywords used to find, sort and filter proposals and documents.")}</p>
+</%block>
+
+<%block name="main_content">
+    ${tiles.tag.cloud(c.tags, link_more=False)}
+</%block>

@@ -1,0 +1,24 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%namespace name="t" file="/comment/tiles.html"/>
+<%def name="title()">${_("Edit comment")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.delegateable.breadcrumbs(c.comment.topic)|n} &raquo; ${_("Edit comment")}
+</%def>
+
+<%block name="headline">
+<h1>${_("Comment on: %s") % h.delegateable.link(c.comment.topic)|n}</h1>
+</%block>
+
+<%block name="main_content">
+    %if c.comment.reply:
+        ${tiles.comment.show(c.comment.reply, recurse=False)}
+    %endif
+    
+
+    ${t.edit_form(c.comment)}
+</%block>
+
+
+

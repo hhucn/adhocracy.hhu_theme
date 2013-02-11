@@ -1,0 +1,1 @@
+In ${e.instance.label}, ${e.user.name} is now a ${e.group.group_name}.

@@ -1,0 +1,59 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%def name="title()">${_("Milestones")}</%def>
+
+<%def name="breadcrumbs()">
+    ${h.milestone.breadcrumbs(None)|n}
+</%def>
+
+<%block name="headline">
+
+<h2>${_("Milestones")}</h2>
+<div class="hr"><hr /></div>
+
+${tiles.milestone.timeline(c.milestones)}
+
+</%block>
+
+<%block name="main_content">
+%if c.show_current_milestones:
+<div id="milestones_table" class="table">
+    ${c.current_milestones_pager.here()}
+</div>
+<br/>
+%endif
+
+<div class="top_actions aside">
+    %if can.milestone.create():
+    <a class="button add ttip" title="${_('Create a new milestone.')}"
+      href="${h.base_url('/milestone/new')}">${_("new milestone")}</a>
+    %endif
+</div>
+<div style="clear:both;"></div>
+
+
+%if c.show_past_milestones:
+
+<h3>${_('Past Milestones')}</h3>
+<div id="milestones_table" class="table">
+    ${c.past_milestones_pager.here()}
+</div>
+<br/>
+%endif
+
+
+<%components:tutorial>
+<ol id="joyRideTipContent">
+    <li data-id="timeline_wrapper"
+        data-tip-location="top left" class="custom">
+        <p>${_('tutorial_milestones_timeline')}</p>
+    </li>
+
+    <li data-id="milestones_table"
+        data-tip-location="top right" class="custom">
+        <p>${_('tutorial_milestones_listing')}</p>
+    </li>
+</ol>
+</%components:tutorial>
+
+</%block>
