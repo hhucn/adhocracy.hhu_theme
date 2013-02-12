@@ -32,12 +32,14 @@
                         ${c.user.name}
                     </a>
                 </li>
-                <li>
+<!--
+            <li>
                     <a href="${h.entity_url(c.user, member='dashboard')}">
                         ${_('Watchlist')}
                     </a>
                 </li>
-                %if h.has_permission("global.admin"):
+-->
+                 %if h.has_permission("global.admin"):
                     <li>
                         <a href="${h.base_url(path='/admin', instance=None)}">
                             ${_('Administrate Site')}
