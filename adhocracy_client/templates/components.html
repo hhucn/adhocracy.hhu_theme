@@ -257,23 +257,6 @@ $(document).ready(function () {
     
 </%def>
 
-
-<%def name="tutorial()">
-
-%if h.tutorial.show(c.tutorial):
-
-<% h.need.joyride %>
-
-${caller.body()}
-
-<script type="text/javascript">
-    adhocracy.helpers.initializeTutorial("${c.tutorial}");
-</script>
-
-%endif
-
-</%def>
-
 <%def name="feedback()">
     <div id="feedback">
       <div id="feedback_form">
