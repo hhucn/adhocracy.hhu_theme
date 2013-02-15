@@ -1054,6 +1054,26 @@ background-image: none !important;
   padding-top: 6px
 }
 
+
+.rate a.up,
+.rate a.up.inactive:hover {
+    background-image: url(/img/arrows/arrow_up_inactive_16.png);
+}
+.rate a.down,
+.rate a.down.inactive:hover {
+    background-image: url(/img/arrows/arrow_down_inactive_16.png);
+}
+.rate a.up:hover,
+.upvoted .rate a.up {
+    background-image: url(/img/arrows/arrow_up_active_16.png);
+}
+.rate a.down:hover,
+.downvoted .rate a.down {
+    background-image: url(/img/arrows/arrow_down_active_16.png);
+}
+
+
+
 /* papers */
 ul.papers_list {
   margin: 0;
