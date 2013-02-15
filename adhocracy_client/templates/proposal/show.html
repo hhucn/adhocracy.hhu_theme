@@ -62,14 +62,13 @@ delegate_url = url if can.delegation.create() else None
  -->
                 </span>
                 </h2>
-                
+
                 ${tiles.page.inline(c.proposal.description, 
                         hide_discussion=c.instance.use_norms and len(c.proposal.selections))}
 
                 ${components.social_share_buttons(c.proposal)}
 
               </article>
-              <br />
 
               <div id="main_comments">
                   <h3 id="discussions">${_('Discussions')}</h3>
