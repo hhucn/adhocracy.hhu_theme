@@ -1,7 +1,7 @@
 HHU design for [normsetzung@hhu](http://normsetzung.cs.uni-duesseldorf.de/)
 ==============
 
-To install adhocracy with the HHU layout on a debian/Ubuntu system, type
+To install adhocracy with the HHU layout on a debian/Ubuntu/arch system, type
 
     curl -sS https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh -o build.sh
     sh build.sh -b hhu
