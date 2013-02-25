@@ -14,8 +14,8 @@ h1, h2, h3, h4, h5, h6, legend {
   line-height: 1.2; 
   text-transform: none
 }
-h1 { font-size: 34px; margin: 27px 23px; font-weight: normal; }
-h2 { font-size: 30px; margin-bottom: 10px; font-weight: normal; }
+h1 { font-size: 40px; margin: 27px 23px; font-weight: normal; }
+h2 { font-size: 36px; margin-bottom: 10px; font-weight: normal; }
 h3 { font-size: 25px; margin-bottom: 10px; font-weight: normal; }
 h4, legend { font-size: 20px; margin-bottom: 10px; font-weight: normal; }
 h5 { font-size: 16px; margin-bottom: 5px; font-weight: normal; }
@@ -900,87 +900,42 @@ a.button.delegate:hover {
   text-decoration: none;
 }
 
+
+
 /* vote */
+.vote_wrapper {
+  display: block;
+  float: left;
+  margin-right: 12px;
+}
+
+.vote_count, .vote_up, .vote_down, .vote {
+  display: block;
+}
+
 .vote {
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -300px;
-  height: 14px;
-  line-height: 14px;
-  border-radius: 7px;
-  overflow: hidden;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 11px;
+  color: #4d4d4d;
 }
-.vote_count, .vote_up, .vote_down {
-  display: inline-block;
+.vote_for {
+  color: #009800;
 }
-.vote_count {
-  color: #fff;
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -150px;
-  padding: 0 5px;
+.vote_against {
+  color: #9d0000;
 }
 
-.vote_count.neutral {
-  color: #888;
+.vote_up,.vote_down {
+  background-image: url('/images/arrows18.png');
+  width: 18px; height: 17px; margin: 0 auto;
+  text-decoration: none !important;
 }
-.vote_count.negative {
-  background-position: 0 -50px;
+.vote_down {
+  background-position: -18px 0;
 }
-
-.vote_count.neutral {
-  background-position: 0 -300px;
+.vote_up:hover, .vote_up:active, .vote_up.active {
+  background-position: -36px 0;
 }
-
-.vote_up, .vote_down {
-  border-left: 1px solid #ccc;
-  padding: 0 10px;
-  height: 14px;
-  width: 10px;
-  display: inline-block;
-}
-.vote_up:hover {
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -150px;
-  text-decoration: none;
-}
-.vote_up:active, .vote_up.active {
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -200px;
-  box-shadow: 1px 1px 1px #333 inset;
-}
-.vote_down:hover {
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -50px;
-  text-decoration: none;
-}
-.vote_down:active, .vote_down.active {
-  background: url('/images/sprite_buttons_small.png') repeat-x 0 -100px;
-  box-shadow: 1px 1px 1px #333 inset;
-}
-.vote_up span {
-  background: url('/images/sprite_icons.png') no-repeat -19px -206px;
-  height: 14px;
-  width: 10px;
-  display: inline-block;
-}
-.vote_up:hover span, .vote_up.active span  {
-  background-position: -19px -256px;
-}
-.vote_down span {
-  background: url('/images/sprite_icons.png') no-repeat -19px -306px;
-  height: 14px;
-  width: 10px;
-  display: inline-block;
-}
-.vote_down:hover span, .vote_down.active span  {
-  background-position: -19px -356px;
-}
-
-.vote.deactivated .vote_up,
-.vote.deactivated .vote_down {
-  background-position: 0 -450px !important;
-  box-shadow: none !important;
-}
-.vote.deactivated .vote_up span,
-.vote.deactivated .vote_down span {
-background-image: none !important;
+.vote_down:hover, .vote_down:active, .vote_down.active {
+  background-position: -54px 0;
 }
 
 .vote_wrapper .or {
@@ -989,23 +944,6 @@ background-image: none !important;
   padding-top: 6px
 }
 
-
-.rate a.up,
-.rate a.up.inactive:hover {
-    background-image: url('/img/arrows/arrow_up_inactive_16.png');
-}
-.rate a.down,
-.rate a.down.inactive:hover {
-    background-image: url('/img/arrows/arrow_down_inactive_16.png');
-}
-.rate a.up:hover,
-.upvoted .rate a.up {
-    background-image: url('/img/arrows/arrow_up_active_16.png');
-}
-.rate a.down:hover,
-.downvoted .rate a.down {
-    background-image: url('/img/arrows/arrow_down_active_16.png');
-}
 
 
 
