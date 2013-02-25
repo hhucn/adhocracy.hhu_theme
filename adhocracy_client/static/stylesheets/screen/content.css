@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 h1 { font-size: 40px; margin: 27px 23px; font-weight: normal; }
 h2 { font-size: 36px; margin-bottom: 10px; font-weight: normal; }
-h3 { font-size: 25px; margin-bottom: 10px; font-weight: normal; }
+h3 { font-size: 24px; margin-bottom: 10px; font-weight: normal; }
 h4, legend { font-size: 20px; margin-bottom: 10px; font-weight: normal; }
 h5 { font-size: 16px; margin-bottom: 5px; font-weight: normal; }
 h6 { font-size: 14px; font-weight: normal; color: #666; }
@@ -264,11 +264,6 @@ a.button_small.off:active, a.button_small.off.active {
 .content_list li {
   margin-bottom: 10px;
 }
-.content_list h3,
-#col3 .content_list h3 {
-    font-size: 16px;
-}
- 
 .content_list .level-1 {
   padding-left: 1.5em;
 }
@@ -908,14 +903,12 @@ a.button.delegate:hover {
   float: left;
   margin-right: 12px;
 }
-
 .vote_count, .vote_up, .vote_down, .vote {
   display: block;
 }
 
 .vote {
   color: #4d4d4d;
-  font-size: 28px;
   font-weight: bold;
 }
 .vote_for {
@@ -923,6 +916,9 @@ a.button.delegate:hover {
 }
 .vote_against {
   color: #9d0000;
+}
+.vote.big {
+  font-size: 28px;
 }
 
 .vote_up,.vote_down {
@@ -946,6 +942,12 @@ a.button.delegate:hover {
   padding-top: 6px
 }
 
+
+/* vote preview (in the list of proposals) */
+.vote_preview {
+  float: left;
+  margin-right: 8px;
+}
 
 
 
