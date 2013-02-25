@@ -915,6 +915,8 @@ a.button.delegate:hover {
 
 .vote {
   color: #4d4d4d;
+  font-size: 28px;
+  font-weight: bold;
 }
 .vote_for {
   color: #009800;
