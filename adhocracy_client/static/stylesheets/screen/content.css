@@ -10,7 +10,7 @@ audio[controls],canvas,video {display: inline-block; *display: inline; zoom: 1}
 
 /* fonts */
 h1, h2, h3, h4, h5, h6, legend {
-  font-family: 'ColaborateRegular', Arial, sans-serif; 
+  font-family: Arial, sans-serif; 
   line-height: 1.2; 
   text-transform: none
 }
