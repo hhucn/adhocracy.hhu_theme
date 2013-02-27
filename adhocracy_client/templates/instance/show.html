@@ -10,13 +10,13 @@
 
 <%block name="main_content">
 
-%if c.new_proposals_pager or c.all_proposals_pager:
+%if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
 <div id="new_proposals_table" class="table">
-    %if c.new_proposals_pager:
+    %if c.new_proposals_pager is not None:
     <h3 class="section">${_("Newest Proposals")}</h3>
     ${c.new_proposals_pager.here()}
     %endif
-    %if c.all_proposals_pager:
+    %if c.all_proposals_pager is not None:
     ${c.all_proposals_pager.here()}
     %endif
 
