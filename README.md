@@ -3,17 +3,17 @@ HHU design for [normsetzung@hhu](http://normsetzung.cs.uni-duesseldorf.de/)
 
 To install adhocracy with the HHU layout on a debian/Ubuntu/arch system, type
 
-    curl -sS https://raw.github.com/liqd/adhocracy/develop/build.sh -o build.sh
+    wget -nv https://raw.github.com/liqd/adhocracy/develop/build.sh -O build.sh
     sh build.sh -c hhu
 
-(If you don't have curl, you also [download the file with your browser](https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh) or use wget 1.14 or newer:
+(If the above wget fails, you can also [download the file with your browser](https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh), use wget 1.14 or newer, or curl:
 
-    wget -nv https://raw.github.com/liqd/adhocracy/develop/build.sh -O build.sh
+    curl -sS https://raw.github.com/liqd/adhocracy/develop/build.sh -o build.sh
 
-). After downloading build.sh, type
+). After downloading and executing build.sh, type
 
     adhocracy_buildout/bin/adhocracy_interactive.sh
 
-and navigate to [http://localhost:5001/](http://localhost:5001/). The initial credentials are admin : password .
+and navigate to [http://localhost:5001/](http://localhost:5001/). The initial credentials are `admin` : `password` .
 
-For Troubleshooting have a look at [our wiki](https://github.com/hhucn/adhocracy.hhu_theme/wiki).
+For troubleshooting have a look at [our wiki](https://github.com/hhucn/adhocracy.hhu_theme/wiki).
