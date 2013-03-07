@@ -56,66 +56,6 @@
 </%def>
 
 
-<%def name="subheader_navigation(logo, label, search_action=None, search_label='', 
-                                 search_button_text=None, url=None)">
-
-  <div id="subheader">
-    <div id="organisation_logo">
-        %if url:
-        <a href="${url}">
-        %endif
-        %if logo:
-        <img src="${logo}" alt=""/>
-        %endif
-        <h2>${label}</h2>
-        %if url:
-        </a>
-        %endif
-    </div>
-    <nav>
-      <div class="hlist">
-        <ul id="subnav">
-
-            ${caller.body()}
-
-        </ul>
-      </div>
-    </nav>
-    %if search_action:
-    <div id="searchbox">
-      <form action="${search_action}" 
-            id="searchform" method="get">
-        <div class="label_over">
-          <label class="over-apply" for="s">${search_label|n}</label>
-          <input type="text" id="s" name="serp_q" value="" />
-        </div>
-        <input type="submit" value="${search_button_text or _('Search')}" 
-               id="searchsubmit" />
-      </form>
-    </div>
-    %endif
-  </div>
-
-</%def>
-
 <%def name="subheader_instance_navigation(active)">
-
-<% 
-   import cgi
-   from adhocracy.lib.tiles.instance_tiles import InstanceTile
-   active_subnav = {}
-   active_subnav[active or 'instance'] = 'current'
-   search_label = _('Search in &ldquo;%s&rdquo;&hellip;') % cgi.escape(c.instance.label)
-   logo = ''
-   url = None
-   if c.instance:
-       if InstanceTile(c.instance).show_icon():
-           logo = h.instance.icon_url(c.instance, 48)
-           url = h.entity_url(c.instance)
-   
-   def _class(identifier):
-       return active_subnav.get(identifier, '')
-%>
-
 </%def>
 

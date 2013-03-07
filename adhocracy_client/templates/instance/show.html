@@ -53,6 +53,12 @@
 </%block>
 
 <%block name="sidebar">
+%if can.instance.edit(c.page_instance):
+<div id="instance_settings">
+  <a href="${h.entity_url(c.instance, member='settings')}" class="button settings">${_("Settings")}</a>
+</div>
+%endif
+
 
 <h2>${c.tile.instance.label}</h2>
 ${c.tile.description|n}
