@@ -62,6 +62,37 @@
     </p>
 </section>
 
+<%components:tutorial>
+<ol id="joyRideTipContent">
+
+    <li data-id="user_menu"
+        data-tip-location="bottom right" class="custom">
+        <p>${_('tutorial_dashboard_username')}</p>
+    </li>
+
+    <li data-id="norms_listing"
+        data-tip-location="top" class="custom">
+        <p>${_('tutorial_dashboard_proposals')}</p>
+    </li>
+
+    <li data-id="proposals_show_all"
+        data-tip-location="" class="custom">
+        <p>${_('tutorial_dashboard_show_all')}</p>
+    </li>
+
+    <li data-id="instance_list"
+        data-tip-location="top right" class="custom">
+        <p>${_('tutorial_dashboard_instances')}</p>
+    </li>
+
+    <li data-id="watchlist" data-next="${_('Close')}"
+        data-tip-location="top right" class="custom">
+        <p>${_('tutorial_dashboard_watchlist')}</p>
+    </li>
+
+</ol>
+</%components:tutorial>
+
 </%block>
 
 <%block name="sidebar">

@@ -51,26 +51,50 @@
              <p class="patch_description">
                  ${_('Join this instance to start contributing.')}
              </p>
-             <a class="button" href="${h.entity_url(c.instance, member='join')}?${h.url_token()}">${_("join")}</a> 
+             <a class="button patch_camefrom" href="${h.entity_url(c.instance, member='join')}?${h.url_token()}">${_("join")}</a> 
          </div>
       </div>
-    </div>    
+    </div>
+    %elif c.instance and c.instance.require_valid_email and c.user and not c.user.is_email_activated():
+    <div class="overlay" id="overlay-validate">
+      <a class="close"></a>
+      <div class="contentWrap">
+         <div class="register">
+             <p class="patch_description">
+                 ${_('Validate email to start contributing.')}
+             </p>
+             <a class="button large patch_camefrom" href="${h.base_url('/user/%s/resend?%s' % (c.user.user_name, h.url_token()))}" title="${_('Resend validation email to %s')%c.user.email}">${_('Send activation link')}</a> 
+             ${_("or")} 
+             <a class="icon_link more_uppercase" href="${h.entity_url(c.user, instance=c.instance, member='edit')}">${_("Edit profile")}</a> 
+         </div>
+      </div>
+    </div>
     %endif
   <!-- begin: header -->
   <header>
     <div id="header">
-      <%include file="logo.html" />
-      ${navigation.global_nav(c.active_global_nav)}
-      <div id="hhu_logo">
-        <a href="http://www.uni-duesseldorf.de">
-            <img id="hhu_logo_img" src="/images/hhu_logo.png"></img>
-        </a>
+      <div class="page_margins">
+        <div class="page_wrapper">
+          <!-- begin: top navi -->
+          <div id="topnav">
+            <!-- start: skip link navigation -->
+            <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>
+            <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>
+            <!-- end: skip link navigation -->
+            %if h.config.get('adhocracy.twitter.profile_url'):
+            <a href="${h.config.get('adhocracy.twitter.profile_url')}" class="icon_link follow">Follow us!</a>
+            %endif
+          </div>
+
+          <%include file="logo.html" />
+          ${navigation.global_nav(c.active_global_nav)}
+        </div>
       </div>
     </div>
   </header>
 
   <%block name="attention_getter">
-  %if c.instance is not None and (c.user is None or can.instance.join(c.instance)) and not c.suppress_attention_getter:
+  %if not c.suppress_attention_getter and c.instance is not None and (c.user is None or can.instance.join(c.instance) or (c.instance.require_valid_email and c.user and not c.user.is_email_activated())):
   <%doc>add an attention getter on instances</%doc>
     <div id="flash_message">
       <div class="page_margins">
@@ -96,6 +120,25 @@
                   <p>
                       ${_('Join this instance to start contributing.')}
                   </p>
+                  %else:
+                  %if c.user.email is None:
+                  <div class="register">
+                      <a class="button" href="${h.entity_url(c.user, instance=c.instance, member='edit')}">${_("Edit profile")}</a> 
+                  </div>
+                  <p>
+                      ${_('You need to set an email in your profile in order to contribute to this instance.')}
+                  </p>
+                  %else:
+                  <div class="register">
+                      <a class="button large" href="${h.base_url('/user/%s/resend?%s' % (c.user.user_name, h.url_token()))}" title="${_('Resend validation email to %s')%c.user.email}">${_('Send activation link')}</a> 
+                      ${_("or")} 
+                      <a class="icon_link more_uppercase" href="${h.entity_url(c.user, instance=c.instance, member='edit')}">${_("Edit profile")}</a> 
+                  </div>
+                  <p>
+                  ${_('Please validate your email address in order to contribute to this instance.')}<br />
+                  ${_('Your registered email address is:')} <em>${c.user.email}</em>
+                  </p>
+                  %endif
                   %endif
               </div>
           </div>
@@ -114,6 +157,33 @@
       <div class="page_wrapper">
           <%block name="flashmessages"></%block>
           <%block name="infoboxes"></%block>
+
+          %if c.tutorial and h.tutorial.show(c.tutorial):
+          <div class="only-js" id="tutorial-banner">
+              <%components:build_infobox>
+              <div id="tutorial-intro">
+                  ${c.tutorial_intro|n}
+              </div>
+              %if not c.tutorial_hide_start_button:
+              <a id="start-tutorial-button" 
+                 href="#"
+                 class="button"
+                 data-next="${_('Next')}"
+                 data-previous="${_('Previous')}">
+                  ${_('start_this_tutorial')}
+              </a>
+              %endif
+              <a href="#" id="disable-this-tutorial"
+                 class="disable-link">
+                  ${_('disable_this_tutorial')}
+              </a>
+              <a href="#" id="disable-all-tutorials"
+                 class="disable-link">
+                  ${_('disable_all_tutorials')}
+              </a>
+              </%components:build_infobox>
+          </div>
+          %endif
       </div>
     </div>
   </div>

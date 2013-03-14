@@ -87,6 +87,11 @@ created_msg = _("by %s on %s") % (
                title="${_('Login to create a new proposal.')}" 
                href="${url}" 
                rel="#overlay-login-button">${_("new proposal")}</a>
+        %elif auth.propose_validate_email():
+            <a class="button add ttip" 
+               title="${_('Validate email in order to create a new proposal.')}" 
+               href="${url}" 
+               rel="#overlay-validate-button">${_("new proposal")}</a>
         %endif
 
     </div>
@@ -104,5 +109,23 @@ created_msg = _("by %s on %s") % (
         %endif
     </div>
 
+<%components:tutorial>
+<ol id="joyRideTipContent">
+    <li data-id="FIXME: no id"
+        data-tip-location="bottom left" class="custom">
+        <p>${_('tutorial_milestone_details_follow')}</p>
+    </li>
+
+    <li data-id="milestone-description"
+        data-tip-location="bottom left" class="custom">
+        <p>${_('tutorial_milestone_details_description')}</p>
+    </li>
+
+    <li data-id="related-norms"
+        data-tip-location="top left" class="custom">
+        <p>${_('tutorial_milestone_details_listing')}</p>
+    </li>
+</ol>
+</%components:tutorial>
 </div>
 </%block>

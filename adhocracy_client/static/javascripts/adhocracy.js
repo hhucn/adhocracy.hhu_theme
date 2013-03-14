@@ -1,6 +1,7 @@
 /*jslint vars:true, browser:true, nomen:true */
 /*global document:true, jQuery:true, $:true, ko:true */
 
+
 /**
  * Javascript application code for adhocracy mainly using
  * knockout.js and jquery
@@ -76,13 +77,22 @@ var adhocracy = adhocracy || {};
         }
         this.getOverlay().find(".patch_camefrom")
             .attr('href', function (i, href) {
-                return href.split('?')[0] + '?came_from=' + came_from;
+                var separator;
+                if (href.indexOf('?') !== -1) {
+                    separator = '&';
+                } else {
+                    separator = '?';
+                }
+                return href + separator + 'came_from=' + came_from;
             });
     };
     adhocracy.overlay.rewriteDescription = function () {
         var description = this.getTrigger().data('description');
         if (description === undefined) {
             description = this.getTrigger().data('title');
+        }
+        if (description === undefined) {
+            description = this.getTrigger().attr('title');
         }
         if (description !== undefined) {
             this.getOverlay().find(".patch_description").html(description);
@@ -134,7 +144,20 @@ var adhocracy = adhocracy || {};
             fixed: false,
             mask: adhocracy.overlay.mask,
             target: '#overlay-join',
-            onBeforeLoad: adhocracy.overlay.rewriteDescription,
+            onBeforeLoad: function (event) {
+                adhocracy.overlay.rewriteDescription.call(this, event);
+                adhocracy.overlay.rebindCameFrom.call(this, event);
+            }
+        });
+
+        wrapped.find("a[rel=#overlay-validate-button]").overlay({
+            fixed: false,
+            mask: adhocracy.overlay.mask,
+            target: '#overlay-validate',
+            onBeforeLoad: function (event) {
+                adhocracy.overlay.rewriteDescription.call(this, event);
+                adhocracy.overlay.rebindCameFrom.call(this, event);
+            }
         });
 
     };
@@ -218,6 +241,25 @@ var adhocracy = adhocracy || {};
                 'cookie_domain': cookieDomain
             });
         }
+    };
+
+    adhocracy.helpers.initializeTutorial = function (name) {
+        $('#start-tutorial-button').click(function (event) {
+            $(this).joyride({inline: true,
+                             nextButtonText: $(this).data('next'),
+                             prevButtonText: $(this).data('previous')});
+            event.preventDefault();
+        });
+        $('#disable-all-tutorials').click(function (event) {
+            $.get('/tutorials?disable=ALL');
+            $('#tutorial-banner').fadeOut();
+            event.preventDefault();
+        });
+        $('#disable-this-tutorial').click(function (event) {
+            $.get('/tutorials?disable=' + name);
+            $('#tutorial-banner').fadeOut();
+            event.preventDefault();
+        });
     };
 
     adhocracy.helpers.initializeTagsAutocomplete = function (selector) {
