@@ -10,10 +10,7 @@
 
 <%block name="main_content">
 
-${c.tile.description|n}
-
 %if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
-<hr />
 <div id="new_proposals_table" class="table">
     %if c.new_proposals_pager is not None:
     <h3 class="section">${_("Newest Proposals")}</h3>
@@ -53,64 +50,16 @@ ${c.tile.description|n}
 </div>
 %endif
 
-%if h.asbool(config.get('adhocracy.show_instance_overview_milestones')) and c.instance.milestones:
-<hr />
-%if h.asint(config.get('adhocracy.number_instance_overview_milestones')) == 1:
-<h3 class="section">${_("Next milestone")}</h3>
-%else:
-<h3 class="section">${_("Next milestones")}</h3>
-%endif
-${c.next_milestones_pager.here()}
-%endif
-
 </%block>
 
 <%block name="sidebar">
-<div class="sidebar_box">
-%if c.events_pager is not None:
-<h3>${_('Newest Events')}</h3>
-${c.events_pager.here()}
+%if can.instance.edit(c.page_instance):
+<div id="instance_settings">
+  <a href="${h.entity_url(c.instance, member='settings')}" class="button settings">${_("Settings")}</a>
+</div>
 %endif
 
-<h3 id="information">${_('Informations')}</h3>
-<summary>
-    %if h.asbool(config.get('adhocracy.show_instance_creators')):
-    <h6>${_('Created')}</h6>
-    <p>${_("by %s on %s") % (h.user.link(c.instance.creator), h.format_date(c.instance.create_time))|n}</p>
-    %endif
 
-    <h6>${_('Votings')}</h6>
-    <p>${c.sidebar_delegations}</p>
-
-    %if c.stats is not None:
-    <h6>${_('By the numbers')}</h6>
-    <ul class="nobullet">
-        <li>${_("<b>%s</b> community members") % c.stats.get('members')|n}</li>
-        <li>${_("<b>%s</b> proposals") % c.stats.get('proposals')|n}</li>
-        <li>${_("<b>%s</b> comments") % c.stats.get('comments')|n}</li>
-    </ul>
-    %endif
-    
-</summary>
-
-</div>
+<h2>${c.tile.instance.label}</h2>
+${c.tile.description|n}
 </%block>
-
-<%components:tutorial>
-        <ol id="joyRideTipContent">
-          <li data-id="new_proposals_table"
-              data-tip-location="top left">
-            <p>${_('tutorial_instance_proposals_table')|n}</p>
-          </li>
-          <li data-id="proposal-actions"
-              data-tip-location="top left">
-            <p>${_('tutorial_instance_proposal_button')|n}</p>
-          </li>
-          <li data-id="numbers"
-              data-tip-location="top left"
-              data-next="${_('Close')}">
-            <p>${_('tutorial_instance_numbers')}</p>
-          </li>
-        </ol>
-</%components:tutorial>
-
