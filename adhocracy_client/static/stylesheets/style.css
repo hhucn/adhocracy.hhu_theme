@@ -318,3 +318,7 @@ div #user_menu {
 }
 
 #instance_settings {right: 0; padding: 10px; position: absolute; font-size: 150%;}
+
+.frontpage_description {
+  float: right;
+}
