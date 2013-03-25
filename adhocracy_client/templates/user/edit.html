@@ -21,13 +21,13 @@
 
     <fieldset>
         <legend>${_("Language")}</legend>
-        <ul>
+        <ul class="languagelist">
             %for locale in c.locales:
-            <li style="list-style-type: none;"><input type="radio" name="locale" value="${str(locale)}" 
+            <li style="list-style-type: none;"><label><input type="radio" name="locale" value="${str(locale)}" 
             %if locale == c.page_user.locale:
             checked="checked"
             %endif
-            /> ${locale.display_name}</li>
+            /> ${locale.display_name}</label></li>
             %endfor
         </ul>
     </fieldset>
@@ -59,7 +59,7 @@
         <div class="input_wrapper">
             <label for="gender">${_("Gender")}</label>
             <select id="gender" name="gender">
-		<option value="u"
+    <option value="u"
                 %if c.page_user.gender == "u": 
                     selected="selected" 
                 %endif
@@ -114,6 +114,11 @@
                   %endif
               </tr>
           </table>
+      </div>
+      <p class="info">${_("Receive occasional news from instance administrators.")}</p>
+      <div class="input_wrapper">
+        <label>${_("Receive news service")}</label>
+        <input type="checkbox" name="email_messages" ${'checked="checked"' if c.page_user.email_messages else ''|n} />
       </div>
     </fieldset>
 
