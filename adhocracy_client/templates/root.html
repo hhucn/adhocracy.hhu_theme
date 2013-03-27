@@ -74,20 +74,7 @@
       <div class="page_margins">
           <div class="page_wrapper">
               <div class="message">
-                  %if c.user is None:
-                  <div class="register">
-                      <a href="${h.register_redirect_url()}" 
-                         ## rel="#overlay-ajax" FIXME: reactivate when ready.
-                         class="button">${_('Register')}</a> 
-                      ${_("or")} 
-                      <a href="${h.login_redirect_url()}" 
-                         ## rel="#overlay-ajax" FIXME: reactivate.
-                         class="icon_link more_uppercase">${_('Login')}</a>
-                  </div>
-                  <p class="register_msg">
-                      ${_('Get an account to participate in the discussion.')}
-                  </p>
-                  %elif can.instance.join(c.instance):
+                  %if can.instance.join(c.instance):
                   <div class="register">
                       <a class="button" href="${h.entity_url(c.instance, member='join')}?${h.url_token()}">${_("join")}</a> 
                   </div>
