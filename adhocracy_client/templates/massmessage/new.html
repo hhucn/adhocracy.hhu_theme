@@ -3,12 +3,13 @@
 <%def name="title()">${_("Send mass message")}</%def>
 
 <%def name="massmessage_form()">
-  <h3>Send mass message</h3>
+  <h3>${_('Send mass message')}</h3>
 
-  Please note that only users with verified email addresses and activated news
-  service will receive this message per email.
+  ${_('Please note that only users with verified email addresses and activated news'
+  'service will receive this message per email.')}
 
-  <form name="create_message" class="inplace" method="POST">
+  <form name="create_message" class="inplace" method="POST"
+        action="${h.base_url('/message/preview')}">
       ${h.field_token()|n}
 
       <fieldset>
@@ -28,6 +29,7 @@
       <fieldset>
         <legend>${_("Body")}</legend>
         <textarea name="body"></textarea>
+        <div>${_('Use {email}, {name}, {salutation} to address the user directly.')}</div>
       </fieldset>
 
       <fieldset>
