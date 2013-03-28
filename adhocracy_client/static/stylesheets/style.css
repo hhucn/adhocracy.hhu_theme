@@ -36,7 +36,10 @@ h1, h2, h3, h4, h5, a, legend, .tabnav li a.active, .tabnav li a:hover {
   color: #446191;
 }
 
-#footer, .footer_content h3, .footer_content a { color: #666; }
+footer {
+  clear: both;
+  color: #424d5f;
+  padding-top: 10px; border-top: 1px solid #e0e0e0;}
 
 a.icon_link {
   background-image: url('/images/sprite.png');
