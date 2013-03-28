@@ -6,6 +6,10 @@
 
 <%block name="content_wrapper">
 
+<div class="frontpage_description">
+  ${h.staticpage.get_body('root')|n}
+</div>
+
 <div id="instance_list" class="frontpage_main">
   <ul>
       % for instance in c.instances:
@@ -16,10 +20,6 @@
           </li>
       % endfor
   </ul>
-</div>
-
-<div class="frontpage_description">
-  ${h.staticpage.get_body('root')|n}
 </div>
 
 </%block>
