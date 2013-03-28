@@ -294,11 +294,6 @@ div #user_menu {
 }
 
 
-#instance_list{
-  padding-top:25px;
-}
-
-
 #instance_list ul{
   margin: 0px;
 }
@@ -319,6 +314,11 @@ div #user_menu {
 
 #instance_settings {right: 0; padding: 10px; position: absolute; font-size: 150%;}
 
-.frontpage_description {
-  float: right;
+.frontpage_main {
+  padding: 0 4em 2em 0;
+  float: left;
 }
+.frontpage_description {
+  width: 80%;
+}
+.frontpage_description h1 {margin-top: 0;}

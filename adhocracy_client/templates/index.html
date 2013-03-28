@@ -6,24 +6,20 @@
 
 <%block name="content_wrapper">
 
-<div class="frontpage_description">
-  ${h.staticpage.get_body('root')|n}
+<div id="instance_list" class="frontpage_main">
+  <ul>
+      % for instance in c.instances:
+          <li>
+      <a title="${ instance.label }"
+	 href="${ h.entity_url(instance) }"> ${ instance.label }
+      </a>
+          </li>
+      % endfor
+  </ul>
 </div>
 
-<div class="full_teaser">
-  <div class="clearfix"></div>
-
-  <div id="instance_list">
-    <ul>
-        % for instance in c.instances:
-            <li>
-	      <a title="${ instance.label }"
-		 href="${ h.entity_url(instance) }"> ${ instance.label }
-	      </a>
-            </li>
-        % endfor
-    </ul>
-  </div>
+<div class="frontpage_description">
+  ${h.staticpage.get_body('root')|n}
 </div>
 
 </%block>
