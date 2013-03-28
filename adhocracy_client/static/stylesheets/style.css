@@ -315,7 +315,7 @@ div #user_menu {
 #instance_settings {right: 0; padding: 10px; position: absolute; font-size: 150%;}
 
 .frontpage_main {
-  padding: 0 4em 2em 0;
+  padding: 0 80px 20px 0;
   float: left;
 }
 .frontpage_description {
