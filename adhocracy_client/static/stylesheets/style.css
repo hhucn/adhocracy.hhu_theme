@@ -325,4 +325,5 @@ div #user_menu {
 
 .frontpage_description ol {margin-left: 0;}
 
-#static_content {font-size: 130%;}
+#static_content {font-size: 20px; margin-bottom: 40px;}
+#static_content h1 {margin: 0 0 18px 0;}
