@@ -10,16 +10,18 @@
   ${h.staticpage.get_body('root')|n}
 </div>
 
+%if c.instances:
 <div id="instance_list" class="frontpage_main">
   <ul>
-      % for instance in c.instances:
+      %for instance in c.instances:
           <li>
       <a title="${ instance.label }"
 	 href="${ h.entity_url(instance) }"> ${ instance.label }
       </a>
           </li>
-      % endfor
+      %endfor
   </ul>
 </div>
+%endif
 
 </%block>
