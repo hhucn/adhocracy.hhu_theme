@@ -28,6 +28,10 @@
 
 body { color: #2d3441; }
 
+ol {
+  list-style-position: inside;
+}
+
 h1, h2, h3, h4, h5, a, legend, .tabnav li a.active, .tabnav li a:hover {
   color: #446191;
 }
@@ -318,3 +322,5 @@ div #user_menu {
   font-size: 150%;
 }
 .frontpage_description h1 {margin-top: 0; text-align: center;}
+
+.frontpage_description ol {margin-left: 0;}
