@@ -320,5 +320,6 @@ div #user_menu {
 }
 .frontpage_description {
   width: 80%;
+  font-size: 150%;
 }
-.frontpage_description h1 {margin-top: 0;}
+.frontpage_description h1 {margin-top: 0; text-align: center;}
