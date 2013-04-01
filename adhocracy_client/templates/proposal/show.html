@@ -154,19 +154,18 @@ ${components.watch(c.proposal)}
 
     ${sidebar_defs.votedetail(c.votedetail)}
 
+    %if c.proposal.category:
     <h6>${_('Category')}</h6>
     <p>
-      %if c.proposal.category:
       ${c.proposal.category}
-      %else:
-      ${_("This proposal is not assigned to any category")}
-      %endif
     </p>
+    %endif
 
-    <h6>${_('Milestones')}</h6>
     <% milestone = c.proposal.milestone %>
+    %if milestone:
+    <h6>${_('Milestones')}</h6>
     <p>
-        %if milestone:
+        
         %if milestone.is_deleted():
         ${_("This proposal relates to the deleted milestone %s."
         ) % h.milestone.link(milestone)|n}
@@ -174,10 +173,8 @@ ${components.watch(c.proposal)}
         ${_("This proposal relates to the milestone %s."
         ) % h.milestone.link(milestone)|n}
         %endif
-        %else:
-        ${_("This proposal is not related to a milestone")}
-        %endif
     </p>
+    %endif
     <h6>${_('Created')}</h6>
     ## FIXME: ensure caching of history count (make it a tile?)
     <p>
