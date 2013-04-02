@@ -51,9 +51,11 @@ if c.proposal.is_adopt_polling():
                         ${_("edit")}
                     </a>
                     %endif
+                    %if h.asbool(config.get('adhocracy.show_abuse_button', 'True')):
                     <a href="${h.abuse.for_entity(c.proposal)}">
                         ${_("report")}
                     </a>
+                    %endif
 <!--                     <a href="${c.history_url}"
                        rel="#overlay-ajax">${'history'}</a>
  -->
