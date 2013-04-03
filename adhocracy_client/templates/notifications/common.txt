@@ -13,7 +13,7 @@ if e.comment.reply:
 <%def name="_quotecomment(comment, level)"><%
 context.write(('>' * (level - 1)) + '\n') 
 context.write(('>' * (level - 1)) + (' ' if level > 1 else ''))
-context.write(_("On %s, %s wrote:") % (h.format_date(comment.create_time), comment.creator.name)) 
+context.write(_("On %s, %s wrote:") % (h.date_tag(comment.create_time), comment.creator.name)) 
 context.write('\n')
 for line in comment.latest.text.splitlines():
 	context.write('>' * level + ' ')
