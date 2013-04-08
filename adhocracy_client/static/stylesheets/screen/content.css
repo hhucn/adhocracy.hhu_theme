@@ -1178,6 +1178,9 @@ input.title {
 textarea {
   width: 100%;
   min-height: 128px; 
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
 
 input[type=checkbox], input[type=radio] { vertical-align: text-top; }
