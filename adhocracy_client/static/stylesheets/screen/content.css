@@ -1167,8 +1167,7 @@ form p.info { margin-bottom: 10px; color: #666; }
   line-height: 24px;
 }
 
-input[type=text],
-input[type=password] {
+input.title {
   width: 100%;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
