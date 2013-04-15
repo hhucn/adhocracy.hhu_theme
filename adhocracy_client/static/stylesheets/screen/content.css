@@ -1663,3 +1663,17 @@ dl.votedetail>dd {margin: 0; padding: 0;}
 .message_preview_body {background: #ccc; white-space: pre-wrap; margin-bottom: 0.5em;}
 
 .importexport_settings {margin-left: 30px;}
+
+.proposal-actions a.button {
+    background-position: 0 -500px;
+    color: #FFFFFF;
+    height: 27px;
+    line-height: 27px;
+    margin-right: 15px;
+    padding: 0;
+    width: 150px;
+}
+
+.proposal-actions a.button:hover {
+  background-position: 0 -550px;
+}
