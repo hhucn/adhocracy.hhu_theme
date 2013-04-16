@@ -1,9 +1,10 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Delete: %s") % c.page.title}</%def>
 
 <%def name="breadcrumbs()">
-    ${h.page.breadcrumbs(c.page)|n} &raquo; ${_("Delete")}
+${b.prefix()} ${b.entity(c.page)} ${_("Delete")}
 </%def>
 
 <%block name="main_content">

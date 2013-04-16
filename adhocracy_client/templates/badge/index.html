@@ -1,10 +1,11 @@
 <%inherit file="/template.html" />
 <%namespace name="tiles" file="/badge/tiles.html"/>
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Badges")}</%def>
 
 <%def name="breadcrumbs()">
-    ${h.tag.breadcrumbs(None)|n}
+${b.admin(_("Badges"))}
 </%def>
 
 

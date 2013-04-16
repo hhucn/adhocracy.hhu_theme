@@ -1,6 +1,11 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Send mass message")}</%def>
+
+<%def name="breadcrumbs()">
+${b.admin(_("Send mass message"))}
+</%def>
 
 <%def name="massmessage_form()">
   <h3>${_('Send mass message')}</h3>

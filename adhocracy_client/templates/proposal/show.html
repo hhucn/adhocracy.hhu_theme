@@ -3,10 +3,13 @@
 <%namespace name="sidebar_defs" file="/sidebar.html"/>
 <%namespace name="comment_tiles" file="/comment/tiles.html"/>
 <%namespace name="state" file="/poll/state.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 
 <%def name="title()">${c.proposal.title}</%def>
 
-<%def name="breadcrumbs()">${h.proposal.breadcrumbs(c.proposal)|n}</%def>
+<%def name="breadcrumbs()">
+    ${b.prefix()} ${b.tail(c.proposal.title)}
+</%def>
 
 <%block name="admin_controls">
 

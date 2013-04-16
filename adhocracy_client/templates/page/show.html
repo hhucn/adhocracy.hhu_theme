@@ -2,10 +2,13 @@
 <%namespace name="components" file="/components.html"/>
 <%namespace name="sidebar_defs" file="/sidebar.html"/>
 <%namespace name="state" file="/poll/state.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <% from adhocracy.lib import sorting %>
 <%def name="title()">${c.page.title}</%def>
 
-<%def name="breadcrumbs()">${h.text.breadcrumbs(c.text)|n}</%def>
+<%def name="breadcrumbs()">
+${b.prefix()} ${b.tail(c.page.title)}
+</%def>
 
 
 <%block name="sidebar">

@@ -2,7 +2,10 @@
 /><%namespace name="components" file="/components.html"
 /><%namespace name="navigation" file="/navigation.html"
 /><%namespace name="debug" file="/debug/tiles.html"
-/><%def name="breadcrumbs()">&nbsp;</%def><?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+/><%namespace name="b" file="/breadcrumbs.html"
+/><%def name="breadcrumbs()">
+${b.prefix()}
+</%def><?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE html>
 <html class="no-js">
   <head>
@@ -76,13 +79,18 @@
   <!-- begin: header -->
   <header>
     <div id="header">
-      <%include file="logo.html" />
-      ${navigation.global_nav(c.active_global_nav)}
       <div id="hhu_logo">
         <a href="http://www.uni-duesseldorf.de">
             <img id="hhu_logo_img" src="/images/hhu_logo.png"></img>
         </a>
       </div>
+      <%include file="logo.html" />
+      <!-- navigation.global_nav(c.active_global_nav, self.breadcrumbs())} -->
+      <%navigation:global_nav active="${c.active_global_nav}">
+        <%def name="breadcrumbs()">
+            ${self.breadcrumbs()}
+        </%def>
+      </%navigation:global_nav>
     </div>
   </header>
 

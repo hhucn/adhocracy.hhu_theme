@@ -1,0 +1,31 @@
+<%def name="link(title, href)"><a href="${href}">${title}</a></%def>
+<%def name="root()">${link(h.site.name(), h.site.base_url(instance=None))}</%def>
+<%def name="instance()">${root()} &raquo; ${link(c.instance.label, h.instance.url(c.instance))}</%def>
+<%def name="prefix()">${instance() if c.instance else root()} &raquo;</%def>
+<%def name="tail(title)"><a href="" class="breadcrumbs_tail">${title}</a></%def>
+<%def name="entity(p)">${link(p.title if hasattr(p, 'title') else p.name, h.entity_url(p))} &raquo;</%def>
+<%def name="admin(title)">${prefix()} ${link(_('Administrate Site'), '/admin')} &raquo; ${tail(title)}</%def>
+<%def name="tag(t, title=None)">
+${prefix()} ${link(_('Tags'), h.build(c.instance, None, 'tag'))} &raquo;
+%if title:
+    ${entity(t)} &raquo; ${tail(title)}
+%else:
+    ${tail(_(t.name))}
+%endif
+</%def>
+<%def name="users(title=None)">
+${prefix()}
+%if title:
+    ${link(_('Users'), h.build(c.instance, 'user', 'all'))} &raquo; ${tail(title)}
+%else:
+    ${tail(_('Users'))}
+%endif
+</%def>
+<%def name="user(u, title=None)">
+${prefix()} ${link(_('Users'), h.build(c.instance, 'user', 'all'))} &raquo;
+%if title:
+    ${entity(u)} ${tail(title)}
+%else:
+    ${tail(_(u.name))}
+%endif
+</%def>
