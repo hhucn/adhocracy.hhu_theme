@@ -7,23 +7,12 @@
     ${h.instance.breadcrumbs(c.page_instance)|n} ${_("Home")}
 </%def>
 
-
 <%block name="main_content">
 
-%if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
-<div id="new_proposals_table" class="table">
-    %if c.new_proposals_pager is not None:
-    <h3 class="section">${_("Newest Proposals")}</h3>
-    ${c.new_proposals_pager.here()}
-    %endif
-    %if c.all_proposals_pager is not None:
-    ${c.all_proposals_pager.here()}
-    %endif
-
-    <div id="proposal-actions">
+   <div class="proposal-actions" id="proposal-actions">
         <% auth = check.proposal.create() %>
         %if auth:
-        <a class="button add ttip" 
+        <a class="button add ttip"
            title="${_('Introduce a new idea to debate.')}" 
            href="${h.base_url('/proposal/new')}">${_("new proposal")}</a>
         %elif auth.propose_join():
@@ -39,7 +28,20 @@
            title="${_('Validate email in order to create a new proposal.')}" 
            href="${h.base_url('/proposal/new')}" rel="#overlay-validate-button">${_("new proposal")}</a>
         %endif
+    </div>
 
+%if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
+
+<div id="new_proposals_table" class="table">
+    %if c.new_proposals_pager is not None:
+    <h3 class="section">${_("Newest Proposals")}</h3>
+    ${c.new_proposals_pager.here()}
+    %endif
+    %if c.all_proposals_pager is not None:
+    ${c.all_proposals_pager.here()}
+    %endif
+
+    <div id="proposal-actions">
         %if c.all_proposals_pager is None:
         <a href="${h.base_url('/proposal')}" 
            class="button edit ttip" 

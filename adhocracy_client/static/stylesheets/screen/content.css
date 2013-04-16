@@ -1167,8 +1167,7 @@ form p.info { margin-bottom: 10px; color: #666; }
   line-height: 24px;
 }
 
-input[type=text],
-input[type=password] {
+input.title {
   width: 100%;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -1179,6 +1178,9 @@ input[type=password] {
 textarea {
   width: 100%;
   min-height: 128px; 
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
 
 input[type=checkbox], input[type=radio] { vertical-align: text-top; }
@@ -1661,3 +1663,17 @@ dl.votedetail>dd {margin: 0; padding: 0;}
 .message_preview_body {background: #ccc; white-space: pre-wrap; margin-bottom: 0.5em;}
 
 .importexport_settings {margin-left: 30px;}
+
+.proposal-actions a.button {
+    background-position: 0 -500px;
+    color: #FFFFFF;
+    height: 27px;
+    line-height: 27px;
+    margin-right: 15px;
+    padding: 0;
+    width: 150px;
+}
+
+.proposal-actions a.button:hover {
+  background-position: 0 -550px;
+}
