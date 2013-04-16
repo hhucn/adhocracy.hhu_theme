@@ -1,10 +1,11 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 
 <%def name="title()">${_("Users")}</%def>
 
 <%def name="breadcrumbs()">
-    ${h.user.breadcrumbs(None)|n}
+${b.users(None)}
 </%def>
 
 <%block name="headline">

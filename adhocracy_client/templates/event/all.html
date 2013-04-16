@@ -1,9 +1,10 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Whazza")}</%def>
 
 <%def name="breadcrumbs()">
-    ${_("All current events.")}
+    ${b.admin(_("All current events."))}
 </%def>
 
 

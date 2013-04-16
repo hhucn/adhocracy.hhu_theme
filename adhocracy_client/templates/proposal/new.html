@@ -1,10 +1,11 @@
 <%inherit file="/template.html" />
 <%namespace name="tiles_html" file="/proposal/tiles.html"/>
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("New proposal")}</%def>
 
 <%def name="breadcrumbs()">
-    ${h.proposal.breadcrumbs(None)|n}
+    ${b.prefix()} ${b.tail(_("New proposal"))}
 </%def>
 
 <%block name="headline">

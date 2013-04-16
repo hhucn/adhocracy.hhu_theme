@@ -1,5 +1,9 @@
 <%inherit file="/template.html" />
+<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Who are you, then?")}</%def>
+<%def name="breadcrumbs()">
+${b.prefix()} ${b.tail(_("Login"))}
+</%def>
 
 <%block name="attention_getter">
 ## disable the attention getter if somebody is about to log in.
