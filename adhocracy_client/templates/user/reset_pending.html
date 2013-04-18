@@ -1,5 +1,11 @@
 <%inherit file="/template.html" />
+<%namespace name="b" file="/breadcrumbs.html"/>
+
 <%def name="title()">${_("Password reset")}</%def>
+
+<%def name="breadcrumbs()">
+${b.prefix()} ${b.tail(_('Password reset'))}
+</%def>
 
 <%block name="headline">
 <h1 class="page_title">${_("Password reset")}: ${_("Confirmation pending")}</h1>
