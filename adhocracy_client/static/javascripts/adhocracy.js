@@ -1,6 +1,7 @@
 /*jslint vars:true, browser:true, nomen:true */
 /*global document:true, jQuery:true, $:true, ko:true */
 
+
 /**
  * Javascript application code for adhocracy mainly using
  * knockout.js and jquery
@@ -76,13 +77,22 @@ var adhocracy = adhocracy || {};
         }
         this.getOverlay().find(".patch_camefrom")
             .attr('href', function (i, href) {
-                return href.split('?')[0] + '?came_from=' + came_from;
+                var separator;
+                if (href.indexOf('?') !== -1) {
+                    separator = '&';
+                } else {
+                    separator = '?';
+                }
+                return href + separator + 'came_from=' + came_from;
             });
     };
     adhocracy.overlay.rewriteDescription = function () {
         var description = this.getTrigger().data('description');
         if (description === undefined) {
             description = this.getTrigger().data('title');
+        }
+        if (description === undefined) {
+            description = this.getTrigger().attr('title');
         }
         if (description !== undefined) {
             this.getOverlay().find(".patch_description").html(description);
@@ -134,7 +144,20 @@ var adhocracy = adhocracy || {};
             fixed: false,
             mask: adhocracy.overlay.mask,
             target: '#overlay-join',
-            onBeforeLoad: adhocracy.overlay.rewriteDescription,
+            onBeforeLoad: function (event) {
+                adhocracy.overlay.rewriteDescription.call(this, event);
+                adhocracy.overlay.rebindCameFrom.call(this, event);
+            }
+        });
+
+        wrapped.find("a[rel=#overlay-validate-button]").overlay({
+            fixed: false,
+            mask: adhocracy.overlay.mask,
+            target: '#overlay-validate',
+            onBeforeLoad: function (event) {
+                adhocracy.overlay.rewriteDescription.call(this, event);
+                adhocracy.overlay.rebindCameFrom.call(this, event);
+            }
         });
 
     };
@@ -218,6 +241,25 @@ var adhocracy = adhocracy || {};
                 'cookie_domain': cookieDomain
             });
         }
+    };
+
+    adhocracy.helpers.initializeTutorial = function (name) {
+        $('#start-tutorial-button').click(function (event) {
+            $(this).joyride({inline: true,
+                             nextButtonText: $(this).data('next'),
+                             prevButtonText: $(this).data('previous')});
+            event.preventDefault();
+        });
+        $('#disable-all-tutorials').click(function (event) {
+            $.get('/tutorials?disable=ALL');
+            $('#tutorial-banner').fadeOut();
+            event.preventDefault();
+        });
+        $('#disable-this-tutorial').click(function (event) {
+            $.get('/tutorials?disable=' + name);
+            $('#tutorial-banner').fadeOut();
+            event.preventDefault();
+        });
     };
 
     adhocracy.helpers.initializeTagsAutocomplete = function (selector) {
@@ -322,6 +364,13 @@ var adhocracy = adhocracy || {};
         update();
     };
 
+    adhocracy.helpers.flash = function(category, message) {
+        var container = $('#welcome_message').find('.page_wrapper');
+        var el = $('<div>');
+        el.attr('class', 'alert alert-' + category);
+        el.text(message);
+        container.append(el);
+    }; 
 }());
 
 $(document).ready(function () {
@@ -447,12 +496,85 @@ $(document).ready(function () {
 
     var page_stats_baseurl = $('body').data('stats-baseurl');
     if (page_stats_baseurl) {
-        var window_is_active = true;
-        $(window).focus(function() { window_is_active = true });
-        $(window).blur( function() { window_is_active = false });
+
+        var stats_extended = $('body').attr('data-stats-extended');
+        if (stats_extended === "enabled") {
+            var start_time = new Date();
+            var page_stats_data = new Array();
+
+            var add_to_page_stats = function(type, data) {
+                var timestamp = new Date() - start_time;
+                var event = {"time": timestamp, "type": type};
+                if (data) {
+                    event.data = data;
+                }
+                page_stats_data.push(event);
+            };
+        
+            var get_path = function(element) {
+                return $(element).parentsUntil('body').andSelf().map(function() {
+                    if (this.id) {
+                        return this.nodeName + '#' + this.id;
+                    } else {
+                        var number = $(this.nodeName).index();
+                        if (number == -1) {
+                            return this.nodeName;
+                        } else {
+                            return this.nodeName + '[' + number + ']'; 
+                        }
+                    }
+                }).get().join('>');
+            };
+
+            $(document).on("keydown", function(e) {
+                // Anonymize [a-Z][0-9] to prevent recording confidential data
+                if ((e.keyCode >= 65 && e.keyCode <= 90) || 
+                    (e.keyCode >= 48 && e.keyCode <=57)) {
+                    add_to_page_stats(e.type);
+                } else {
+                    add_to_page_stats(e.type, e.keyCode);
+                }
+            });
+
+            $(document).on("mousemove", function(e) {
+                add_to_page_stats("mousemove", {"x": e.clientX, "y": e.clientY});
+            });
+
+            $(document).on("click", function(e) {
+                add_to_page_stats("click", {"x": e.clientX, "y": e.clientY,
+                    "button": e.which, "path": get_path(e.target)});
+            });
+
+            $(window).on("focus blur", function(e) {
+                add_to_page_stats(e.type);
+            });
+
+            $(window).on("resize", function() {
+                add_to_page_stats("resize", {"x": window.innerHeight,
+                    "y": window.innerWidth});
+            });
+
+            $(window).on("beforeunload", function(e) {
+                add_to_page_stats(e.type);
+                sendOnPagePing();
+            });
+
+            add_to_page_stats("initialsize",{"x": window.innerHeight,
+                    "y": window.innerWidth}); 
+        }
+
         var stats_interval = $('body').data('stats-interval');
         var sendOnPagePing = function() {
-            $.get(page_stats_baseurl + '?page=' + encodeURIComponent(location.href) + '&window_is_active=' + window_is_active,
+            if (stats_extended) { 
+                var append_string = '&data=' + JSON.stringify(page_stats_data);
+                page_stats_data = new Array();
+                add_to_page_stats("current_size", {"x": window.innerHeight,
+                    "y": window.innerWidth});
+            } else {
+                var append_string = "";
+            }
+            $.get(page_stats_baseurl + '?page=' + encodeURIComponent(location.href)
+                    + append_string,
                     null, setOnPageTimeout);
         };
         var setOnPageTimeout = function() {
@@ -634,4 +756,36 @@ $(document).ready(function () {
                 return false;
             });
     });
+
+    $('a.expand_arrow').click(function () {
+        $(this).parent().toggleClass('expanded');
+    });
+
+    $('.facet_check').click(function() {
+        $(this).parent().children('a')[0].click();
+    });
+
+    var welcome_form = $('form#user_welcome');
+    welcome_form.submit(function(e) {
+        if (welcome_form.data('submitted')) {
+            return;
+        }
+        var data = welcome_form.serialize();
+        welcome_form.find('input').attr('disabled', 'disabled');
+        $.ajax(welcome_form.attr('action'), {
+            type: 'post',
+            data: data,
+            success: function() {
+                welcome_form.remove();
+                adhocracy.helpers.flash('success', welcome_form.attr('data-success-message'));
+            },
+            error: function() {
+                // Fall back to plain submission
+                welcome_form.data({submitted: true});
+                welcome_form.submit();
+            }
+        });
+        e.preventDefault();
+    });
+
 });
