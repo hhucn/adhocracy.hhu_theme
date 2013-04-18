@@ -1601,6 +1601,8 @@ form[name="login"] input[type="password"] {
   padding-right: 0;
 }
 
+.staticpage_edit {float: right;}
+
 .proposal-actions a.button {
     background-position: 0 -500px;
     color: #FFFFFF;

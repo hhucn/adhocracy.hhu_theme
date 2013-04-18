@@ -10,6 +10,9 @@
 </%def>
 
 <%block name="main_content">
+%if h.staticpage.can_edit():
+	<a class="button staticpage_edit" href="${h.entity_url(c.static)}">${_('Edit this page')}</a>
+%endif
 <div id="static_content">
 <h1 class="page_title">${c.static.title}</h1>
 <div class="doc mainbar">
