@@ -202,7 +202,8 @@ header #header {
 }
 
 #breadcrumbs a.breadcrumbs_tail:hover {
-    color: rgb(0, 85, 128);
+    color: #446191;
+    text-decoration: underline;
 }
 
 #about_menu_link {
