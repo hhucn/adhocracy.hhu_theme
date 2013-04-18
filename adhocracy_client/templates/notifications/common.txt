@@ -6,14 +6,14 @@ else: context.write(_("with an abstention on"))
 %></%def>
 
 <%def name="quotecomment(comment)"><%
-if e.comment.reply: 
+if c.e.comment.reply: 
 	self._quotecomment(comment, 1)
 %></%def>
 
 <%def name="_quotecomment(comment, level)"><%
 context.write(('>' * (level - 1)) + '\n') 
 context.write(('>' * (level - 1)) + (' ' if level > 1 else ''))
-context.write(_("On %s, %s wrote:") % (h.date_tag(comment.create_time), comment.creator.name)) 
+context.write(_("On %s, %s wrote:") % (h.format_date(comment.create_time), comment.creator.name)) 
 context.write('\n')
 for line in comment.latest.text.splitlines():
 	context.write('>' * level + ' ')
