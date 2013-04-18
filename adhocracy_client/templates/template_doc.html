@@ -1,11 +1,12 @@
 <%inherit file="/template.html" />
+<%namespace name="b" file="/breadcrumbs.html"/>
 
 <%def name="title()">
     ${c.static.title}
 </%def>
 
 <%def name="breadcrumbs()">
-    ${h.instance.breadcrumbs(c.page_instance)|n}
+    ${b.prefix()} ${b.tail(c.static.title)}
 </%def>
 
 <%block name="main_content">

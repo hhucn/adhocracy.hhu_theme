@@ -1,7 +1,12 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 
 <%def name="title()">${_('New Static Page')}</%def>
+<%def name="breadcrumbs()">
+    ${b.static(_('New'))}
+</%def>
+
 
 <%block name="main_content">
 

@@ -29,3 +29,11 @@ ${prefix()} ${link(_('Users'), h.build(c.instance, 'user', 'all'))} &raquo;
     ${tail(_(u.name))}
 %endif
 </%def>
+<%def name="static(title=None)">
+${prefix()}
+%if title:
+    ${link(_('Static Pages'), h.build(c.instance, 'static', ''))} &raquo; ${tail(title)}
+%else:
+    ${tail(_('Static Pages'))}
+%endif
+</%def>
