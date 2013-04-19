@@ -272,3 +272,5 @@ div #user_menu {
 
 #static_content {font-size: 16px; margin-bottom: 40px;}
 #static_content h1 {margin: 0 0 18px 0;}
+
+.contentWrap .register {height: auto !important;}

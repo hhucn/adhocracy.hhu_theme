@@ -53,11 +53,17 @@ ${b.prefix()}
       <div class="contentWrap">
          <div class="register">
              <p class="patch_description">
-                 ${_('Get an account to participate in the discussion.')}
+                %if h.allow_user_registration():
+                    ${_('Get an account to participate in the discussion.')}
+                %else:
+                    ${_('Log in to participate in the discussion.')}
+                %endif
              </p>
+             %if h.allow_user_registration():
              <a href="${h.base_url('/register')}" 
                 class="button patch_camefrom">${_('Register')}</a> 
-             ${_("or")} 
+             ${_("or")}
+             %endif
              <a href="${h.base_url('/login')}" 
                 class="icon_link more_uppercase patch_camefrom">${_('Log in')}</a>
          </div>
