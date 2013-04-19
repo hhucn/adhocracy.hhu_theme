@@ -27,7 +27,7 @@ ${b.admin(_("Send mass message"))}
     %for r in c.recipients:
       <li>${r.name} &lt;${r.email}&gt;</li>
     %endfor
-    </li>
+    </ul>
 
     %for pkey,pval in c.params.items():
       <input type="hidden" name="${pkey}" value="${pval}" />
