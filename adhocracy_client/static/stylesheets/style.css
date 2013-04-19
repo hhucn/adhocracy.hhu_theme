@@ -278,3 +278,15 @@ div #user_menu {
 .instance_title {margin-top: 0;}
 
 .proposal-actions {margin-bottom: 10px;}
+.proposal-actions a.button {
+    background-position: 0 -500px;
+    color: #FFFFFF;
+    height: 27px;
+    line-height: 27px;
+    margin-right: 15px;
+    padding: 0;
+    width: 150px;
+}
+.proposal-actions a.button:hover {
+  background-position: 0 -550px;
+}
