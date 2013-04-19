@@ -1603,6 +1603,10 @@ form[name="login"] input[type="password"] {
 
 .staticpage_edit {float: right;}
 
+form.password-reset input[type="submit"] {
+  padding: 5px 10px;
+}
+
 .proposal-actions a.button {
     background-position: 0 -500px;
     color: #FFFFFF;
@@ -1631,3 +1635,4 @@ form[name="login"].login-alternate label {
 form[name="login"].login-alternate label>span {
   vertical-align: text-top;
 }
+
