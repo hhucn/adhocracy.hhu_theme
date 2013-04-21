@@ -283,14 +283,21 @@ div #user_menu {
 .proposal-actions {margin-bottom: 10px;}
 .proposal-actions a.button {
     background-position: 0 -500px;
-    background-color: #5eab70;
+    background-color: #479459;
     color: #FFFFFF;
-    font-size: 120%;
-    height: 27px;
-    line-height: 27px;
+    font-size: 140%;
     margin-right: 15px;
     padding: 0 20px;
     white-space: pre;
+}
+@media only screen and (max-width : 1000px) {
+  .proposal-actions a.button {
+    background-image: none;
+    font-size: 40px;
+    padding: 10px 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 .proposal-actions a.button:hover {
   background-position: 0 -550px;
