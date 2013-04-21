@@ -1584,18 +1584,22 @@ dl.votedetail>dd {margin: 0; padding: 0;}
 
 .importexport_settings {margin-left: 30px;}
 
+form[name="login"] input, form[name="login"] label, form[name="login"] div {
+  font-size: 20px;
+  line-height: 1.4em;
+}
+
 form[name="login"] input[type="text"],
 form[name="login"] input[type="email"],
-form[name="login"] input[type="password"] {
+form[name="login"] input[type="password"],
+form[name="login"] .password-reset-link {
   display: block;
-  width: 206px;
+  width: 18em;
 }
 form[name="login"] input[type="password"] {
   margin-bottom: 0;
 }
-.password-reset-link {
-  display: inline-block;
-  width: 206px;
+form[name="login"] .password-reset-link {
   padding-left: 12px;
   text-align: right;
   padding-right: 0;
