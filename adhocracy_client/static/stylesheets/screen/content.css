@@ -1082,11 +1082,6 @@ form p.info { margin-bottom: 10px; color: #666; }
   clear: both;
 }
 
-.input_wrapper.submit {
-  font-size: 11px;
-  line-height: 24px;
-}
-
 input.title {
   width: 100%;
   -moz-box-sizing:    border-box;
