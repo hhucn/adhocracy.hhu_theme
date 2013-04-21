@@ -32,7 +32,10 @@ ol {
   list-style-position: inside;
 }
 
-h1, h2, h3, h4, h5, a, legend, .tabnav li a.active, .tabnav li a:hover {
+h1, h2, h3, h4, h5 {
+  color: #262c42;
+}
+a, legend, .tabnav li a.active, .tabnav li a:hover {
   color: #446191;
 }
 
