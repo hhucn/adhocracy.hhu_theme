@@ -290,3 +290,6 @@ div #user_menu {
 .proposal-actions a.button:hover {
   background-position: 0 -550px;
 }
+
+.vote_comment {float: left;}
+.comment h5 {margin-top: 0;}

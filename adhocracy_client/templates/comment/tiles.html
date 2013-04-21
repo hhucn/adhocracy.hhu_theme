@@ -103,6 +103,9 @@
     %>
 
     <div id="c${comment.id}" class="comment">
+        <div class="vote_comment">
+            ${tiles.poll.widget(comment.poll)}
+        </div>
 
         ## comment title (username / pro/con / deleted)
         %if not comment.is_deleted():
@@ -138,10 +141,6 @@
 
         <div class="comment_actions floatbox">
             <div>
-                <div class="vote_comment">
-                    ${tiles.poll.widget(comment.poll)}
-                </div>
-
                 ## Number of replies
                 %if tile.num_children > 0:
                     %if tile.num_children == 1:
