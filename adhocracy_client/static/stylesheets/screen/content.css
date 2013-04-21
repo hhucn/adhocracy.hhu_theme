@@ -415,6 +415,7 @@ body.logged_in #header .page_wrapper {
 }
 #logo {
   height: 70px;
+  width: 232px;
   overflow: hidden;
   display: inline-block;
   float: left;
