@@ -130,26 +130,18 @@ body {
   }
 }
 
-header #header {
+#header {
   height:95px;
-  padding:10px 0 0 0;
+  margin:10px 0 0 0;
   background:white;
-    left: 0;
-    margin-bottom: 0;
-    position: auto;
-    right: 0;
-    z-index: 1030;
-}
-
-#header #logo {
-    
-    float: left;
-    padding: 0 !important;
+  left: 0;
+  position: auto;
+  right: 0;
+  z-index: 1030;
 }
 
 #header #hhu_logo {
-
-    float: right;
+    position: absolute; right: 0; top: 0;
 }
 
 .menu ul{
@@ -171,6 +163,7 @@ header #header {
 
 #nav {
     clear: none;
+    margin-right: 150px;
     font-size: 17px;
 }
 
@@ -290,7 +283,73 @@ div #user_menu {
     padding: 0 20px;
     white-space: pre;
 }
-@media only screen and (max-width : 1000px) {
+.proposal-actions a.button:hover {
+  background-position: 0 -550px;
+}
+
+.vote_comment {float: left;}
+.comment h5 {margin-top: 0;}
+
+#footer_links {
+  float: left; width: 20%;
+}
+#footer_links>ul {
+  list-style-type: none; margin-left: 0;
+}
+#footer_adhocracy {
+  float: left; width: 20%; text-align: right;
+}
+#footer_adhocracy>div {
+  font-size: 13px;
+}
+#footer_support {
+  float: left; width: 60%;font-size: 22px; text-align: center;
+}
+
+/* Smartphones */
+@media only screen and (max-width: 1000px) {
+  #logo, #logo > img {
+    height: 35px;
+    width: 116px;
+  }
+  #hhu_logo {
+    height: 35px;
+    width: 74px;
+  }
+  #nav {
+    position: relative; left: 0; top: 0; width: 100%;
+  }
+  #nav > ul {
+    text-align: right;
+    position: absolute; left: 120px; right: 80px;
+    background: none !important; border: none; padding: 0; margin: 0;
+  }
+  #nav > ul>li>a {
+    padding: 0 !important; margin: 0;
+  }
+  #breadcrumbs {
+    text-align: left;
+    position: absolute;
+    margin-top: 6px !important;
+    top: 35px;
+    left: 0; right: 0;
+    font-size: 12px;
+  }
+  #breadcrumbs>a:first-child {
+    display: none;
+  }
+  #header {
+    height: 55px;
+  }
+  #feedback {
+    /* Broken on mobile */
+    display: none;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
   .proposal-actions a.button {
     background-image: none;
     font-size: 40px;
@@ -298,10 +357,5 @@ div #user_menu {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-}
-.proposal-actions a.button:hover {
-  background-position: 0 -550px;
-}
 
-.vote_comment {float: left;}
-.comment h5 {margin-top: 0;}
+}

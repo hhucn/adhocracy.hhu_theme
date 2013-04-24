@@ -192,6 +192,8 @@ $(document).ready(function () {
 
     <meta http-equiv="X-XRDS-Location" 
           content="${h.base_url('/openid/xrds', absolute=True)}" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,target-densitydpi=device-dpi,user-scalable=yes">
+
 
     %for key, value in c.html_meta.items():
     <meta name="${key}" content="${value}" />
