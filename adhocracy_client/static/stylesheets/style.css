@@ -145,16 +145,8 @@ body {
 }
 
 .menu ul{
-    border:1px solid #ccc;
     z-index:600;
     text-align:left;
-    background: #eee; /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(252,252,252,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(224,224,224,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* IE10+ */
-    background: linear-gradient(top, rgba(252,252,252,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
 }
 
 .menu li {
@@ -168,8 +160,8 @@ body {
 }
 
 #nav ul {
-    margin:0;
-    border:1px solid #ccc;
+    float: right;
+    margin-right: 20px;
     padding-top:3px;
     padding-bottom:3px;
 }
@@ -181,18 +173,22 @@ body {
 
 #nav li a {
     color: #286e9b;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#nav li.user_name {
+    font-weight: bold;
 }
 
 #nav li a:hover {
     color: rgb(0, 85, 128);
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 #breadcrumbs {
-    margin-top:16px;
     text-align:left;
+    padding-top: 22px;
 }
 
 #breadcrumbs a:hover {

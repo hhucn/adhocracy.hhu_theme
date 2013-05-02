@@ -14,6 +14,6 @@ To install adhocracy with the HHU layout on a debian/Ubuntu/arch system, type
 
     adhocracy_buildout/bin/adhocracy_interactive.sh
 
-and navigate to [http://localhost:5001/](http://localhost:5001/). The initial credentials are `admin` : `password` .
+and navigate to [http://localhost:5001/](http://localhost:5001/). The initial credentials are `admin@adhocracy.lan` : `password` .
 
 For troubleshooting have a look at [our wiki](https://github.com/hhucn/adhocracy.hhu_theme/wiki).
