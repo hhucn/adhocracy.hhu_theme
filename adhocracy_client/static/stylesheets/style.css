@@ -131,8 +131,7 @@ body {
 }
 
 #header {
-  height:95px;
-  margin:10px 0 0 0;
+  height:100px;
   background:white;
   left: 0;
   position: auto;
@@ -140,8 +139,12 @@ body {
   z-index: 1030;
 }
 
+#header #logo {
+    margin-top: 10px;
+}
+
 #header #hhu_logo {
-    position: absolute; right: 0; top: 0;
+    position: absolute; right: 0; top: 10px;
 }
 
 .menu ul{
@@ -154,16 +157,17 @@ body {
 }
 
 #nav {
+    position: relative;
     clear: none;
     margin-right: 150px;
     font-size: 17px;
 }
 
 #nav ul {
-    float: right;
-    margin-right: 20px;
-    padding-top:3px;
-    padding-bottom:3px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    margin: 0;
 }
 
 #nav li {
@@ -173,8 +177,7 @@ body {
 
 #nav li a {
     color: #286e9b;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 2px;
 }
 
 #nav li.user_name {
@@ -188,7 +191,7 @@ body {
 
 #breadcrumbs {
     text-align:left;
-    padding-top: 22px;
+    padding-top: 32px;
 }
 
 #breadcrumbs a:hover {
