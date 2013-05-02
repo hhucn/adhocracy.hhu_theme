@@ -1,10 +1,6 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
-<%namespace name="b" file="/breadcrumbs.html"/>
 <%def name="title()">${_("Mass Message Preview")}</%def>
-<%def name="breadcrumbs()">
-${b.admin(_("Send mass message"))}
-</%def>
 
 <%block name="main_content">
 <h3>${_("Preview")}</h3>
@@ -16,7 +12,7 @@ ${b.admin(_("Send mass message"))}
     <p>${_("You're about to send the following message to %s recipients:") % c.recipients_count}</p>
 
     <dl>
-      <dt>From:</dt><dd>${c.sender}</dd>
+      <dt>From:</dt><dd>${c.sender_name} &lt;${c.sender_email}&gt;</dd>
       <dt>Subject:</dt><dd>${c.subject}</dd>
     </dl>
     <div class="message_preview_body">${c.body}</div>
