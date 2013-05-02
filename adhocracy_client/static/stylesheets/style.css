@@ -254,6 +254,7 @@ div #user_menu {
 }
 
 #instance_settings {right: 0; padding: 10px; position: absolute; font-size: 150%;}
+.instance_description {margin-top: 34px;}
 
 .frontpage_description {
   font-size: 130%;
@@ -353,5 +354,7 @@ div #user_menu {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
+  .instance_description {margin-top: 0;}
 
 }
