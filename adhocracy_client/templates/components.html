@@ -305,7 +305,7 @@ ${caller.body()}
             <textarea rows="8" name="text"></textarea>
             <button type="submit" class="btn">${_(u'Submit')}</button>
           </fieldset>
-          <a href="${h.feedback.get_proposal_url()}">${_(u'List existing feedback')}</a>
+          <a href="${h.base_url(u'/instance/feedback', h.feedback.get_feedback_instance())}">${_(u'List existing feedback')}</a>
         </form>
       </div>
       <a href="#" id="feedback_button"></a>
