@@ -346,6 +346,24 @@ div #user_menu {
     display: none;
   }
 
+  footer>* {
+    display: block; width: 100% !important;
+    text-align: center !important;
+  }
+  #footer_links>ul>li {
+    font-size: 14px;
+    display: inline-block;
+  }
+  #footer_links>ul>li:not(:first-child):before {
+    content: '·';
+  }
+  #footer_support {
+    font-size: 18px;
+  }
+  #footer_adhocracy img {
+    width: 96px; height: 22px;
+  }
+
   h2 {
     font-size: 18px;
   }
@@ -359,5 +377,4 @@ div #user_menu {
   }
 
   .instance_description {margin-top: 0;}
-
 }
