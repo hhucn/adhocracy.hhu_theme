@@ -359,3 +359,21 @@ div #user_menu {
   }
 
 }
+
+li.sort {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+.floatbox ul {
+
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+div.pager_items {
+  float: left;
+  margin-right: 2em;
+}
