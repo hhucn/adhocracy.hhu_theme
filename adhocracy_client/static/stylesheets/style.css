@@ -349,13 +349,13 @@ div #user_menu {
     top: 50px;
     left: 0; right: 0;
     width: 100%;
-    font-size: 14px;
+    font-size: 14px; line-height: 14px;
   }
   #breadcrumbs>a:first-child {
     display: none;
   }
   #header {
-    height: 85px;
+    height: 90px;
   }
 
   .message {
@@ -419,4 +419,8 @@ div #user_menu {
   .social_share_privacy_area>li.help_info:first-child {
     margin-left: 0 !important;
   }
+
+  li.content_box {padding: 10px 0 0 0;}
+  li.content_box h3 {padding: 0; margin: 0; font-size: 16px;}
+  li.content_box hr {margin: 10px 0 0 0;}
 }
