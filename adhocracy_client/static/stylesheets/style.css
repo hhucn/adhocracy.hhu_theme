@@ -361,6 +361,9 @@ div #user_menu {
   .message {
     padding: 5px 0;
   }
+  .message>span {
+    font-size: 14px;
+  }
   #feedback {
     /* Broken on mobile */
     display: none;
@@ -384,17 +387,36 @@ div #user_menu {
     width: 96px; height: 22px;
   }
 
-  h2 {
-    font-size: 18px;
+  .instance_title {
+    font-size: 22px;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
   }
 
   .proposal-actions a.button {
     background-image: none;
-    font-size: 40px;
-    padding: 10px 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    padding: 5px 20px;
   }
 
   .instance_description {margin-top: 0;}
+
+  #col1 {width: 100%; float: none;}
+  #col3 {width: 100%; float: none; margin: 0 !important;}
+  #col3_content {margin: 0 !important; padding: 0 !important;}
+  #main {margin-bottom: 30px;}
+
+  .social_share_privacy_area>li.help_info {
+    width: auto !important;
+  }
+  .social_share_privacy_area>li {
+    margin-left: 10px !important;
+  }
+  .social_share_privacy_area>li.help_info div {
+    width: auto !important; margin-left: 0 !important;
+  }
+  .social_share_privacy_area>li.help_info:first-child {
+    margin-left: 0 !important;
+  }
 }
