@@ -27,6 +27,9 @@
 
 
 body { color: #2d3441; }
+body.logged_in #logo {
+  height: auto;
+}
 
 ol {
   list-style-position: inside;
