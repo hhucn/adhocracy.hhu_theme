@@ -108,6 +108,21 @@ Please define your styles before this section.
 /* Hide visually and from screenreaders, but maintain layout */
 .invisible { visibility: hidden; }
 
+.message {
+  background: #fffde4;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  height: auto !important;
+}
+.message span {
+  font-size: 17px;
+}
+.message a.button {
+  float: none;
+  margin-left: 10px;
+}
+
 
 /* HHU styles */
 #main{
@@ -317,7 +332,7 @@ div #user_menu {
     width: 74px;
   }
   #nav {
-    position: relative; left: 0; top: 0; width: 100%;
+    position: static; left: 0; top: 0; width: 100%;
   }
   #nav > ul {
     text-align: right;
@@ -330,16 +345,21 @@ div #user_menu {
   #breadcrumbs {
     text-align: left;
     position: absolute;
-    margin-top: 6px !important;
-    top: 35px;
+    padding: 0 !important;
+    top: 50px;
     left: 0; right: 0;
-    font-size: 12px;
+    width: 100%;
+    font-size: 14px;
   }
   #breadcrumbs>a:first-child {
     display: none;
   }
   #header {
-    height: 55px;
+    height: 85px;
+  }
+
+  .message {
+    padding: 5px 0;
   }
   #feedback {
     /* Broken on mobile */
