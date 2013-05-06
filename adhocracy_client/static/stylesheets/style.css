@@ -35,6 +35,7 @@ ol {
 h1, h2, h3, h4, h5 {
   color: #262c42;
 }
+h2 {font-size: 30px;}
 a, legend, .tabnav li a.active, .tabnav li a:hover {
   color: #446191;
 }
@@ -127,11 +128,6 @@ Please define your styles before this section.
 /* HHU styles */
 #main{
   margin-top:0;
-}
-
-body.logged_in #logo {
-
-    height: auto;
 }
 
 body {
@@ -394,6 +390,10 @@ div #user_menu {
     width: 100%;
   }
 
+  h2,h1 {
+    font-size: 22px;
+  }
+
   .proposal-actions a.button {
     background-image: none;
     font-size: 20px;
@@ -423,4 +423,9 @@ div #user_menu {
   li.content_box {padding: 10px 0 0 0;}
   li.content_box h3 {padding: 0; margin: 0; font-size: 16px;}
   li.content_box hr {margin: 10px 0 0 0;}
+
+  form {padding: 5px;}  
+  form[name="login"] input, form[name="login"] label, form[name="login"] div {
+    font-size: 14px;
+  }
 }
