@@ -427,3 +427,21 @@ div #user_menu {
   li.content_box h3 {padding: 0; margin: 0; font-size: 16px;}
   li.content_box hr {margin: 10px 0 0 0;}
 }
+
+li.sort {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+.floatbox ul {
+
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+div.pager_items {
+  float: left;
+  margin-right: 2em;
+}

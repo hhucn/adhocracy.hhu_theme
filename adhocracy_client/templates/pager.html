@@ -4,16 +4,17 @@
     %if pager.enable_pages or pager.enable_sorts:
         <div class="floatbox">
             %if pager.enable_pages:
-                <span class="pager_items">
+                <div class="pager_items">
                     ${_("%(start)s-%(end)s out of %(total)s") % dict(start=pager.offset+1, end=pager.offset+len(pager.items), total=pager.total_num_items())}
-                </span>
+                </div>
             %endif
             %if hasattr(pager.sorts, 'render'):
             ## New style NamedSorts-object
             ${pager.sorts.render()}
             %elif len(pager.sorts.keys()) > 1 and pager.enable_sorts:
             ## Old style index based sort
-            ${index_based_sort_dropdown(pager.sorts, pager)}
+            ## ${index_based_sort_dropdown(pager.sorts, pager)}
+            ${sort_list(pager.sorts, pager)}
             %endif
         </div>
         <div class="hr"><hr /></div>
@@ -260,6 +261,29 @@ param = sorts.pager.sort_param
     </div>
     %endfor
 </div>
+
+%endif
+</%def>
+
+
+<%def name="sort_list(sorts, pager)">
+
+%if len(sorts.keys()):
+
+<% zipped = zip(pager.sorts.keys(), xrange(1, len(pager.sorts.keys()) + 1)) %>
+
+    <ul>
+    %for sort, i in zipped:
+    <% selected = i == pager.selected_sort %>
+        %if selected:
+            <li class="sort">${sort}</li>
+        %else:
+            <li class="sort">
+                <a href="${pager.build_url(sort=i)|n}" title="${sort}">${sort}</a>
+            </li>
+        %endif
+    %endfor
+    </ul>
 
 %endif
 </%def>
