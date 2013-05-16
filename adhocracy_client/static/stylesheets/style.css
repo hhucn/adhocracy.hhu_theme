@@ -311,7 +311,7 @@ div #user_menu {
   float: left; width: 20%;
 }
 #footer_links>ul {
-  list-style-type: none; margin-left: 0;
+  list-style-type: none; margin-left: 0; margin-bottom: 0;
 }
 #footer_adhocracy {
   float: left; width: 20%; text-align: right;
@@ -320,7 +320,7 @@ div #user_menu {
   font-size: 13px;
 }
 #footer_support {
-  float: left; width: 60%;font-size: 22px; text-align: center;
+  float: left; width: 60%; font-size: 16px; text-align: center;
 }
 
 /* Smartphones */
@@ -381,9 +381,6 @@ div #user_menu {
   }
   #footer_links>ul>li:not(:first-child):before {
     content: '·';
-  }
-  #footer_support {
-    font-size: 18px;
   }
   #footer_adhocracy img {
     width: 96px; height: 22px;
