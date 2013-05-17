@@ -183,8 +183,8 @@ a.button.highlight:hover {
 }
 .register a.button {
   color: #fff;
-  background-position: 0 -600px;
-  width: 150px;
+  background-position: 0 -500px;
+  width: 220px;
   height: 27px;
   line-height: 27px;
   float: left;
@@ -192,7 +192,7 @@ a.button.highlight:hover {
   padding: 0;
 }
 .register a.button:hover {
-  background-position: 0 -650px;
+  background-position: 0 -551px;
 }
 .register a.link_more_info,
 .register a.link_more_info:hover {
