@@ -144,6 +144,16 @@ body {
   }
 }
 
+#ie-message {
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  background: red;
+}
+
+#ie-message a { color:white; }
+
 #header {
   height:100px;
   background:white;

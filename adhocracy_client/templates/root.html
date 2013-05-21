@@ -18,6 +18,13 @@ ${b.prefix()}
       %endif
   </head>
 
+<!--[if lte IE 7]>
+    <div class="ie" id="ie-message">
+      <br>Bitte aktualisieren Sie Ihren Browser
+      <a href="http://www.browser-update.org/de/update.html">(Anleitung)</a>!<br>
+    </div>
+<![endif]-->
+
 
 <body lang="${c.locale.language}" class="${'logged_in' if c.user else ''}"
     %if c.monitor_page_time_interval:
