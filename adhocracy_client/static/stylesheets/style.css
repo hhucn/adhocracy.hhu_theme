@@ -144,15 +144,15 @@ body {
   }
 }
 
-#ie-message {
+a.ie-message {
+  display: block;
+  line-height: 40px;
   font-size: 17px;
   font-weight: bold;
   color: white;
   text-align: center;
   background: red;
 }
-
-#ie-message a { color:white; }
 
 #header {
   height:100px;
