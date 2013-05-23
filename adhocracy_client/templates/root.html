@@ -108,7 +108,7 @@ ${b.prefix()}
         <span>${_('Join this instance to start contributing.')}</span>
         <a class="button" href="${h.entity_url(c.instance, member='join')}?${h.url_token()}">${_("join")}</a> 
     </div>
-  %elif c.user.email is None:
+  %elif c.user and c.user.email is None:
     <div class="message register message_email">
         <span>${_('You need to set an email in your profile in order to contribute to this instance.')}</span>
         <a class="button" href="${h.entity_url(c.user, instance=c.instance, member='edit')}">${_("Edit profile")}</a> 
