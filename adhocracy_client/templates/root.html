@@ -27,6 +27,12 @@ ${b.prefix()}
     %if c.monitor_page_time_interval:
     data-stats-baseurl="${c.monitor_page_time_url}"
     data-stats-interval="${c.monitor_page_time_interval}"
+    %if c.monitor_extended:
+    data-stats-extended="${c.monitor_extended}"
+    %endif
+    %if c.monitor_page_performance:
+    data-stats-page-performance="${c.monitor_page_performance}"
+    %endif
     %endif
     %if c.monitor_external_links_url:
     data-stats-monitor_external_links_url="${c.monitor_external_links_url}"
