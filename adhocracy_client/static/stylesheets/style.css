@@ -451,14 +451,11 @@ div #user_menu {
 li.sort {
     display: inline-block;
     list-style-type: none;
-    margin-left: 1em;
+    margin-left: 0.8em;
 }
 
 .floatbox ul {
-
-  margin-bottom: 5px;
-  margin-left: 0px;
-  margin-top: 0px;
+    margin: 0;
 }
 
 div.pager_items {
