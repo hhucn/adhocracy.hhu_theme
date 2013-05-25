@@ -1,10 +1,11 @@
 <%inherit file="/template.html" />
 <%namespace name="components" file="/components.html"/>
+<%namespace name="b" file="/breadcrumbs.html"/>
 
 <%def name="title()">${_("Treatments")}</%def>
 
 <%def name="breadcrumbs()">
-    ${h.breadcrumbs.generate_breadcrumbs(_("Treatments"))|n}
+    ${b.admin(_("Treatments"))}
 </%def>
 
 <h1>${_("User assignments of %(treatment_key)s") % {'treatment_key': c.treatment.key}}</h1>
