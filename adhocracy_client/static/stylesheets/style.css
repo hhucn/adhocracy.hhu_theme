@@ -456,6 +456,7 @@ li.sort {
 
 .floatbox ul {
     margin: 0;
+    margin-left: 4.5em;
 }
 
 div.pager_items {
