@@ -138,12 +138,27 @@ body {
   margin-right: 12px;
 }
 
-li.content_box {padding: 0 0 0 0;}
-li.content_box h3 {padding:0 1em;}
-li.content_box hr {margin: 0 0 0 0;}
+li.content_box {padding: 0;}
+li.content_box h3 {padding:0;}
+li.content_box hr {margin: 0;}
+li.content_box .proposal_title {
+    margin-left:5.2em;
+}
 
 summary h6 {
     margin:0;
+}
+
+.vote_against {
+    width:2.6em;
+    display:inline-block;
+    text-align:right;
+}
+
+.vote_for {
+    width:2.1em;
+    display:inline-block;
+    text-align:right;
 }
 
 @media only screen and (min-width : 1000px) {
