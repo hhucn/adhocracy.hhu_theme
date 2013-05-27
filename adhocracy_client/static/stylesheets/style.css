@@ -130,13 +130,22 @@ Please define your styles before this section.
 
 /* HHU styles */
 #main{
-  margin-top:0;
+  margin-top:30px;
 }
 
 body {
   margin-left: 12px;
   margin-right: 12px;
 }
+
+li.content_box {padding: 0 0 0 0;}
+li.content_box h3 {padding:0 1em;}
+li.content_box hr {margin: 0 0 0 0;}
+
+summary h6 {
+    margin:0;
+}
+
 @media only screen and (min-width : 1000px) {
   body {
       margin-left: 100px;
@@ -203,6 +212,7 @@ a.ie-message:hover {
 }
 
 #nav li {
+    margin-left:0.3em;
     padding:0;
     line-height:1;
 }
@@ -288,7 +298,7 @@ div #user_menu {
   padding-top: 0px;
 }
 
-#instance_settings {right: 0; padding: 10px; position: absolute; font-size: 150%;}
+#instance_settings {right: 0; padding: 0; position: absolute; font-size: 150%;}
 .instance_description {margin-top: 34px;}
 
 .frontpage_description {
@@ -305,13 +315,16 @@ div #user_menu {
 
 .instance_title {margin-top: 0;}
 
-.proposal-actions {margin-bottom: 10px;}
+.proposal-actions {
+    margin-bottom: 10px;
+    float: right;
+}
 .proposal-actions a.button {
     background-position: 0 -500px;
     background-color: #479459;
     color: #FFFFFF;
     font-size: 140%;
-    margin-right: 15px;
+    margin-right: 0;
     padding: 0 20px;
     white-space: pre;
 }
