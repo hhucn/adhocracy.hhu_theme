@@ -20,13 +20,13 @@ con = tile.widget_action_attrs(model.Vote.NO)
     %else:
     <% auth = check.poll.vote(poll) %>
     %if auth.propose_join():
-        <a href="${pro['url']}"
+        <a href="${tile._rate_url(poll, model.Vote.YES)}"
             class="${pro['class']} ttip ${'do_vote' if tile.can_vote else ''}"
             title="${_('Join instance to vote')}"
             rel="#overlay-join-button"
             ><span>&nbsp;</span></a>
     %elif auth.propose_login():
-        <a href="${pro['url']}"
+        <a href="${tile._rate_url(poll, model.Vote.YES)}"
             class="${pro['class']} ttip ${'do_vote' if tile.can_vote else ''}"
             title="${_('Login to vote')}"
             rel="#overlay-login-button"
@@ -48,13 +48,13 @@ con = tile.widget_action_attrs(model.Vote.NO)
     %else:
     <% auth = check.poll.vote(poll) %>
     %if auth.propose_join():
-        <a href="${con['url']}"
+        <a href="${tile._rate_url(poll, model.Vote.NO)}"
             class="${con['class']} ttip ${'do_vote' if tile.can_vote else ''}"
             title="${_('Join instance to vote')}"
             rel="#overlay-join-button"
             ><span>&nbsp;</span></a>
     %elif auth.propose_login():
-        <a href="${con['url']}"
+        <a href="${tile._rate_url(poll, model.Vote.NO)}"
             class="${con['class']} ttip ${'do_vote' if tile.can_vote else ''}"
             title="${_('Login to vote')}"
             rel="#overlay-login-button"
