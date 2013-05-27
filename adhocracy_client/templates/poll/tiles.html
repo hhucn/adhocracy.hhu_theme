@@ -16,24 +16,50 @@ con = tile.widget_action_attrs(model.Vote.NO)
     <a href="${pro['url']}"
         class="${pro['class']} ttip ${'do_vote' if tile.can_vote else ''}"
         title="${pro['title']}"
-        ><span>&nbsp;</span></a
+        ><span>&nbsp;</span></a>
     %else:
-        <span
+    <% auth = check.poll.vote(poll) %>
+    %if auth.propose_join():
+        <a href="${pro['url']}"
+            class="${pro['class']} ttip ${'do_vote' if tile.can_vote else ''}"
+            title="${_('Join instance to vote')}"
+            rel="#overlay-join-button"
+            ><span>&nbsp;</span></a>
+    %elif auth.propose_login():
+        <a href="${pro['url']}"
+            class="${pro['class']} ttip ${'do_vote' if tile.can_vote else ''}"
+            title="${_('Login to vote')}"
+            rel="#overlay-login-button"
+            ><span>&nbsp;</span></a>
+    %endif
     %endif
     %if tile.can_show:
-        ><a href="${tile.votes_listing_url}" rel="#overlay-ajax" class="vote_count ${tile.count_class}"
+        <a href="${tile.votes_listing_url}" rel="#overlay-ajax" class="vote_count ${tile.count_class}">
     %endif
-        ><span class="vote_for">${poll.tally.num_for}</span>:<span class="vote_against">${poll.tally.num_against}</span
+        <span class="vote_for">${poll.tally.num_for}</span>:<span class="vote_against">${poll.tally.num_against}</span>
     %if tile.can_show:
-        ></a
+        </a>
     %endif
     %if tile.can_vote or tile.can_show:
-    ><a href="${con['url']}"
+    <a href="${con['url']}"
         class="${con['class']} ttip ${'do_vote' if tile.can_vote else ''}"
         title="${con['title']}"
         ><span>&nbsp;</span></a>
     %else:
-        ></span>
+    <% auth = check.poll.vote(poll) %>
+    %if auth.propose_join():
+        <a href="${con['url']}"
+            class="${con['class']} ttip ${'do_vote' if tile.can_vote else ''}"
+            title="${_('Join instance to vote')}"
+            rel="#overlay-join-button"
+            ><span>&nbsp;</span></a>
+    %elif auth.propose_login():
+        <a href="${con['url']}"
+            class="${con['class']} ttip ${'do_vote' if tile.can_vote else ''}"
+            title="${_('Login to vote')}"
+            rel="#overlay-login-button"
+            ><span>&nbsp;</span></a>
+    %endif
     %endif
 </div>
 
