@@ -78,7 +78,7 @@
 </%def>
 
 
-<%def name="watch(entity)">
+<%def name="watch(entity, id=None)">
     ## FIXME: turn into an ajax call
     %if c.user:
     <%
@@ -98,6 +98,10 @@
         follow_text = _("Follow Tag")
     else:
         log.error('Unknown entity for watch button: %s' % entity)
+    if id is None:
+        id_attr = ''
+    else:
+        id_attr = 'id=%s'%id
 
     skip = False
     watch = h.find_watch(entity)
@@ -125,7 +129,7 @@
         </%doc>
     </div>
     %else:
-    <a class="follow_paper ${css_cls}" href="${href}"
+    <a ${id_attr} class="follow_paper ${css_cls}" href="${href}"
        data-text="${text}" data-hover-text="${hover_text}">${text}</a>
     %endif
 
@@ -139,8 +143,6 @@
     </div>
     %endif
 </%def>
-
-<%def name="title()"></%def>
 
 
 <%def name="vertical_tabs(items, css_class, current_variant=None)">
@@ -181,19 +183,22 @@ $(document).ready(function () {
 </%def>
 
 
-<%def name="head()">
+<%def name="head(title_def=None)">
   <meta charset="utf-8" />
-    <title>${'self.title() - ' if self.title() else ''}
-            %if c.instance:
-                 ${c.instance.label} -
-            %endif
-                ${h.site.name()}
-    </title>
+    <%
+    if title_def is None:
+        local_title = ''
+    else:
+        local_title = capture(title_def)
+    full_title = '%s%s%s' % (
+        local_title + ' - ' if local_title else '',
+        c.instance.label + ' - ' if c.instance else '',
+        h.site.name())
+    %>
+    <title>${full_title}</title>
 
     <meta http-equiv="X-XRDS-Location" 
           content="${h.base_url('/openid/xrds', absolute=True)}" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,target-densitydpi=device-dpi,user-scalable=yes">
-
 
     %for key, value in c.html_meta.items():
     <meta name="${key}" content="${value}" />
@@ -305,7 +310,7 @@ ${caller.body()}
             <textarea rows="8" name="text"></textarea>
             <button type="submit" class="btn">${_(u'Submit')}</button>
           </fieldset>
-          <a href="${h.base_url(u'/instance/feedback', h.feedback.get_feedback_instance())}">${_(u'List existing feedback')}</a>
+          <a href="${h.feedback.get_proposal_url()}">${_(u'List existing feedback')}</a>
         </form>
       </div>
       <a href="#" id="feedback_button"></a>
@@ -331,4 +336,20 @@ ${caller.body()}
     <script type="text/javascript">
       $('#${id}').selectHierarchy({placeholder: '${_("Others")}'});
     </script>
+</%def>
+
+<%def name="proposal_sort_order(name, sorting_orders, include_empty=True, default=None)">
+<select name="${name}">
+    %if include_empty:
+    <option value=""></option>
+    %endif
+    %for group in sorting_orders.groups:
+      <optgroup label="${group}">
+      %for sorting_order in sorting_orders.by_group[group]:
+        <option value="${sorting_order.value}"${' selected="selected"' if default == sorting_order.value else ''}>${sorting_order.label}</option>
+      %endfor
+      </optgroup>
+    %endfor
+</select>
+
 </%def>
