@@ -3,7 +3,7 @@
 
 <%def name="row(tile, proposal)">
     <li class="content_box ${'fresh' if tile.fresh else ''}">
-    <h3><a class="link" href="${h.entity_url(proposal)}"><div class="vote vote_preview"><span class="vote_for">${str(proposal.rate_poll.tally.num_for)}</span><span class="vote_against">${str(proposal.rate_poll.tally.num_against)}</span></div><div class="proposal_title">${proposal.title}</div></a>
+    <h3><a class="link" href="${h.entity_url(proposal)}"><div class="vote vote_preview"><span class="vote_for"><span class="vote_indicator">+</span>${str(proposal.rate_poll.tally.num_for)}</span><span class="vote_against"><span class="vote_indicator">&ndash;</span>${str(proposal.rate_poll.tally.num_against)}</span></div><div class="proposal_title">${proposal.title}</div></a>
             <span id="badges_${proposal.id}" class="badges"
                   data-id="${proposal.id}">
                 ${tiles.badge.badges(proposal.badges + proposal.categories)}

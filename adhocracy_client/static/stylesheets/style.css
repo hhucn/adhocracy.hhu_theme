@@ -142,7 +142,7 @@ li.content_box {padding: 0;}
 li.content_box h3 {padding:0;}
 li.content_box hr {margin: 0;}
 li.content_box .proposal_title {
-    margin-left:125px;
+    margin-left:150px;
 }
 
 summary h6 {
@@ -150,16 +150,20 @@ summary h6 {
 }
 
 .content_box .vote_against {
-    width:50px;
+    width:67px;
     display:inline-block;
     text-align:right;
-    padding-left:12px;
+    padding-left:5px;
 }
 
 .content_box .vote_for {
-    width:50px;
+    width:67px;
     display:inline-block;
     text-align:right;
+}
+
+.vote_indicator {
+    font-weight:lighter;
 }
 
 @media only screen and (min-width : 1000px) {
