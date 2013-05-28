@@ -149,13 +149,13 @@ summary h6 {
     margin:0;
 }
 
-.vote_against {
+.content_box .vote_against {
     width:2.6em;
     display:inline-block;
     text-align:right;
 }
 
-.vote_for {
+.content_box .vote_for {
     width:2.1em;
     display:inline-block;
     text-align:right;
