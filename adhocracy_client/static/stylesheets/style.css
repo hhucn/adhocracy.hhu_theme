@@ -150,9 +150,10 @@ summary h6 {
 }
 
 .content_box .vote_against {
-    width:2.6em;
+    width:2.1em;
     display:inline-block;
     text-align:right;
+    padding-left:0.5em;
 }
 
 .content_box .vote_for {
