@@ -142,7 +142,7 @@ li.content_box {padding: 0;}
 li.content_box h3 {padding:0;}
 li.content_box hr {margin: 0;}
 li.content_box .proposal_title {
-    margin-left:5.2em;
+    margin-left:125px;
 }
 
 summary h6 {
@@ -150,14 +150,14 @@ summary h6 {
 }
 
 .content_box .vote_against {
-    width:2.1em;
+    width:50px;
     display:inline-block;
     text-align:right;
-    padding-left:0.5em;
+    padding-left:12px;
 }
 
 .content_box .vote_for {
-    width:2.1em;
+    width:50px;
     display:inline-block;
     text-align:right;
 }
@@ -228,7 +228,7 @@ a.ie-message:hover {
 }
 
 #nav li {
-    margin-left:0.3em;
+    margin-left:7px;
     padding:0;
     line-height:1;
 }
