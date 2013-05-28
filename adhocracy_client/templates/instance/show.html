@@ -9,6 +9,8 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
 </%def>
 
 <%block name="main_content">
+  <h2 class="instance_title">${c.tile.instance.label}</h2>
+
   <div class="proposal-actions" id="proposal-actions">
     <% auth = check.proposal.create() %>
     %if auth:
@@ -29,8 +31,6 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
        href="${h.base_url('/proposal/new')}" rel="#overlay-validate-button">${_("new proposal")}</a>
     %endif
   </div>
-
-  <h2 class="instance_title">${c.tile.instance.label}</h2>
 
 %if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
 
