@@ -188,7 +188,9 @@ var adhocracy = adhocracy || {};
         $(baseSelector).find(".ttip[title]").tooltip({
             position: "bottom left",
             opacity: 1,
-            effect: 'toggle'
+            effect: 'fade',
+            fadeInSpeed: 0,
+            fadeOutSpeed: 0
         }).dynamic({ bottom: { direction: 'down', bounce: true } });
     };
 
