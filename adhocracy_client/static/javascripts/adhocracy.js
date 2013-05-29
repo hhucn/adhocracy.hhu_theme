@@ -779,6 +779,12 @@ $(document).ready(function () {
             target = self.closest('.vote_wrapper'),
             splitted,
             widget_url;
+
+        // Indicate that we're transmitting the vote
+        target.find('.vote_for,.vote_colon,.vote_against').css({
+            'opacity': 0.5
+        });
+
         splitted = self.attr('href').split('?');
         widget_url = splitted[0] + '.overlay?' + splitted[1];
         $.ajax({
