@@ -381,30 +381,29 @@ var adhocracy = adhocracy || {};
     };
 }());
 
-window.monitor = {
+adhocracy.monitor = {
     data: {},
     data_collectors: {},
     url: null,
     send_data: function() {
-        var obj = window.monitor;
-        if(obj.url){
-            for(var data_collector in obj.data_collectors) {
-                var result = obj.data_collectors[data_collector]();
-                if(!$.isEmptyObject(result) && result != null)
-                    obj.data[data_collector] = result;
+        var mon = adhocracy.monitor;
+        if(mon.url){
+            for(var data_collector in mon.data_collectors) {
+                var result = mon.data_collectors[data_collector]();
+                if(result != null)
+                    mon.data[data_collector] = result;
             }
-            obj.data.page = location.href;
-            if(typeof(obj.send_method) != "undefined" && obj.send_method === "POST")
-                $.post(obj.url, obj.data);
-            else
-                $.get(obj.url, obj.data);
+            if (!$.isEmptyObject(mon.data)) {
+                mon.data.page = location.href;
+                $.get(mon.url, mon.data);
+            }
         }
     }
 };
 
 $(window).load(function() {
     if ($('body').data('stats-page-performance') === "enabled") {
-        window.monitor.data_collectors.timings = function() {
+        adhocracy.monitor.data_collectors.timings = function() {
             var page_timings_data = {};
             if(window.performance && window.performance.timing) {
                 for(var timing in window.performance.timing) {
@@ -419,7 +418,7 @@ $(window).load(function() {
     }
 
     if ($('body').data('stats-pager-clicks') === "enabled") {
-        window.monitor.data_collectors.pager_click = function(){
+        adhocracy.monitor.data_collectors.pager_click = function(){
             var cookie_val = document.cookie.match(/click_monitor=([^;]*)/);
             if (cookie_val) {
                 var pager_click = decodeURIComponent(cookie_val[1]);
@@ -431,8 +430,8 @@ $(window).load(function() {
         };
     }
 
-    window.monitor.url = $('body').data('stats-baseurl');
-    window.setTimeout(window.monitor.send_data, 10);
+    adhocracy.monitor.url = $('body').data('stats-baseurl');
+    window.setTimeout(adhocracy.monitor.send_data, 10);
 });
 
 $(document).ready(function () {
