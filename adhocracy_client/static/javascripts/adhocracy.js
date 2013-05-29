@@ -168,32 +168,6 @@ var adhocracy = adhocracy || {};
 
     };
 
-    /***************************************************
-     * @namespace: adhocracy.tooltips
-     ***************************************************/
-
-    adhocracy.namespace('adhocracy.tooltips');
-
-    /**
-     * Initialize the tooltips for all correctly marked
-     * elements found inside baseSelector. If baseSelector
-     * is not given, it searches for all elements in the
-     * document body.
-     *
-     * @param {string} baseSelector A selector string that can be
-     * passed to jQuery. Optional, defaults to 'body'.
-     */
-    adhocracy.tooltips.initialize = function (baseSelector) {
-        baseSelector = baseSelector || 'body';
-        $(baseSelector).find(".ttip[title]").tooltip({
-            position: "bottom left",
-            opacity: 1,
-            effect: 'fade',
-            fadeInSpeed: 0,
-            fadeOutSpeed: 0
-        }).dynamic({ bottom: { direction: 'down', bounce: true } });
-    };
-
 
     /***************************************************
      * @namespace: adhocracy.helpers
@@ -438,7 +412,6 @@ $(document).ready(function () {
     // initial jquery elastic
     $('textarea').elastic();
 
-    adhocracy.tooltips.initialize();
     adhocracy.helpers.initializeFlashMessageDelegates();
     adhocracy.helpers.initializeTagsAutocomplete('#tags');
     adhocracy.helpers.initializeUserAutocomplete(".userCompleted");
