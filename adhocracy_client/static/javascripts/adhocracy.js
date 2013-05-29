@@ -381,29 +381,28 @@ var adhocracy = adhocracy || {};
     };
 }());
 
-adhocracy.monitor = {
-    data: {},
-    data_collectors: {},
-    url: null,
-    send_data: function() {
-        var mon = adhocracy.monitor;
-        if(mon.url){
-            for(var data_collector in mon.data_collectors) {
-                var result = mon.data_collectors[data_collector]();
-                if(result != null)
-                    mon.data[data_collector] = result;
-            }
-            if (!$.isEmptyObject(mon.data)) {
-                mon.data.page = location.href;
-                $.get(mon.url, mon.data);
+$(window).load(function() {
+    var monitor = {
+        data: {},
+        data_collectors: {},
+        url: null,
+        send_data: function() {
+            if(monitor.url){
+                for(var data_collector in monitor.data_collectors) {
+                    var result = monitor.data_collectors[data_collector]();
+                    if(result != null)
+                        monitor.data[data_collector] = result;
+                }
+                if (!$.isEmptyObject(monitor.data)) {
+                    monitor.data.page = location.href;
+                    $.get(monitor.url, monitor.data);
+                }
             }
         }
-    }
-};
+    };
 
-$(window).load(function() {
     if ($('body').data('stats-page-performance') === "enabled") {
-        adhocracy.monitor.data_collectors.timings = function() {
+       monitor.data_collectors.timings = function() {
             var page_timings_data = {};
             if(window.performance && window.performance.timing) {
                 for(var timing in window.performance.timing) {
@@ -418,7 +417,7 @@ $(window).load(function() {
     }
 
     if ($('body').data('stats-pager-clicks') === "enabled") {
-        adhocracy.monitor.data_collectors.pager_click = function(){
+        monitor.data_collectors.pager_click = function(){
             var cookie_val = document.cookie.match(/click_monitor=([^;]*)/);
             if (cookie_val) {
                 var pager_click = decodeURIComponent(cookie_val[1]);
@@ -430,8 +429,8 @@ $(window).load(function() {
         };
     }
 
-    adhocracy.monitor.url = $('body').data('stats-baseurl');
-    window.setTimeout(adhocracy.monitor.send_data, 10);
+    monitor.url = $('body').data('stats-baseurl');
+    window.setTimeout(monitor.send_data, 10);
 });
 
 $(document).ready(function () {
