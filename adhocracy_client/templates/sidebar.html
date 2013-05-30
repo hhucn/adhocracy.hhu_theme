@@ -1,7 +1,7 @@
 <%def name="votes(poll)">
 <%
 tally = poll.tally
-num_votes = len(tally)
+num_votes = tally.num_for + tally.num_against
 url = h.entity_url(poll, member='votes')
 if check.poll.show(poll):
     tpl = _('A total of <a href="%(url)s">%(votes)s votes</a>, thereof %(for)s ayes and %(against)s nays')
