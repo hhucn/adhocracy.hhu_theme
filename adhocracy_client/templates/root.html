@@ -5,18 +5,17 @@
 /><%namespace name="b" file="/breadcrumbs.html"
 /><%def name="breadcrumbs()">
 ${b.prefix()}
-</%def><?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<!DOCTYPE html>
+</%def><!DOCTYPE html>
 <html class="no-js">
-  <head>
-      <%block name="head">
-      ${components.head()}
-      </%block>
+<head>
+    <%block name="head">
+    ${components.head()}
+    </%block>
 
-      %if h.config.get('adhocracy.debug.sql'):
-      ${debug.styles()}
-      %endif
-  </head>
+    %if h.config.get('adhocracy.debug.sql'):
+    ${debug.styles()}
+    %endif
+</head>
 
 <!--[if lte IE 7]>
       <a href="http://www.browser-update.org/update.html" class="ie-message">${_('You are using an outdated web browser. Click here to update.')}</a>
