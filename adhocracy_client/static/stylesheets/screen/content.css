@@ -46,6 +46,14 @@ li {
   margin-left: 0;
 }
 
+li:hover {
+  text-decoration: underline;
+}
+
+li a:hover {
+  text-decoration: none;
+}
+
 .hr {
   height: 1px;
   background: url('/images/line_dotted.gif') repeat-x top left;
