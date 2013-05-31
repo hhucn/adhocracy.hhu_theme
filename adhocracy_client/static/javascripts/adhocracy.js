@@ -355,25 +355,68 @@ var adhocracy = adhocracy || {};
     };
 }());
 
-$(window).load(function() {
-    var monitor = {
-        data: {},
-        data_collectors: {},
-        url: null,
-        send_data: function() {
-            if(monitor.url){
-                for(var data_collector in monitor.data_collectors) {
-                    var result = monitor.data_collectors[data_collector]();
-                    if(result != null)
-                        monitor.data[data_collector] = result;
-                }
-                if (!$.isEmptyObject(monitor.data)) {
-                    monitor.data.page = location.href;
-                    $.get(monitor.url, monitor.data);
-                }
+window.monitor = {
+    data: {},
+    data_collectors: {},
+    url: null,
+    send_data: function() {
+        if(monitor.url){
+            for(var data_collector in monitor.data_collectors) {
+                var result = monitor.data_collectors[data_collector]();
+                if(result != null)
+                    monitor.data[data_collector] = result;
+            }
+            if (!$.isEmptyObject(monitor.data)) {
+                monitor.data.page = location.href;
+                $.get(monitor.url, monitor.data);
             }
         }
-    };
+    },
+    add_data: function(key, data) {
+        data[key] = data;
+    }
+};
+
+$(window).load(function() {
+    var monitor = window.monitor
+    if($('body').data('stats-browser-values') === "enabled") {
+        var data = {}
+
+        if(typeof(window.innerHeight) != "undefined") {
+            if(!data.hasOwnProperty('view')) data.view = {};
+            data.view.height = window.innerHeight;
+        }
+
+        if(typeof(window.innerWidth) != "undefined") {
+            if(!data.hasOwnProperty('view')) data.view = {};
+            data.view.width = window.innerWidth;
+        }
+
+        if(typeof(window.screen) != "undefined") {
+            var scr = window.screen;
+            if(!data.hasOwnProperty('screen')) {
+                data.screen = {};
+                data.screen.pixel = {};
+            }
+
+            if(typeof(window.devicePixelRatio) != "undefined")
+                data.screen.pixel.ratio = window.devicePixelRatio;
+            else
+                data.screen.pixel.ratio = 1;
+
+            if(typeof(scr.width) != "undefined") {
+                data.screen.width = {};
+                data.screen.width.pixel = scr.width;
+                data.screen.width.resolution = scr.width * data.screen.pixel.ratio;
+            }
+            if(typeof(scr.pixelDepth) != "undefined")
+                data.screen.pixel.depth = scr.pixelDepth;
+
+            if(typeof(scr.pixelDepth) != "undefined")
+                data.screen.pixel.depth = scr.pixelDepth;
+        }
+        monitor.add_data(data);
+    }
 
     if ($('body').data('stats-page-performance') === "enabled") {
        monitor.data_collectors.timings = function() {
