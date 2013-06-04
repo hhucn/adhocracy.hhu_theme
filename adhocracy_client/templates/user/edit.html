@@ -115,7 +115,7 @@
           </table>
       </div>
       <div class="input_wrapper">
-        <label>${_("Receive occasional news from instance administrators.")}
+        <label>${_("Receive occasional news from instance administrators:")}
         <input type="checkbox" name="email_messages" ${'checked="checked"' if c.page_user.email_messages else ''|n} />
         </label>
       </div>
@@ -157,7 +157,7 @@
     <fieldset>
       <legend>${_("Advanced Settings")}</legend>
       <div class="input_wrapper">
-        <label for="page_size">${_("The pre-set number of entries in listing pages.")}
+        <label for="page_size">${_("The pre-set number of entries in listing pages:")}
         <select name="page_size">
             %for n in [10, 20, 50, 100, 200]:
                 <option value="${n}" ${"selected='selected'" if n == c.page_user.page_size else ''}>${n}</option>
@@ -166,7 +166,7 @@
         </label>
       </div>
       <div class="input_wrapper">
-        <label for="page_size">${_("Disable help messages and links to the documentation.")}
+        <label for="page_size">${_("Disable help messages and links to the documentation:")}
         <input type="checkbox" name="no_help" value="true" ${'checked="checked"' if c.page_user.no_help else ''} /></label>
       </div>
       <label>${_("Change default sorting order for proposals:")}
