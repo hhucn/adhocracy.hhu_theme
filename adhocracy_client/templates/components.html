@@ -184,7 +184,7 @@ $(document).ready(function () {
 
 
 <%def name="head(title_def=None)">
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <%
     if title_def is None:
         local_title = ''
@@ -265,7 +265,7 @@ $(document).ready(function () {
     </style>
     %endif
     
-    ${tiles.badge.badge_styles()}
+    ${tiles.badge.badge_styles(c.instance)}
 
     <link rel="stylesheet" type="text/css" media="all" 
           href="${h.base_url('/stylesheets/site.css', None)}" />
@@ -310,7 +310,7 @@ ${caller.body()}
             <textarea rows="8" name="text"></textarea>
             <button type="submit" class="btn">${_(u'Submit')}</button>
           </fieldset>
-          <a href="${h.feedback.get_proposal_url()}">${_(u'List existing feedback')}</a>
+          <a href="${h.entity_url(h.feedback.get_feedback_instance())}">${_(u'List existing feedback')}</a>
         </form>
       </div>
       <a href="#" id="feedback_button"></a>

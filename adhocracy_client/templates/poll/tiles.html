@@ -36,7 +36,7 @@ con = tile.widget_action_attrs(model.Vote.NO)
     %if tile.can_show:
         <a href="${tile.votes_listing_url}" rel="#overlay-ajax" class="vote_count ${tile.count_class}">
     %endif
-        <span class="vote_for">${poll.tally.num_for}</span>:<span class="vote_against">${poll.tally.num_against}</span>
+        <span class="vote_for">${poll.tally.num_for}</span><span class="vote_colon">:</span><span class="vote_against">${poll.tally.num_against}</span>
     %if tile.can_show:
         </a>
     %endif

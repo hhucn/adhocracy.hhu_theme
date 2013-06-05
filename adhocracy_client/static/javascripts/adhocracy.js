@@ -822,6 +822,30 @@ $(document).ready(function () {
             target = self.closest('.vote_wrapper'),
             splitted,
             widget_url;
+
+        // Indicate that we're transmitting the vote
+        target.find('.vote_for,.vote_colon,.vote_against').css({
+            'opacity': 0.5
+        });
+
+        // Simulate result of vote
+        if (!target.hasClass('vote_preview_active_temporary')) {
+            var $vote_up = target.find('.vote_up');
+            var $vote_down = target.find('.vote_down');
+            if (self.hasClass('vote_up')) {
+                if (!$vote_down.hasClass('active')) {
+                    $vote_up.addClass('active');
+                }
+                $vote_down.removeClass('active');
+            } else {
+                if (!$vote_up.hasClass('active')) {
+                    $vote_down.addClass('active');
+                }
+                $vote_up.removeClass('active');
+            }
+            target.addClass('vote_preview_active_temporary');
+        }
+
         splitted = self.attr('href').split('?');
         widget_url = splitted[0] + '.overlay?' + splitted[1];
         $.ajax({
