@@ -169,7 +169,7 @@
         <label for="page_size">${_("Disable help messages and links to the documentation:")}
         <input type="checkbox" name="no_help" value="true" ${'checked="checked"' if c.page_user.no_help else ''} /></label>
       </div>
-      <label>${_("Change default sorting order for proposals:")}
+      <label for="proposal_sort_order">${_("Change default sorting order for proposals:")}
         ${components.proposal_sort_order('proposal_sort_order', c.sorting_orders, default=c.page_user.proposal_sort_order, include_empty=False)}
       </label>
     </fieldset>
