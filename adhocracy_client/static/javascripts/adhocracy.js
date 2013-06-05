@@ -373,28 +373,28 @@ window.monitor = {
         }
     },
     add_data: function(key, data) {
-        data[key] = data;
+        monitor.data[key] = JSON.stringify(data);
     }
 };
 
 $(window).load(function() {
     var monitor = window.monitor
-    if($('body').data('stats-browser-values') === "enabled") {
+    if($("body").data("stats-browser-values") === "enabled") {
         var data = {}
 
         if(typeof(window.innerHeight) != "undefined") {
-            if(!data.hasOwnProperty('view')) data.view = {};
+            if(!data.hasOwnProperty("view")) data.view = {};
             data.view.height = window.innerHeight;
         }
 
         if(typeof(window.innerWidth) != "undefined") {
-            if(!data.hasOwnProperty('view')) data.view = {};
+            if(!data.hasOwnProperty("view")) data.view = {};
             data.view.width = window.innerWidth;
         }
 
         if(typeof(window.screen) != "undefined") {
             var scr = window.screen;
-            if(!data.hasOwnProperty('screen')) {
+            if(!data.hasOwnProperty("screen")) {
                 data.screen = {};
                 data.screen.pixel = {};
             }
@@ -415,7 +415,7 @@ $(window).load(function() {
             if(typeof(scr.pixelDepth) != "undefined")
                 data.screen.pixel.depth = scr.pixelDepth;
         }
-        monitor.add_data(data);
+        monitor.add_data("browser", data);
     }
 
     if ($('body').data('stats-page-performance') === "enabled") {
