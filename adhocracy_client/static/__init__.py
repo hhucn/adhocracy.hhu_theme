@@ -73,14 +73,16 @@ spectrum_css = Resource(misc_library, 'spectrum/spectrum.css')
 spectrum = Resource(misc_library, 'spectrum/spectrum.js',
                     minified='spectrum/spectrum.min.js',
                     depends=[jquery, spectrum_css])
-
+openid_selector = Resource(misc_library, 'openid.js',
+                           depends=[jquery])
 
 # --[ adhocracy ]-----------------------------------------------------------
 
 adhocracy_library = Library('adhocracy', 'javascripts')
 adhocracy = Resource(adhocracy_library, 'adhocracy.js',
                      depends=[jquery, bootstrap_js, elastic,
-                              placeholder, modernizr, jquerytools])
+                              placeholder, modernizr, jquerytools,
+                              openid_selector])
 
 
 # --[ knockout ]------------------------------------------------------------
