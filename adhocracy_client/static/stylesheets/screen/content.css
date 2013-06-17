@@ -876,6 +876,11 @@ a.button.delegate:hover {
   margin-right: 8px;
 }
 
+.vote_preview_active_temporary .vote_for,
+.vote_preview_active_temporary .vote_colon,
+.vote_preview_active_temporary .vote_against {
+    opacity: 0.5;
+}
 
 
 /* papers */

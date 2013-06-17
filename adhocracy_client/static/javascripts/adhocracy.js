@@ -780,11 +780,6 @@ $(document).ready(function () {
             splitted,
             widget_url;
 
-        // Indicate that we're transmitting the vote
-        target.find('.vote_for,.vote_colon,.vote_against').css({
-            'opacity': 0.5
-        });
-
         // Simulate result of vote
         if (!target.hasClass('vote_preview_active_temporary')) {
             var $vote_up = target.find('.vote_up');
@@ -812,11 +807,6 @@ $(document).ready(function () {
                 target.find('.vote_against').text(data.tally.num_against);
                 target.removeClass('vote_preview_active_temporary');
                 adhocracy.overlay.bindOverlays(target);
-                // Indicate that we're transmitting the vote
-                target.find('.vote_for,.vote_colon,.vote_against').css({
-                    'opacity': 1
-                });
-
             }
         });
     });
