@@ -841,6 +841,11 @@ a.button.delegate:hover {
 .vote_for {
   color: #009800;
 }
+.vote_sidebar .vote_for,
+.vote_sidebar .vote_total,
+.vote_sidebar .vote_against {
+    font-weight: bold;
+}
 .vote_against {
   color: #9d0000;
 }
