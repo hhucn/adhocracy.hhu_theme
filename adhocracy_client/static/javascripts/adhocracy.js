@@ -804,12 +804,19 @@ $(document).ready(function () {
         }
 
         splitted = self.attr('href').split('?');
-        widget_url = splitted[0] + '.overlay?' + splitted[1];
+        widget_url = splitted[0] + '.json?' + splitted[1];
         $.ajax({
             url: widget_url,
             success: function (data) {
-                target.replaceWith(data);
+                target.find('.vote_for').text(data.tally.num_for);
+                target.find('.vote_against').text(data.tally.num_against);
+                target.removeClass('vote_preview_active_temporary');
                 adhocracy.overlay.bindOverlays(target);
+                // Indicate that we're transmitting the vote
+                target.find('.vote_for,.vote_colon,.vote_against').css({
+                    'opacity': 1
+                });
+
             }
         });
     });
