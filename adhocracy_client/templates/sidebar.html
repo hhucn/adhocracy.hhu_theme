@@ -7,11 +7,16 @@ if check.poll.show(poll):
     tpl = _('A total of <a href="%(url)s">%(votes)s votes</a>, thereof %(for)s ayes and %(against)s nays')
 else:
     tpl = _('A total of %(votes)s votes, thereof %(for)s ayes and %(against)s nays')
-para = tpl % {'url': url, 'for': tally.num_for, 'against': tally.num_against, 'votes': num_votes}
+    para = tpl % {
+        'url': url,
+        'for': '<span class="vote_for">%s</span>' % tally.num_for,
+        'against': '<span class="vote_against">%s</span>' % tally.num_against,
+        'votes': '<span class="vote_total">%s</span>' % num_votes
+    }
 %>
 
 <h6>${_('Votes')}</h6>
-<p>
+<p class="vote_sidebar">
     ${para|n}
 </p>
 

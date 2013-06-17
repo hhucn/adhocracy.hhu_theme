@@ -807,6 +807,12 @@ $(document).ready(function () {
                 target.find('.vote_against').text(data.tally.num_against);
                 target.removeClass('vote_preview_active_temporary');
                 adhocracy.overlay.bindOverlays(target);
+                // if target is the proposal vote, update sidebar
+                if (target.closest('.proposal_title').length == 1) {
+                    $('.vote_sidebar .vote_for').text(data.tally.num_for);
+                    $('.vote_sidebar .vote_against').text(data.tally.num_against);
+                    $('.vote_sidebar .vote_total').text(data.tally.num_for + data.tally.num_against);
+                }
             }
         });
     });
