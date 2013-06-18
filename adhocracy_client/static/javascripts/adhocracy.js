@@ -313,7 +313,7 @@ var adhocracy = adhocracy || {};
                 wrapper.removeClass('hidden');
             }
             if (visible) {
-                stylerule = '.badge_dummy.abadge:before { color: ' + color + ';}';
+                stylerule = '.badge_dummy.abadge { background-color: ' + color + ';}';
             } else {
                 stylerule = '.badge_dummy.abadge { visibility: hidden;}';
             }

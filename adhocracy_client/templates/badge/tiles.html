@@ -26,7 +26,7 @@ else:
 <%def name="badge_styles(badges)">
 <style type="text/css" media="screen">
     %for badge_ in badges:
-    .badge_${badge_.id}.abadge:before { color: ${badge_.color}; }
+    .abadge.badge_${badge_.id} { background-color: ${badge_.color}; }
     %endfor
 </style>
 
