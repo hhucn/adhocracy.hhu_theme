@@ -1566,8 +1566,13 @@ form#user_welcome>label>input[type="submit"] {
   padding: 2px 5px;
 }
 
-dl.votedetail {margin: 0; padding: 0;}
-dl.votedetail>dt {float: left; min-width: 5em; padding-right: 0.5em;}
+table.votedetail {margin: 0; padding: 0;}
+table.votedetail th {
+    padding-right: 0.5em;
+}
+table.votedetail .vote_for,
+table.votedetail .vote_against
+{padding:0 0.3em; text-align: right}
 dl.votedetail>dd {margin: 0; padding: 0;}
 
 .languagelist label {margin: 0; padding: 0;}

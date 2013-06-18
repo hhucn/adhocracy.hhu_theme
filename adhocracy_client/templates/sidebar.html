@@ -25,12 +25,16 @@ else:
 <%def name="votedetail(vd)">
 %if vd:
 <h6>${_('Votes by User Group')}</h6>
-<dl class="votedetail">
+<table class="votedetail">
 %for b, tally in vd:
-	<dt>${b.title}</dt>
-    <dd class="badge_${b.id}"><span class="vote_for">${tally.num_for}</span> : <span class="vote_against">${tally.num_against}</span></dd>
+<tr class="badge_${b.id}">
+    <th>${b.title}</th>
+    <td class="vote_for">${tally.num_for}</td>
+    <td>:</td>
+    <td class="vote_against">${tally.num_against}</td>
+</tr>
 %endfor
-</dl>
+</table>
 <p />
 %endif
 </%def>
