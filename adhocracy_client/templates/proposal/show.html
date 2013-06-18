@@ -147,6 +147,18 @@ ${components.watch(c.proposal)}
 <h3 id="information">${_('Informations')}</h3>
 <summary>
 
+    <h6>${_('Proposal')}</h6>
+    ## FIXME: ensure caching of history count (make it a tile?)
+    <p>
+<%
+created_msg = _("by %s on %s, %s changes since then.") % (
+    h.user.link(c.proposal.creator), 
+    h.date_tag(c.proposal.create_time),
+    len(c.proposal.description.variant_history(model.Text.HEAD)))
+%>
+    ${created_msg|n}
+    </p>
+
     ${sidebar_defs.shortlink(c.proposal)}
 
     <h6>${_('Last Activity')}</h6>
@@ -182,17 +194,6 @@ ${components.watch(c.proposal)}
         %endif
     </p>
     %endif
-    <h6>${_('Created')}</h6>
-    ## FIXME: ensure caching of history count (make it a tile?)
-    <p>
-<%
-created_msg = _("by %s on %s, %s changes since then.") % (
-    h.user.link(c.proposal.creator), 
-    h.date_tag(c.proposal.create_time),
-    len(c.proposal.description.variant_history(model.Text.HEAD)))
-%>
-    ${created_msg|n}
-    </p>
 
     ${tiles.tag.sidebar(c.proposal)}
     

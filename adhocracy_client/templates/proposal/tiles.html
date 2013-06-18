@@ -2,8 +2,17 @@
 <%namespace name="state" file="/poll/state.html"/>
 
 <%def name="row(tile, proposal)">
+<%
+    tally = proposal.rate_poll.tally
+    tpl = _('A total of %(votes)s votes, thereof %(for)s ayes and %(against)s nays')
+    tooltip = tpl % {
+        'for': tally.num_for,
+        'against': tally.num_against,
+        'votes': tally.num_for + tally.num_against
+    }
+%>
     <li class="content_box ${'fresh' if tile.fresh else ''}">
-    <h3><a class="link" href="${h.entity_url(proposal)}"><div class="vote vote_preview"><span class="vote_for"><span class="ttip" title="${('Votes in favor of this proposal')}">${str(proposal.rate_poll.tally.num_for)}</span></span><span class="vote_against"><span class="ttip" title="${_('Votes against this proposal')}">${str(proposal.rate_poll.tally.num_against)}</span></span></div><div class="proposal_title">${proposal.title}</div></a>
+    <h3><a class="link" href="${h.entity_url(proposal)}"><div class="vote vote_preview" title="${tooltip}"><span class="vote_for">${str(proposal.rate_poll.tally.num_for)}</span><span class="vote_against">${str(proposal.rate_poll.tally.num_against)}</span></div><div class="proposal_title">${proposal.title}</div></a>
             <span id="badges_${proposal.id}" class="badges"
                   data-id="${proposal.id}">
                 ${tiles.badge.badges(proposal.badges + proposal.categories)}

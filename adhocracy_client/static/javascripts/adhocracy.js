@@ -508,9 +508,10 @@ $(document).ready(function () {
 
     (function () {
         // function only to get a function local namespace
-        var second_level_comments = $('.comments_list > li > ul');
-        second_level_comments.hide();
-        second_level_comments.toggleClass('open');
+        //var second_level_comments = $('.comments_list > li > ul');
+        //second_level_comments.hide();
+        //second_level_comments.toggleClass('open');
+        $('a.show_comments').toggleClass('open');
     }());
 
     var stats_baseurl = $('#main_comments').data('stats-baseurl');
@@ -780,11 +781,6 @@ $(document).ready(function () {
             splitted,
             widget_url;
 
-        // Indicate that we're transmitting the vote
-        target.find('.vote_for,.vote_colon,.vote_against').css({
-            'opacity': 0.5
-        });
-
         // Simulate result of vote
         if (!target.hasClass('vote_preview_active_temporary')) {
             var $vote_up = target.find('.vote_up');
@@ -804,12 +800,28 @@ $(document).ready(function () {
         }
 
         splitted = self.attr('href').split('?');
-        widget_url = splitted[0] + '.overlay?' + splitted[1];
+        widget_url = splitted[0] + '.json?' + splitted[1];
         $.ajax({
             url: widget_url,
             success: function (data) {
-                target.replaceWith(data);
+                target.find('.vote_for').text(data.tally.num_for);
+                target.find('.vote_against').text(data.tally.num_against);
+                target.removeClass('vote_preview_active_temporary');
                 adhocracy.overlay.bindOverlays(target);
+                // if target is the proposal vote, update sidebar
+                if (target.closest('.proposal_title').length == 1) {
+                    $('.vote_sidebar .vote_for').text(data.tally.num_for);
+                    $('.vote_sidebar .vote_against').text(data.tally.num_against);
+                    $('.vote_sidebar .vote_total').text(data.tally.num_for + data.tally.num_against);
+                    if (data.votedetail) {
+                        for (var i = 0; i < data.votedetail.length; i++) {
+                            var votedetail = data.votedetail[i];
+                            var badge_id = '.badge_' + votedetail.badge.id;
+                            $('.votedetail ' + badge_id + ' .vote_for').text(votedetail.tally.num_for);
+                            $('.votedetail ' + badge_id + ' .vote_against').text(votedetail.tally.num_against);
+                        }
+                    }
+                }
             }
         });
     });

@@ -7,11 +7,16 @@ if check.poll.show(poll):
     tpl = _('A total of <a href="%(url)s">%(votes)s votes</a>, thereof %(for)s ayes and %(against)s nays')
 else:
     tpl = _('A total of %(votes)s votes, thereof %(for)s ayes and %(against)s nays')
-para = tpl % {'url': url, 'for': tally.num_for, 'against': tally.num_against, 'votes': num_votes}
+    para = tpl % {
+        'url': url,
+        'for': '<span class="vote_for">%s</span>' % tally.num_for,
+        'against': '<span class="vote_against">%s</span>' % tally.num_against,
+        'votes': '<span class="vote_total">%s</span>' % num_votes
+    }
 %>
 
 <h6>${_('Votes')}</h6>
-<p>
+<p class="vote_sidebar">
     ${para|n}
 </p>
 
@@ -20,12 +25,17 @@ para = tpl % {'url': url, 'for': tally.num_for, 'against': tally.num_against, 'v
 <%def name="votedetail(vd)">
 %if vd:
 <h6>${_('Votes by User Group')}</h6>
-<dl class="votedetail">
+<table class="votedetail">
 %for b, tally in vd:
-	<dt>${b.title}</dt>
-	<dd><span class="num_for">${tally.num_for}</span> : <span class="num_against">${tally.num_against}</span></dd>
+<tr class="badge_${b.id}">
+    <th>${b.title}</th>
+    <td class="vote_for">${tally.num_for}</td>
+    <td>:</td>
+    <td class="vote_against">${tally.num_against}</td>
+</tr>
 %endfor
-</dl>
+</table>
+<p />
 %endif
 </%def>
 

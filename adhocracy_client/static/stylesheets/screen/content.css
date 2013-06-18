@@ -841,6 +841,11 @@ a.button.delegate:hover {
 .vote_for {
   color: #009800;
 }
+.vote_sidebar .vote_for,
+.vote_sidebar .vote_total,
+.vote_sidebar .vote_against {
+    font-weight: bold;
+}
 .vote_against {
   color: #9d0000;
 }
@@ -876,6 +881,11 @@ a.button.delegate:hover {
   margin-right: 8px;
 }
 
+.vote_preview_active_temporary .vote_for,
+.vote_preview_active_temporary .vote_colon,
+.vote_preview_active_temporary .vote_against {
+    opacity: 0.5;
+}
 
 
 /* papers */
@@ -1556,8 +1566,13 @@ form#user_welcome>label>input[type="submit"] {
   padding: 2px 5px;
 }
 
-dl.votedetail {margin: 0; padding: 0;}
-dl.votedetail>dt {float: left; min-width: 5em; padding-right: 0.5em;}
+table.votedetail {margin: 0; padding: 0;}
+table.votedetail th {
+    padding-right: 0.5em;
+}
+table.votedetail .vote_for,
+table.votedetail .vote_against
+{padding:0 0.3em; text-align: right}
 dl.votedetail>dd {margin: 0; padding: 0;}
 
 .languagelist label {margin: 0; padding: 0;}
