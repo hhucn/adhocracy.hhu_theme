@@ -812,6 +812,14 @@ $(document).ready(function () {
                     $('.vote_sidebar .vote_for').text(data.tally.num_for);
                     $('.vote_sidebar .vote_against').text(data.tally.num_against);
                     $('.vote_sidebar .vote_total').text(data.tally.num_for + data.tally.num_against);
+                    if (data.votedetail) {
+                        for (var i = 0; i < data.votedetail.length; i++) {
+                            var votedetail = data.votedetail[i];
+                            var badge_id = '.badge_' + votedetail.badge.id;
+                            $('.votedetail ' + badge_id + ' .vote_for').text(votedetail.tally.num_for);
+                            $('.votedetail ' + badge_id + ' .vote_against').text(votedetail.tally.num_against);
+                        }
+                    }
                 }
             }
         });
