@@ -508,9 +508,10 @@ $(document).ready(function () {
 
     (function () {
         // function only to get a function local namespace
-        var second_level_comments = $('.comments_list > li > ul');
-        second_level_comments.hide();
-        second_level_comments.toggleClass('open');
+        //var second_level_comments = $('.comments_list > li > ul');
+        //second_level_comments.hide();
+        //second_level_comments.toggleClass('open');
+        $('a.show_comments').toggleClass('open');
     }());
 
     var stats_baseurl = $('#main_comments').data('stats-baseurl');
