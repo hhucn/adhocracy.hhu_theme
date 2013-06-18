@@ -843,7 +843,10 @@ a.button.delegate:hover {
 }
 .vote_sidebar .vote_for,
 .vote_sidebar .vote_total,
-.vote_sidebar .vote_against {
+.vote_sidebar .vote_against,
+.votedetail .vote_for,
+.votedetail .vote_total,
+.votedetail .vote_against {
     font-weight: bold;
 }
 .vote_against {
