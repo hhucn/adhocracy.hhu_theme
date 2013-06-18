@@ -843,10 +843,7 @@ a.button.delegate:hover {
 }
 .vote_sidebar .vote_for,
 .vote_sidebar .vote_total,
-.vote_sidebar .vote_against,
-.votedetail .vote_for,
-.votedetail .vote_total,
-.votedetail .vote_against {
+.vote_sidebar .vote_against {
     font-weight: bold;
 }
 .vote_against {
@@ -1566,9 +1563,14 @@ table.votedetail th {
     padding-right: 0.5em;
 }
 table.votedetail .vote_for,
-table.votedetail .vote_against
-{padding:0 0.3em; text-align: right}
-dl.votedetail>dd {margin: 0; padding: 0;}
+table.votedetail .vote_against {
+  padding:0 0.3em;
+  text-align: right;
+  font-weight: bold;
+}
+table.votedetail .vote_colon {
+  font-weight: bold;
+}
 
 .languagelist label {margin: 0; padding: 0;}
 
