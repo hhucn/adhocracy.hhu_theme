@@ -39,7 +39,7 @@
         class="${root is None and 'comments_list' or 'sub'}">
         %for comment, tile in _comments:
         %if tile.show:
-        <li>
+        <li class="comment_listitem">
             ${tiles.comment.show(comment, recurse=recurse, ret_url=ret_url)}
   
             %if recurse:
@@ -107,11 +107,29 @@
             ${tiles.poll.widget(comment.poll)}
         </div>
 
+        <div class="comment_content">
         ## comment title (username / pro/con / deleted)
         %if not comment.is_deleted():
+        <div class="floatbox">
+            %if can.comment.edit(comment):
+            <a class="edit_comment"
+               data-comment="${comment.id}"
+               data-instance-baseurl="${h.base_url(instance=comment.topic.instance, append_slash=True)}"
+               href="${h.entity_url(comment, member='edit', 
+                                    query=dict(ret_url=ret_url))}">
+                ${_("edit")}
+            </a> 
+            %endif
+
+            %if can.comment.delete(comment):
+            &nbsp;&nbsp;&nbsp;
+            <a class="" href="${h.entity_url(comment, member='ask_delete')}">${_("delete")}</a> 
+            %endif
+        </div>
         <h5>
             ${h.user.link(comment.creator, scope=comment.topic)|n} 
             <span class="${sentiment['css']}">${sentiment['msg']}</span>
+
         </h5>
         %else:
         <h5>${_("(deleted)")}</h5>
@@ -124,20 +142,7 @@
         <span class="hint">${_("This comment has been deleted.") if h.comment.wording() else _("This argument has been deleted.")}</span>
         %endif
 
-        %if can.comment.edit(comment):
-        <a class="edit_comment"
-           data-comment="${comment.id}"
-           data-instance-baseurl="${h.base_url(instance=comment.topic.instance, append_slash=True)}"
-           href="${h.entity_url(comment, member='edit', 
-                                query=dict(ret_url=ret_url))}">
-            ${_("edit")}
-        </a> 
-        %endif
-
-        %if can.comment.delete(comment):
-        &nbsp;&nbsp;&nbsp;
-        <a class="" href="${h.entity_url(comment, member='ask_delete')}">${_("delete")}</a> 
-        %endif
+        </div>
 
         <div class="comment_actions floatbox">
             <div>

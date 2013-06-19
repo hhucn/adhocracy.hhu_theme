@@ -964,9 +964,13 @@ ul.papers_list li {
 
 /* comments */
 ul.comments_list, .comment_wrapper {
-  background: url('/images/gradient_comments.jpg') repeat-y top left #e5e6e8;
+  background: #e5e6e8;
   margin: 0;
   list-style: none;
+}
+ul.comments_list .comment {
+  background: url('/images/gradient_comments.jpg') top left;
+  padding: 10px;
 }
 ul.comments_list ul {
   margin: 0;
@@ -975,9 +979,19 @@ ul.comments_list ul {
 ul.comments_list .comment ul {
   list-style: disc;
 }
-ul.comments_list li, .comment_wrapper .comment {
-  padding: 10px 0 0 20px;
+ul.comments_list li.comment_listitem, .comment_wrapper .comment {
+  padding: 0;
+  border-top:1px dotted #eee;
   cursor: pointer;
+}
+ul.comments_list li.comment_listitem {
+  padding-left: 20px;
+}
+ul.comments_list > li.comment_listitem {
+  padding-left: 0;
+}
+ul.comments_list {
+    padding:0 10px 0 0;
 }
 
 .comment_wrapper .comment {
