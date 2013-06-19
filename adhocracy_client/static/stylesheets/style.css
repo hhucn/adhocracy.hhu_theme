@@ -364,8 +364,12 @@ div #user_menu {
 
 .vote_comment {float: left;}
 .comment .comment_content {margin-left:3em;}
-.comment .comment_content p:last-child {margin-bottom:5px}
+.comment .comment_content p,
+.comment .comment_content :last-child {
+    margin-bottom:9px
+}
 .comment .comment_content .floatbox {float: right;}
+.comment .comment_content li {margin-left: 20px;}
 .comment h5 {margin-top: 0;}
 
 #footer_links {
