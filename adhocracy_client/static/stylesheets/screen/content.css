@@ -975,9 +975,13 @@ ul.comments_list ul {
 ul.comments_list .comment ul {
   list-style: disc;
 }
-ul.comments_list li, .comment_wrapper .comment {
+ul.comments_list li.comment_listitem, .comment_wrapper .comment {
   padding: 10px 0 0 20px;
+  border-top:1px dotted #ddd;
   cursor: pointer;
+}
+ul.comments_list {
+    padding-right:40px;
 }
 
 .comment_wrapper .comment {
