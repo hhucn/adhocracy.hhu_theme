@@ -22,7 +22,13 @@ ${prefix()}
 %endif
 </%def>
 <%def name="user(u, title=None)">
-${prefix()} ${link(_('Users'), h.build(c.instance, 'user', 'all'))} &raquo;
+${prefix()}
+%if h.has_permission('user.index_all'):
+    ${link(_('Users'), h.build(c.instance, 'user', 'all'))}
+%else:
+    ${_('Users')}
+%endif
+&raquo;
 %if title:
     ${entity(u)} ${tail(title)}
 %else:
