@@ -79,16 +79,14 @@
     %endif    
 
     <fieldset>
-      <legend>${_("Notifications")}</legend>
-      <p class="info">
-        ${_("Select how you would like to be notified of events.")}
-        <a target="_new" href="/static/notification_faq.html#howmany">${_("Help.")}</a>
-      </p>
+      <legend>${_("E-Mail")}</legend>
         
       <div class="input_wrapper">
-        <label for="email">${_("E-Mail:")}</label>
+        <!--<label for="email">${_("E-Mail:")}</label>-->
         <input type="text" name="email" value="${c.page_user.email}"/>
       </div>
+      <input type="hidden" name="email_priority" value="${c.page_user.email_priority}" />
+      <!--
       <div class="input_wrapper">
           <table border="0" width="100%">
               <tr>
@@ -114,11 +112,17 @@
               </tr>
           </table>
       </div>
+      -->
+      %if c.page_user.email_messages:
+        <input type="hidden" name="email_messages" value="on" />
+      %endif
+      <!--
       <div class="input_wrapper">
         <label>${_("Receive occasional news from instance administrators:")}
         <input type="checkbox" name="email_messages" ${'checked="checked"' if c.page_user.email_messages else ''|n} />
         </label>
       </div>
+      -->
     </fieldset>
 
     %if 'openid' in h.allowed_login_types():
