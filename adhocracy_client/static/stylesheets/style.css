@@ -138,11 +138,24 @@ body {
   margin-right: 12px;
 }
 
-li.content_box {padding: 0;}
-li.content_box h3 {padding:0;}
-li.content_box hr {margin: 0;}
+li.content_box {
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+li.content_box h3 {
+    padding:0;
+    margin:0;
+}
 li.content_box .proposal_title {
     margin-left:125px;
+}
+li.content_box .proposal_info {
+    margin-left:125px;
+}
+li.content_box .comment_count {
+    display: block;
+    float: right;
+    margin-right: 5px;
 }
 
 summary h6 {

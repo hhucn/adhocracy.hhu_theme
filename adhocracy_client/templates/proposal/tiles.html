@@ -18,7 +18,7 @@
                 ${tiles.badge.badges(proposal.badges + proposal.categories)}
             </span>
         </h3>
-        <hr />
+        <div class="proposal_info"><span class="author">${h.user.link(proposal.creator)|n}</span><span class="comment_count">${_('%s Comments') % proposal.comment_count()}</span></div>
     </li>
 </%def>
 
