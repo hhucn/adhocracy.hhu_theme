@@ -375,6 +375,37 @@ div #user_menu {
   background: #479459;
 }
 
+.comment_sort_selector {
+    text-align:right;
+    float:right;
+    position:relative;
+    top:-29px;
+    margin-right:10px;
+}
+
+.comment_sort_selector li.sort {
+    padding:5px;
+    border-radius:6px 6px 0 0;
+    background:#f8f8f8;
+    cursor:pointer;
+    color:#446191;
+    margin-left:4px;
+}
+
+.comment_sort_selector li.active_sort {
+    background:#E5E6E8;
+}
+.comment_sort_selector li:hover {
+    text-decoration:underline;
+}
+
+.comment_sort_separator {
+    margin:0;
+    padding:0;
+    height:10px;
+    background:#E5E6E8;
+}
+
 .vote_comment {float: left;}
 .comment .comment_content p,
 .comment .comment_content :last-child {

@@ -696,6 +696,34 @@ $(document).ready(function () {
         return false;
     });
 
+    // comment sort orders
+
+    (function() {
+        if ($('#main_comments .comment_sort_selector').length == 0)
+            return;
+        var mixed = [];
+        var time = [];
+        $('#main_comments .comments_list > li > div.comment[id]').each(function() {
+            mixed.push($(this).attr('id'));
+            time.push([$(this).attr('id'), $(this).find('time').attr('datetime')]);
+        });
+        time = time.sort(function(a, b) { return a[1] > b[1]; });
+        time = $.map(time, function(e) { return e[0] });
+        $('.comment_sort_selector .sort_mixed').data('sort-order', mixed.join(','));
+        $('.comment_sort_selector .sort_time').data('sort-order', time.join(','));
+        $('.comment_sort_selector .sort_mixed').addClass('active_sort');
+    })();
+
+    $('.comment_sort_selector .sort').click(function() {
+        var order = $(this).data('sort-order');
+        var comments_list = $('#main_comments .comments_list');
+        $.each(order.split(','), function(k, id) {
+            $('#' + id).closest('li').detach().appendTo(comments_list);
+        });
+        $('.comment_sort_selector .sort').removeClass('active_sort');
+        $(this).addClass('active_sort');
+    });
+
     $('.follow_paper').hover(
         function () {
             var button = $(this),
