@@ -274,14 +274,17 @@ param = sorts.pager.sort_param
 
 %if sorts:
 
-<% sort_dict = enumerate(pager.sorts, start=1) %>
+    <%
+    sort_dict = enumerate(pager.sorts, start=1)
+    help = lib.pager.help_strings()
+    %>
 
     <ul>
     %for key, value in sort_dict:
         %if key == pager.selected_sort:
-            <li class="sort active_sort" data-sort-key="${key}">${value}</li>
+            <li class="sort active_sort" data-sort-key="${key}" title="${help.get(value, '')}">${value}</li>
         %else:
-            <li class="sort" data-sort-key="${key}">
+            <li class="sort" data-sort-key="${key}" title="${help.get(value, '')}">
                 <a href="${pager.build_url(sort=key)|n}">${value}</a>
             </li>
         %endif
