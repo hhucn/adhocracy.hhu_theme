@@ -10,7 +10,9 @@ ${b.tail(h.site.name())}
 <%block name="content_wrapper">
 
 <div class="frontpage_description">
+  %if c.body is not None:
   ${c.body|n}
+  %endif
 </div>
 
 %if c.instances:
