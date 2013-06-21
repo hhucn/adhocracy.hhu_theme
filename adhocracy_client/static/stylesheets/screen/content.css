@@ -1381,10 +1381,7 @@ body.logged_in .only-anon {
   vertical-align: baseline;
   background-color: #999999;
   border-radius:3px;
-}
-.abadge:hover {
-  color: #2D3441;
-  cursor: pointer;
+  cursor: default;
 }
 .abadge.admin {
   background-color: #f98c8c
