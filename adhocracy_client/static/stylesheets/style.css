@@ -432,6 +432,13 @@ div #user_menu {
   float: left; width: 60%; font-size: 16px; text-align: center;
 }
 
+.user_edit_headline h3 {
+    margin-bottom:0;
+}
+.user_edit_headline .user_label {
+    margin-bottom:10px;
+}
+
 /* Smartphones */
 @media only screen and (max-width: 1000px) {
   #logo, #logo > img {
