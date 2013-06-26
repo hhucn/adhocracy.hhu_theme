@@ -78,16 +78,9 @@ if c.proposal.is_adopt_polling():
                   %endif
               >
               <a name="discussions"></a>
-
               <h3 id="discussions">
                   ${_('Comments') if h.comment.wording() else _('Discussions')}
               </h3>
-              <div class="comment_sort_separator">
-                  <ul class="comment_sort_selector">
-                      <li class="sort sort_mixed">${_('Mixed')}</li>
-                      <li class="sort sort_time">${_('Date')}</li>
-                  </ul>
-              </div>
                   ## comments are attached to the description which is a
                   ## :class:`adhocracy.model.Page`
                   ## proposal descriptions have no other variant than head.
