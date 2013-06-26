@@ -21,7 +21,7 @@
 
 <%def name="list(tile, comments, topic, variant=None, root=None, recurse=True, ret_url='')">
     <%
-    _comments = h.comments_sorted(comments, root=root, variant=variant)
+    _comments = h.comments_sorted(comments, root=root, variant=variant, key=lambda c: c.create_time)
     %>
 
     %if root is None:
@@ -138,6 +138,16 @@
         ## comment text
         %if not comment.is_deleted():
         ${tile.text|n}
+        %if comment.is_edited():
+          <p class="hint_edit">
+          %if comment.latest.user == comment.creator:
+          ${_("edited %s") % h.datetime_tag(comment.latest.create_time)|n}
+          %else:
+          ${_("edited %s by %s") % (h.datetime_tag(comment.latest.create_time),
+          h.user.link(comment.latest.user, scope=comment.topic))|n}
+          %endif
+          </p>
+        %endif
         %else:
         <span class="hint">${_("This comment has been deleted.") if h.comment.wording() else _("This argument has been deleted.")}</span>
         %endif
@@ -200,16 +210,7 @@
                 %if comment.is_deleted():
                 ${_("deleted %s") % h.datetime_tag(comment.delete_time)|n}
                 %else:
-                  %if not comment.is_edited(): 
                   ${h.datetime_tag(comment.create_time)|n}
-                  %else:
-                    %if comment.latest.user == comment.creator:
-                    ${_("edited %s") % h.datetime_tag(comment.latest.create_time)|n}
-                    %else:
-                    ${_("edited %s by %s") % (h.datetime_tag(comment.latest.create_time),
-                    h.user.link(comment.latest.user, scope=comment.topic))|n}
-                    %endif
-                  %endif
                 %endif
 
             </div>

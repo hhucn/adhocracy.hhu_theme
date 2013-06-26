@@ -408,6 +408,10 @@ div #user_menu {
     margin-bottom:10px;
 }
 
+.hint_edit {
+    font-style:italic;
+}
+
 /* Smartphones */
 @media only screen and (max-width: 1000px) {
   #logo, #logo > img {
