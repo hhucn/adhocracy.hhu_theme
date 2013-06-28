@@ -1371,7 +1371,6 @@ body.logged_in .only-anon {
   position:relative;
   display: inline-block;
   *display: inline;
-  text-transform: uppercase;
   border-left: 1px solid #e3e3e3;
   color: #666;
   padding: 2px 4px;
