@@ -23,9 +23,11 @@
     <div style="padding-left: 2em;">
     ${forms.checkbox(_("Allow users to propose norms"), 'allow_propose', '5')}
     ${forms.checkbox(_("Require to propose a variant"), 'require_selection', '10')}
+    ${forms.checkbox(_("Show norms navigation item"), 'show_norms_navigation', '12')}
     </div>
 
     ${forms.checkbox(_("Use milestones"), 'milestones', 15)}
+    ${forms.checkbox(_("Use thumbnail badges"), 'allow_thumbnailbadges', 16)}
     ${forms.checkbox(_("Hide global categories"), 'hide_global_categories', 17)}
     ${forms.checkbox(_("Allow editing of comments by default"), 'editable_comments_default', 18)}
     ${forms.checkbox(_("Freeze this instance"), 'frozen', 20)}

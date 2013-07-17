@@ -26,12 +26,12 @@ else:
 %if vd:
 <h6>${_('Votes by User Group')}</h6>
 <table class="votedetail">
-%for b, tally in vd:
-<tr class="badge_${b.id}">
-    <th>${b.title}</th>
-    <td class="vote_for">${tally.num_for}</td>
+%for v in vd:
+<tr class="badge_${v['badge']['id']}">
+    <th>${v['badge']['title']}</th>
+    <td class="vote_for">${v['tally']['num_for']}</td>
     <td class="vote_colon">:</td>
-    <td class="vote_against">${tally.num_against}</td>
+    <td class="vote_against">${v['tally']['num_against']}</td>
 </tr>
 %endfor
 </table>
