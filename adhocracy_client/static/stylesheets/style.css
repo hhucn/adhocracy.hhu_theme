@@ -35,11 +35,14 @@ ol {
   list-style-position: inside;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h3, h4, h5 {
   color: #262c42;
 }
 h2 {font-size: 30px;}
 a, legend, .tabnav li a.active, .tabnav li a:hover {
+  color: #446191;
+}
+h2 {
   color: #446191;
 }
 
@@ -173,11 +176,6 @@ summary h6 {
     width:50px;
     display:inline-block;
     text-align:right;
-}
-
-select[name="page_size"],
-select[name="proposal_sort_order"] {
-  float: right;
 }
 
 label[for="page_size"],
