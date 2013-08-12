@@ -200,6 +200,10 @@ input[type="checkbox"] {
   display: inline-block;
 }
 
+#col3_content {
+  margin-top: 13px;
+}
+
 @media only screen and (min-width : 1000px) {
   body {
       margin-left: 100px;
