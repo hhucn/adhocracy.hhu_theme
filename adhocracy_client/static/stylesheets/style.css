@@ -196,6 +196,10 @@ input[type="checkbox"] {
   font-size: 19px;
 }
 
+#settings {
+  display: inline-block;
+}
+
 @media only screen and (min-width : 1000px) {
   body {
       margin-left: 100px;
