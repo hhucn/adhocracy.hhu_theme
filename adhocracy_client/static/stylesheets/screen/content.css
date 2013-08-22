@@ -982,7 +982,6 @@ ul.comments_list .comment ul {
 ul.comments_list li.comment_listitem, .comment_wrapper .comment {
   padding: 0;
   border-top:1px dotted #eee;
-  cursor: pointer;
 }
 ul.comments_list li.comment_listitem {
   padding-left: 20px;
