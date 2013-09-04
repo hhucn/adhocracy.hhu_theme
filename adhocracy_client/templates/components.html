@@ -308,7 +308,7 @@ ${caller.body()}
             <label>${_(u'Title')}</label>
             <input type="text" placeholder="${_(u'One line summary')}" name="label" />
             <label>${_(u'Description')}</label>
-            <textarea rows="8" name="text"></textarea>
+            <textarea rows="8" placeholder="${_('Please enter your feedback in here and help us to improve our website')}" name="text"></textarea>
             <button type="submit" class="btn">${_(u'Submit')}</button>
           </fieldset>
           <a href="${h.entity_url(h.feedback.get_feedback_instance())}">${_(u'List existing feedback')}</a>
