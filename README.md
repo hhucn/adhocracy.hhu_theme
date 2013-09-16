@@ -6,7 +6,7 @@ To install adhocracy with the HHU layout on a debian/Ubuntu/arch system, type
     wget -nv https://raw.github.com/liqd/adhocracy/develop/build.sh -O build.sh
     sh build.sh -c hhu
 
-(If the above wget fails, you can also [download the file with your browser](https://raw.github.com/liqd/adhocracy.buildout/develop/build.sh), use wget 1.14 or newer, or curl:
+(If the above wget fails, you can also [download the file with your browser](https://raw.github.com/liqd/adhocracy/develop/build.sh), use wget 1.14 or newer, or curl:
 
     curl -sS https://raw.github.com/liqd/adhocracy/develop/build.sh -o build.sh
 

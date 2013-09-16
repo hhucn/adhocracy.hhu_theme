@@ -306,9 +306,9 @@ ${caller.body()}
                 </select>
             %endif
             <label>${_(u'Title')}</label>
-            <input type="text" placeholder="${_(u'One line summary')}" name="label">
+            <input type="text" placeholder="${_(u'One line summary')}" name="label" />
             <label>${_(u'Description')}</label>
-            <textarea rows="8" name="text"></textarea>
+            <textarea rows="8" placeholder="${_('Please enter your feedback in here and help us to improve our website')}" name="text"></textarea>
             <button type="submit" class="btn">${_(u'Submit')}</button>
           </fieldset>
           <a href="${h.entity_url(h.feedback.get_feedback_instance())}">${_(u'List existing feedback')}</a>
@@ -337,4 +337,20 @@ ${caller.body()}
     <script type="text/javascript">
       $('#${id}').selectHierarchy({placeholder: '${_("Others")}'});
     </script>
+</%def>
+
+<%def name="proposal_sort_order(name, sorting_orders, include_empty=True, default=None)">
+<select name="${name}">
+    %if include_empty:
+    <option value=""></option>
+    %endif
+    %for group in sorting_orders.groups:
+      <optgroup label="${group}">
+      %for sorting_order in sorting_orders.by_group[group]:
+        <option value="${sorting_order.value}"${' selected="selected"' if default == sorting_order.value else ''}>${sorting_order.label}</option>
+      %endfor
+      </optgroup>
+    %endfor
+</select>
+
 </%def>

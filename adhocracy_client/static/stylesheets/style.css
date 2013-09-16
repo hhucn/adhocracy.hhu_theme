@@ -38,7 +38,7 @@ ol {
 h1, h3, h4, h5 {
   color: #262c42;
 }
-h2 {font-size: 30px;}
+h2 {font-size: 26px;}
 a, legend, .tabnav li a.active, .tabnav li a:hover {
   color: #446191;
 }
@@ -194,6 +194,14 @@ input[type="checkbox"] {
   color: rgb(156,0,0);
   margin: 10px 0 30px 0;
   font-size: 19px;
+}
+
+#settings {
+  display: inline-block;
+}
+
+#col3_content {
+  margin-top: 13px;
 }
 
 @media only screen and (min-width : 1000px) {
