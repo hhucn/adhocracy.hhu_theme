@@ -21,8 +21,14 @@
 	${components.freetext('body', _('Content of the page'))}
 
 	<input type="submit" value="${_('Change static page')}" />
+ 
 </form>
 
 <a href="${h.base_url('/static/', instance=None)}">${_('Back to the list')}</a>
+<br>
+
+<td><a href="${h.entity_url(c.staticpage)}/ask_delete">${_('Delete page')}</a></td>
+
+
 
 </%block>
