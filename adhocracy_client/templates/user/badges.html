@@ -22,17 +22,18 @@
     %if c.badges:
     <table>
         <thead>
-            <th></th>
             <th>${_("badge")} - ${_("all instances")}</th>
         </thead>
         <tbody>
             %for badge in c.badges:
             <tr>
                 <td>
+                    <label name="badgelabel">
                     <input type="checkbox" value="${badge.id}" 
                            name="badge" />
+                    <b>${badge.title}</b> ${_('Example:')}
+                    ${badge_tiles.badge(badge)}</label>
                 </td>
-                <td><b>${badge.title}</b> ${_('Example:')} ${badge_tiles.badge(badge)}</td>
             </tr>
             %endfor
         </tbody>
@@ -43,17 +44,18 @@
       %if instance["badges"]:
         <table>
             <thead>
-                <th></th>
                 <th>${_("badge")} - ${instance["label"]}</th>
             </thead>
             <tbody>
                 %for badge in instance["badges"]:
                 <tr>
                     <td>
+                        <label name="badgelabel">
                         <input type="checkbox" value="${badge.id}" 
                                name="badge" />
+                        <b>${badge.title}</b> ${_('Example:')}
+                        ${badge_tiles.badge(badge)}</label>
                     </td>
-                    <td><b>${badge.title}</b> ${_('Example:')} ${badge_tiles.badge(badge)}</td>
                 </tr>
                 %endfor
             </tbody>
