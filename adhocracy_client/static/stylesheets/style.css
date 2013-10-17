@@ -155,6 +155,12 @@ li.content_box .proposal_title {
 li.content_box .proposal_info {
     margin-left:125px;
 }
+li.content_box .proposal_title_disvote {
+    margin-left:25px;
+}
+li.content_box .proposal_info_disvote {
+    margin-left:25px;
+}
 li.content_box .comment_count {
     display: block;
     float: right;
@@ -397,7 +403,7 @@ div #user_menu {
 .comment .comment_content :last-child {
     margin-bottom:9px
 }
-.comment .comment_content {margin-left:35px;}
+.comment .comment_content {margin-left:0px;}
 .comment .comment_content .floatbox {float: right;}
 .comment .comment_content li {margin-left: 20px;}
 .comment h5 {margin-top: 0;}

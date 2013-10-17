@@ -169,9 +169,11 @@ created_msg = _("by %s on %s, %s changes since then.") % (
 
     <% tally = c.proposal.rate_poll.tally %>
 
+    %if not c.instance.voting_disabled:
     ${sidebar_defs.votes(c.proposal.rate_poll)}
 
     ${sidebar_defs.votedetail(c.votedetail)}
+    %endif
 
     %if c.proposal.category:
     <h6>${_('Category')}</h6>
