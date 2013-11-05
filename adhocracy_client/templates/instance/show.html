@@ -9,8 +9,12 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
 </%def>
 
 <%block name="main_content">
-  <h2 class="instance_title">${c.tile.instance.label}</h2>
+%for type in h.config.get_list('adhocracy.instance_overview_contents'):
+<hr />
 
+%if type == u'proposals':
+<h2 class="instance_title">${c.tile.instance.label}</h2>
+<div id="new_proposals_table" class="table">
   <div class="proposal-actions" id="proposal-actions">
     <% auth = check.proposal.create() %>
     %if auth:
@@ -30,30 +34,22 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
        title="${_('Validate email in order to create a new proposal.')}" 
        href="${h.base_url('/proposal/new')}" rel="#overlay-validate-button">${_("new proposal")}</a>
     %endif
+
+    %if not h.config.get_bool('adhocracy.show_instance_overview_proposals_all'):
+    <a href="${h.base_url('/proposal')}"
+       class="button edit ttip"
+       title="${_('show a list of proposals')}">${_("more proposals")}</a>
+    %endif
   </div>
-
-%if c.new_proposals_pager is not None or c.all_proposals_pager is not None:
-
-<div id="new_proposals_table" class="table">
-    %if c.new_proposals_pager is not None:
+  
+    %if not h.config.get_bool('adhocracy.show_instance_overview_proposals_all'):
     <h3 class="section">${_("Newest Proposals")}</h3>
-    ${c.new_proposals_pager.here()}
     %endif
-    %if c.all_proposals_pager is not None:
-    ${c.all_proposals_pager.here()}
-    %endif
-
-    <div id="proposal-actions">
-        %if c.all_proposals_pager is None:
-        <a href="${h.base_url('/proposal')}" 
-           class="button edit ttip" 
-           title="${_('show a list of proposals')}">${_("more proposals")}</a>
-        %endif
-    </div>
+    ${c.proposals_pager.here()}
 
 </div>
 %endif
-
+%endfor
 </%block>
 
 <%block name="sidebar">
@@ -63,7 +59,4 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
 </div>
 %endif
 
-<div class="instance_description">
-${c.tile.description|n}
-</div>
 </%block>
