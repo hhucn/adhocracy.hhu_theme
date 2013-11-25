@@ -54,7 +54,7 @@ if c.proposal.is_adopt_polling():
                         ${_("edit")}
                     </a>
                     %endif
-                    %if h.asbool(config.get('adhocracy.show_abuse_button', 'True')):
+                    %if h.config.get_bool('adhocracy.show_abuse_button'):
                     <a href="${h.abuse.for_entity(c.proposal)}">
                         ${_("report")}
                     </a>
