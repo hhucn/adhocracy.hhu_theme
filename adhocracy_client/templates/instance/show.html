@@ -10,7 +10,6 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
 
 <%block name="main_content">
 %for type in h.config.get_list('adhocracy.instance_overview_contents'):
-<hr />
 
 %if type == u'proposals':
 <h2 class="instance_title">${c.tile.instance.label}</h2>
