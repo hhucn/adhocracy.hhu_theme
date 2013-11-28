@@ -56,6 +56,11 @@ ${b.root()} &raquo; ${b.tail(c.instance.label)}
 <div id="instance_settings">
   <a href="${h.entity_url(c.instance, member='settings')}" class="button settings">${_("Settings")}</a>
 </div>
+
+<div class="instance_description">
+${c.tile.description|n}
+</div>
+
 %endif
 
 </%block>
