@@ -31,10 +31,11 @@ ${tiles.user.header(c.page_user, c.tile, active='activity')}
     %endif  
     
     <br/>
+    %if not c.about:
     <div class="table">
         ${c.events_pager.here()}
     </div>
-
+    %endif
 </%block>
 
 
