@@ -96,13 +96,3 @@ adhocracy_ko = Resource(knockout_library, 'adhocracy.ko.js',
 moment_library = Library('moment', 'javascripts/moment', version="2.7.0")
 moment = Resource(moment_library, 'moment.js',
                   minified='moment.min.js')
-js_i18n['moment'] = dict()
-for _locale in LOCALES:
-    moment_path = os.path.join(static_path, 'javascripts', 'moment')
-    for locale in (str(_locale), _locale.language):
-        filename = locale.lower().replace('_', '-') + '.js'
-        if locale not in js_i18n['moment']:
-            if os.path.exists(os.path.join(moment_path, filename)):
-                js_i18n['moment'][locale] = Resource(
-                    moment_library, filename, depends=[moment])
-
