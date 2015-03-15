@@ -103,9 +103,12 @@
     %>
 
     <div id="c${comment.id}" class="comment">
+
+        %if not c.instance.voting_disabled:
         <div class="vote_comment">
             ${tiles.poll.widget(comment.poll)}
         </div>
+        %endif
 
         <div class="comment_content">
         ## comment title (username / pro/con / deleted)

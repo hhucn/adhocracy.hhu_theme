@@ -11,14 +11,22 @@
         'votes': tally.num_for + tally.num_against
     }
 %>
+
     <li class="content_box ${'fresh' if tile.fresh else ''}">
-    <h3><a class="link" href="${h.entity_url(proposal)}"><div class="vote vote_preview" title="${tooltip}"><span class="vote_for">${str(proposal.rate_poll.tally.num_for)}</span><span class="vote_against">${str(proposal.rate_poll.tally.num_against)}</span></div><div class="proposal_title">${proposal.title}</div></a>
+    
+    <h3><a class="link" href="${h.entity_url(proposal)}">
+    
+    %if not c.instance.voting_disabled:
+    <div class="vote vote_preview" title="${tooltip}"><span class="vote_for">${str(proposal.rate_poll.tally.num_for)}</span><span class="vote_against">${str(proposal.rate_poll.tally.num_against)}</span></div>
+    %endif
+
+    <div class="${'proposal_title_disvote' if c.instance.voting_disabled else 'proposal_title'}">${proposal.title}</div></a>
             <span id="badges_${proposal.id}" class="badges"
                   data-id="${proposal.id}">
                 ${tiles.badge.badges(proposal.badges + proposal.categories)}
             </span>
         </h3>
-        <div class="proposal_info"><span class="author">${h.user.link(proposal.creator)|n}</span><a href="${h.entity_url(proposal, anchor="discussions")}" class="comment_count">${'' if proposal.comment_count() == 0 else _('%s Comments') % proposal.comment_count()}</a></div>
+        <div class="${'proposal_info_disvote' if c.instance.voting_disabled else 'proposal_info'}"><span class="author">${h.user.link(proposal.creator)|n}</span><a href="${h.entity_url(proposal, anchor="discussions")}" class="comment_count">${'' if proposal.comment_count() == 0 else _('%s Comments') % proposal.comment_count()}</a></div>
     </li>
 </%def>
 
