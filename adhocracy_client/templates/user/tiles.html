@@ -14,9 +14,9 @@
                 <span class="role">
                     ${tile.translated_instance_role_names()}
                     </span> ·
-                ${_("joined %s") % h.datetime_tag(mem.create_time)|n}
+                ${_("Beigetreten: %s") % h.datetime_tag(mem.create_time)|n}
             %else: 
-                ${_("signed up %s") % h.datetime_tag(user.create_time)|n}
+                ${_("Angemeldet: %s") % h.datetime_tag(user.create_time)|n}
             %endif
         </div>
         <div class="hr"><hr /></div>
@@ -26,7 +26,7 @@
 <%def name="header(tile, user, active)">
 
     <div class="top_actions title vcard">
-        %if can.user.message(user):
+        %if lib.auth.authorization.has('global.admin'):
         <a class="button add" 
            href="${h.entity_url(user, instance=c.instance, member='message/new')}">
             ${_("send a message")}
@@ -59,7 +59,7 @@
 
         %if c.user and c.instance and c.user == c.page_user and can.instance.leave(c.instance):
         <a class="button delete ttip" title="${_('Resign from this instance.')}" 
-           href="${h.entity_url(c.instance, member='ask_leave')}">${_("leave instance")}</a> 
+           href="${h.entity_url(c.instance, member='ask_leave')}">${_("Instanz verlassen")}</a> 
         %endif
 
         

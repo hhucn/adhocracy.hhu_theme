@@ -10,10 +10,6 @@ ${b.tag(c.tag)}
 
 <%block name="headline">
 <div class="top_actions title">
-    %if can.proposal.create():
-        <a class="button add ttip" title="${_('Introduce a new idea to debate.')}" href="/proposal/new">${_("new proposal")}</a>
-    %endif
-    
     %if can.norm.create():
         <a class="button title admin ttip" title="${_('Create a new norm.')}" 
             href="/page/new">${_("new norm")}</a>
@@ -41,10 +37,6 @@ ${b.tag(c.tag)}
     </div>
     <br/>
     <div class="top_actions aside">
-        %if can.proposal.create():
-            <a class="button add ttip" title="${_('Introduce a new idea to debate.')}" href="/proposal/new">${_("new proposal")}</a>
-        %endif
-        
         %if can.norm.create():
             <a class="button title admin ttip" title="${_('Create a new norm.')}" 
                 href="/page/new">${_("new norm")}</a>

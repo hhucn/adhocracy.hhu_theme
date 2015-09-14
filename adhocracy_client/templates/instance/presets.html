@@ -1,0 +1,44 @@
+<%inherit file="/template.html" />
+<%namespace name="components" file="/components.html"/>
+<%namespace name="forms" file="/forms.html"/>
+<%def name="title()">${_("Process presets")|n}</%def>
+
+
+<%def name="breadcrumbs()">
+    ${h.site.name()} &raquo; ${_("Process presets")}
+</%def>
+
+
+<%def name="presets_form(first_time=False)">
+<form name="presets" class="inplace" method="POST" action="${h.entity_url(c.page_instance, member=u'presets' if first_time else u'settings/presets')}">
+    ${h.field_token()|n}
+
+    %if not first_time:
+    <h2>${_(u"Process presets")}</h2>
+    %endif
+
+    %if first_time:
+    <p>${_(u"Please select one or more of the following presets for the preliminary configuration of your instance. If necessary you can adapt individual options later.")}</p>
+    %else:
+    <p>${_(u"You can select one or more of these presets to reset your instance configuration. Note that any manual configuration will be lost.")}</p>
+    %endif
+
+    ${forms.checkbox(_(u'Collecting ideas'), u'agenda_setting', help=_(u"The participants can make proposals and discuss these. This option enables everything from an open dialogue to formulating and organizing concrete ideas and goals."))}
+    ${forms.checkbox(_(u'Planning Ideas'), u'planning_ideas', help=_(u"The participants can make, discuss and plan proposals in connection to concrete dates through a calendar function."))}
+    ${forms.checkbox(_(u'Collaboratively drafting texts'), u'consultation', help=_(u"Whether you want to draft statutes, strategic papers or a manifesto – with this option the participants will have the chance to discuss, and collaboratively work on the texts you introduce to the platform."))}
+
+    <div class="submit">
+        <input type="submit" value="${_('Configure') if first_time else _('Reset')}" />
+    </div>
+</form>
+</%def>
+
+
+<%block name="headline">
+    <h3>${_("Process presets")}</h3>
+</%block>
+
+
+<%block name="main_content">
+${presets_form(first_time=True)}
+</%block>

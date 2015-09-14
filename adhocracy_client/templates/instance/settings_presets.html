@@ -1,0 +1,9 @@
+<%inherit file="/instance/settings.html" />
+<%namespace name="presets" file="/instance/presets.html"/>
+<%namespace name="components" file="/components.html"/>
+
+
+<%block name="settings_content">
+${components.flashmessages()}
+${presets.presets_form()}
+</%block>

@@ -31,7 +31,7 @@
                     ${ungettext("%s proposal", "%s proposals", len(page.selections)) % len(page.selections)}
                     ·
                 %endif
-                ${ungettext("%s comment", "%s comments", page.comment_count()) % page.comment_count()}
+                ${ungettext("%s Kommentar", "%s Kommentare", page.comment_count()) % page.comment_count()}
                 ·
                 ${_("latest <b>%s</b>") % h.datetime_tag(page.find_latest_comment_time())|n}&nbsp;
                 %endif
