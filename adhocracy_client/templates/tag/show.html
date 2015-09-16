@@ -10,11 +10,6 @@ ${b.tag(c.tag)}
 
 <%block name="headline">
 <div class="top_actions title">
-    %if can.norm.create():
-        <a class="button title admin ttip" title="${_('Create a new norm.')}" 
-            href="/page/new">${_("new norm")}</a>
-    %endif
-        
     ${components.watch(c.tag)}
 </div>
 
@@ -36,10 +31,4 @@ ${b.tag(c.tag)}
         ${c.entities_pager.here()}
     </div>
     <br/>
-    <div class="top_actions aside">
-        %if can.norm.create():
-            <a class="button title admin ttip" title="${_('Create a new norm.')}" 
-                href="/page/new">${_("new norm")}</a>
-        %endif
-    </div>
 </%block>
