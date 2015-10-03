@@ -47,9 +47,15 @@
    *
    */
 
-  #col1 { float: left; width: 665px}
+  /*
+   * Alternative Layout with flexible left column and fixed right column
+  #col1 { width: auto; margin: 0 450px 0 0}
   #col2 { display:none}
-  #col3 { width: auto; margin: 0 0 0 665px}
+  #col3 { width: 350px; position: absolute; right:0px}
+  */
+  #col1 { float: left; width: 765px}
+  #col2 { display:none}
+  #col3 { width: auto; margin: 0 0 0 765px}
   #col1_content { padding: 0 10px 0 23px }
   #col3_content { padding: 0 23px 0 31px }
 
