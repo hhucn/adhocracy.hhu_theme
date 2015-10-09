@@ -52,7 +52,7 @@ ${b.prefix()}
       <div class="contentWrap"></div>
     </div>
     %if c.user and c.user.welcome_code:
-      <form id="user_welcome" action="${h.entity_url(c.user, member='set_password')}" method="post" data-success-message="${_('Password has been set. Have fun!')}">
+      <form id="user_welcome" action="${h.entity_url(c.user, member='set_password')}" method="post" data-success-message="${_('Passwort wurde erfolgreich gesetzt!')}">
       ${h.field_token()|n}
       <label><span>${_('Welcome back!') if c.user.password else _('Welcome to %s!') % h.site.name()} ${_('Please choose a password:')}</span>
       <input type="password" name="password" autofocus="autofocus" required="required" pattern=".{6,}" title="${_('Please pick a secure password')}" x-moz-errormessage="${_('Please pick a secure password')}"/>
