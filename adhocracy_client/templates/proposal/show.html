@@ -195,7 +195,11 @@ created_msg = _("by %s on %s, %s changes since then.") % (
     </p>
     %endif
 
-    ## ${tiles.tag.sidebar(c.proposal)}
+    %if lib.auth.authorization.has('global.admin'):
+        <p>
+        ${tiles.tag.sidebar(c.proposal)}
+        </p>
+    %endif
     
     ## FIXME: Reimplement Tagging
     ## <div class="only-js" id="add-tag">

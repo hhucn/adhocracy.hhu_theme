@@ -9,9 +9,9 @@ ${b.tag(c.tag)}
 
 
 <%block name="headline">
-<div class="top_actions title">
-    ${components.watch(c.tag)}
-</div>
+##<div class="top_actions title">
+##    ${components.watch(c.tag)}
+##</div>
 
 <div style="clear: both;"></div>
 <h1>${c.tag.name}</h1>
@@ -19,10 +19,10 @@ ${b.tag(c.tag)}
 
     
 <%block name="sidebar">
-    %if len(c.cloud_tags):
-        <h3 class="section">${_("Similar tags")}</h3>
-        ${tiles.tag.cloud(c.cloud_tags)}
-    %endif
+    ##%if len(c.cloud_tags):
+        ##<h3 class="section">${_("Similar tags")}</h3>
+        ##${tiles.tag.cloud(c.cloud_tags)}
+    ##%endif
 </%block>
 
 
