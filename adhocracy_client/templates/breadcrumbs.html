@@ -6,7 +6,7 @@
 <%def name="entity(p)">${link(p.title if hasattr(p, 'title') else p.name, h.entity_url(p))} &raquo;</%def>
 <%def name="admin(title)">${prefix()} ${link(_('Administrate Site'), '/admin')} &raquo; ${tail(title)}</%def>
 <%def name="tag(t, title=None)">
-${prefix()} ${link(_('Tags'), h.build(c.instance, None, 'tag'))} &raquo;
+${prefix()}
 %if title:
     ${entity(t)} &raquo; ${tail(title)}
 %else:

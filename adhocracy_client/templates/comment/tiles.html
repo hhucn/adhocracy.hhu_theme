@@ -253,7 +253,7 @@ klass_con = klass(-1)
         <div class="c40r">
           <div class="subcr comment_settings">
             <div class="input_wrapper comment_status only-js">
-              ${_(u'Comment is...') if h.comment.wording() else _(u'Argument is...')}<br />
+              ${_(u'Hier können Sie angeben, wie sich Ihr Kommentar auf den Textbeitrag bezieht, auf den Sie antworten:') if h.comment.wording() else _(u'Argument is...')}<br />
               <a class="${klass_pro}" 
                  data-status="1" href="#">${_('Pro')}</a>
               <a class="${klass_neutral}" 
@@ -290,7 +290,7 @@ else:
 if wiki is None:
     wiki = c.instance.editable_comments_default
 %>
-  <h4>${_(u'Enter comment text:') if h.comment.wording() else _(u'Enter argument text:')}</h4>
+  <h4>${_(u'Kommentartext eingeben:') if h.comment.wording() else _(u'Enter argument text:')}</h4>
     <form name="new_comment" class="comment_form"
         method="POST" action="${h.base_url('/comment%s' % format, topic.instance)}">
       ${h.field_token()|n}
@@ -312,7 +312,7 @@ if wiki is None:
         <div class="c40r">
           <div class="subcr comment_settings">
             <div class="input_wrapper comment_status only-js">
-              ${_(u'Comment is...') if h.comment.wording() else _(u'Argument is...')}<br />
+              ${_(u'Hier können Sie angeben, wie sich Ihr Kommentar auf den Textbeitrag bezieht, auf den Sie antworten:') if h.comment.wording() else _(u'Argument is...')}<br />
               <a class="button_small" data-status="1" href="#">${_('Pro')}</a>
               <a class="button_small" data-status="0" href="#">${_('Neutral')}</a>
               <a class="button_small" data-status="-1" href="#">${_('Con')}</a>
@@ -391,7 +391,7 @@ if wiki is None:
         <div class="c40r">
           <div class="subcr comment_settings">
             <div class="input_wrapper comment_status">
-              ${_(u'Comment is...') if h.comment.wording() else _(u'Argument is...')}<br />
+              ${_(u'Hier können Sie angeben, wie sich Ihr Kommentar auf den Textbeitrag bezieht, auf den Sie antworten:') if h.comment.wording() else _(u'Argument is...')}<br />
               <a class="button_small" status="pro" href="#">${_('Pro')}</a>
               <a class="button_small" status="neutral" href="#">${_('Neutral')}</a>
               <a class="button_small" status="contra" href="#">${_('Con')}</a>
