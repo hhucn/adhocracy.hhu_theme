@@ -99,7 +99,7 @@
     if comment.latest.sentiment == model.Comment.SENT_PRO:
         sentiment = {'css': 'pro', 'msg': _(u'is pro')}
     elif comment.latest.sentiment == model.Comment.SENT_CON:
-        sentiment = {'css': 'con', 'msg': _(u'is con')}
+        sentiment = {'css': 'contra', 'msg': _(u'is con')}
     %>
 
     <div id="c${comment.id}" class="comment">
@@ -160,16 +160,16 @@
                 %if tile.num_children > 0:
                     %if tile.num_children == 1:
                     <a class="show_comments" href="#">
-                        ${_('1 Comment') if h.comment.wording() else _('1 Argument')}
+                        ${_('1 Kommentar') if h.comment.wording() else _('1 Argument')}
                     </a>
                     %else:
                     <a class="show_comments" href="#">
-                        ${(_('%s Comments') if h.comment.wording() else _('%s Arguments')) % tile.num_children}
+                        ${(_('%s Kommentare') if h.comment.wording() else _('%s Arguments')) % tile.num_children}
                     </a>
                     %endif
                 %else:
                     <span class="show_comments" href="#">
-                        ${(_('%s Comments') if h.comment.wording() else _('%s Arguments')) % tile.num_children}
+                        ${(_('%s Kommentare') if h.comment.wording() else _('%s Arguments')) % tile.num_children}
                     </span>
                 %endif
 

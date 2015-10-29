@@ -27,11 +27,6 @@ ${tiles.user.header(c.page_user)}
     ${forms.select(_("Salutation"), 'gender', c.salutations, help=_("Select your prefered gender"))}
     %endif
 
-    <%forms:textarea label="${_('Short biography')}" name="bio" value=""
-    help="${_(u'Wenn Sie eine kurze Selbstbeschreibung eingeben, können andere mehr über Sie erfahren und so vielleicht Ihre Beiträge besser einordnen.')}">
-    ${components.formatting()}
-    </%forms:textarea>
-
     ${components.savebox(cancel_url=None)}
 
 </form>

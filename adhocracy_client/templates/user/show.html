@@ -20,16 +20,6 @@ ${tiles.user.header(c.page_user, c.tile, active='activity')}
     ${_("Angemeldet: %s") % h.datetime_tag(c.page_user.create_time)|n}
 </p>
 
-    %if c.tile.bio:
-        <div class="description">
-            ${c.tile.bio|n}
-        </div>
-    %else:
-        <div class="infobox">
-            ${_("%s does not yet have a bio.") % c.page_user.name}
-        </div>
-    %endif  
-    
     <br/>
     %if not c.about:
     <div class="table">
