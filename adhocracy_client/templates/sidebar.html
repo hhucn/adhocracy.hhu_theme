@@ -15,10 +15,12 @@ else:
     }
 %>
 
+<div class="vote_summary">
 <h6>${_('Votes')}</h6>
 <p class="vote_sidebar">
     ${para|n}
 </p>
+</div>
 
 </%def>
 
@@ -48,7 +50,7 @@ else:
 <h6>${_('Stimmen nach Gremien')}</h6>
  <table class="votedetail">
  %for v in vd:
-  %if v['badge']['title'] == u'Habilitationsausschuss' or v['badge']['title'] == u'Fakultätsrat':
+  %if v['badge']['title'] == u'Habilitationsausschuss' or v['badge']['title'] == u'früherer Fakultätsrat':
    <tr class="badge_${v['badge']['id']}">
        <th>${v['badge']['title']}</th>
        <td class="vote_for">${v['tally']['num_for']}</td>
