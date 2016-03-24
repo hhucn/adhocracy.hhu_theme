@@ -27,6 +27,8 @@ ${tiles.user.header(c.page_user)}
     ${forms.select(_("Salutation"), 'gender', c.salutations, help=_("Select your prefered gender"))}
     %endif
 
+    <input type="hidden" name="bio" value="" />
+
     ${components.savebox(cancel_url=None)}
 
 </form>
