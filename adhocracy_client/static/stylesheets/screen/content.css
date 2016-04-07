@@ -984,7 +984,7 @@ ul.comments_list li.comment_listitem, .comment_wrapper .comment {
   border-top:1px dotted #eee;
 }
 ul.comments_list li.comment_listitem {
-  padding-left: 20px;
+  padding-left: 40px;
 }
 ul.comments_list > li.comment_listitem {
   padding-left: 0;
