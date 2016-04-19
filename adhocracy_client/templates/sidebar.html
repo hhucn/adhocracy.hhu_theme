@@ -29,14 +29,37 @@ else:
 <h6>${_('Stimmen nach Statusgruppe')}</h6>
  <table class="votedetail">
  %for v in vd:
-  %if v['badge']['title'] == u'Professor/in / PD' or v['badge']['title'] == u'Postdoktorand/in':
+  %if v['badge']['title'] == u'Professor/in / PD':
    <tr class="badge_${v['badge']['id']}">
        <th>${v['badge']['title']}</th>
        <td class="vote_for">${v['tally']['num_for']}</td>
        <td class="vote_colon">:</td>
        <td class="vote_against">${v['tally']['num_against']}</td>
    </tr>
-  %elif v['badge']['title'] == u'Andere':
+  %endif
+ %endfor
+ %for v in vd:
+  %if v['badge']['title'] == u'Postdoktorand/in':
+   <tr class="badge_${v['badge']['id']}">
+       <th>${v['badge']['title']}</th>
+       <td class="vote_for">${v['tally']['num_for']}</td>
+       <td class="vote_colon">:</td>
+       <td class="vote_against">${v['tally']['num_against']}</td>
+   </tr>
+  %endif
+ %endfor
+ %for v in vd:
+  %if v['badge']['title'] == u'Promovend/in':
+   <tr class="badge_${v['badge']['id']}">
+       <th>${v['badge']['title']}</th>
+       <td class="vote_for">${v['tally']['num_for']}</td>
+       <td class="vote_colon">:</td>
+       <td class="vote_against">${v['tally']['num_against']}</td>
+   </tr>
+  %endif
+ %endfor
+ %for v in vd:
+  %if v['badge']['title'] == u'Andere':
    <tr class="badge_${v['badge']['id']}">
        <th>andere Personen</th>
        <td class="vote_for">${v['tally']['num_for']}</td>
@@ -50,7 +73,7 @@ else:
 <h6>${_('Stimmen nach Gremien')}</h6>
  <table class="votedetail">
  %for v in vd:
-  %if v['badge']['title'] == u'Habilitationsausschuss' or v['badge']['title'] == u'früherer Fakultätsrat':
+  %if v['badge']['title'] == u'Promotionsausschuss' or v['badge']['title'] == u'Fakultätsrat':
    <tr class="badge_${v['badge']['id']}">
        <th>${v['badge']['title']}</th>
        <td class="vote_for">${v['tally']['num_for']}</td>
