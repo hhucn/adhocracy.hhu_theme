@@ -164,7 +164,7 @@ created_msg = _("by %s on %s, %s changes since then.") % (
     <h6>${_('Last Activity')}</h6>
     <p><time>
         ${h.datetime_tag(
-        c.proposal.find_latest_comment_time())|n}
+        c.proposal.last_activity())|n}
     </time></p>
 
     <% tally = c.proposal.rate_poll.tally %>
