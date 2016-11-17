@@ -3,7 +3,7 @@
 <div class="pager_wrapper">
     %if pager.enable_pages or pager.enable_sorts:
         <div class="floatbox">
-            <h4>Sortierung:</h4>
+            <b>Sortierung:</b>
             %if pager.enable_pages and len(pager.items) != pager.total_num_items():
                 <div class="pager_items">
                     ${_("%(start)s-%(end)s out of %(total)s") % dict(start=pager.offset+1, end=pager.offset+len(pager.items), total=pager.total_num_items())}
